@@ -1,12 +1,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical" >
+    android:padding="@dimen/margin_learn_pages" >
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/margin_learn_pages"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/textsize_learn_title"
+        />
+    
     <TextView 
         android:id="@+id/top_text"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/margin_learn_pages"
+        android:layout_below="@id/title"
         android:gravity="center_horizontal"/>
     
     <TextView 

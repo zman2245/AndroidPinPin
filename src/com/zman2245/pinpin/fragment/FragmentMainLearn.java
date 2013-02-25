@@ -15,6 +15,7 @@ import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.adapter.list.AdapterListLearn;
 import com.zman2245.pinpin.data.DataItemLearnFlow;
 import com.zman2245.pinpin.fragment.learn.FragmentLearnFlow;
+import com.zman2245.pinpin.util.UtilContentStrings;
 
 /**
  * A fragment for the list of learning sections
@@ -67,11 +68,9 @@ public class FragmentMainLearn extends Fragment
 
     private void navigateToLearnSection(int index)
     {
-        DataItemLearnFlow data = new DataItemLearnFlow();
+        DataItemLearnFlow[] datas = UtilContentStrings.getLearnSectionData(index);
 
-        // TODO: build the data
-
-        FragmentLearnFlow frag  = FragmentLearnFlow.newInstance(null);
+        FragmentLearnFlow frag  = FragmentLearnFlow.newInstance(datas);
         FragmentManager fm      = getChildFragmentManager();
         FragmentTransaction ft  = fm.beginTransaction();
 

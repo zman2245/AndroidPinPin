@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Study this sectio -->
+    <string name="study_title">Study this section</string>
+    <string name="study_body">Practice recognizing and saying each pinyin sound in this section to build proficiency in the language.</string>
+    <string name="study_button_label">Start</string>
+
     <!-- Learn List Content -->
     <string-array name="strings_learn_list_titles">
         <item>Introduction</item>
@@ -45,22 +50,41 @@
     </string-array>
     
     <!-- Content for each section, top-level name should match the list content above -->
+    
+    <!-- Introduction -->
     <string-array name="strings_learn_introduction_toptext">
-        <item>Hello, this is a test for top text</item>
+        <item>Hello, intro top text</item>
     </string-array>
     
     <string-array name="strings_learn_introduction_bottomtext">
-        <item>Hello, this is a test for bottom text</item>
+        <item>Hello, intro bottom text</item>
     </string-array>
-        
+
     <array name="strings_learn_introduction">
         <item name="toptext">@array/strings_learn_introduction_toptext</item>
         <item name="bottomtext">@array/strings_learn_introduction_bottomtext</item>
     </array>
     
+    <!-- Getting Started -->
+    <string-array name="strings_learn_getting_started_toptext">
+        <item>Pinyin sounds are composed of an "initial" and a "final." Most finals are full pinyin sounds in themselves such as the most basic final, "a." The "a" final is pronounced like the "a" in the English word "father."</item>
+        <item>The "b," "p," "m," and "f" initials are pronounced like their English counterparts.</item>
+    </string-array>
+    
+    <string-array name="strings_learn_getting_started_bottomtext">
+        <item>Tap the pinyin to hear how it is pronounced.</item>
+        <item>Note that some initial-final combinations do not exist in Mandarin.</item>
+    </string-array>
+
+    <array name="strings_learn_getting_started">
+        <item name="toptext">@array/strings_learn_getting_started_toptext</item>
+        <item name="bottomtext">@array/strings_learn_getting_started_bottomtext</item>
+    </array>
+
     <!-- Accumulation -->
-    <array name="LearnContent">
-        <item name="Introduction">@array/strings_learn_introduction</item>
+    <array name="arrays_learn_content">
+        <item name="content_introduction">@array/strings_learn_introduction</item>
+        <item name="content_getting_started">@array/strings_learn_getting_started</item>
     </array>
 
 </resources>

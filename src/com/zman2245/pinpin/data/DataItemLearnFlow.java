@@ -11,6 +11,8 @@ public class DataItemLearnFlow implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
+    public String title         = "";
+
     public String topText       = "";
     public String bottomText    = "";
 

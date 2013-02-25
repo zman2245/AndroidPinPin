@@ -15,8 +15,6 @@ import com.zman2245.pinpin.R;
  */
 public class FragmentLearnFlowStudyInstruction extends Fragment
 {
-    private static final String KEY_DATA = "data";
-
     /**
      * FragmentLearnFlowStudyInstruction construction
      *
@@ -24,9 +22,7 @@ public class FragmentLearnFlowStudyInstruction extends Fragment
      */
     public static FragmentLearnFlowStudyInstruction newInstance()
     {
-        FragmentLearnFlowStudyInstruction frag  = new FragmentLearnFlowStudyInstruction();
-
-        return frag;
+        return new FragmentLearnFlowStudyInstruction();
     }
 
     @Override
@@ -34,13 +30,13 @@ public class FragmentLearnFlowStudyInstruction extends Fragment
     {
         super.onCreate(savedInstanceState);
 
-        setRetainInstance(true);
+//        setRetainInstance(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View rootView = inflater.inflate(R.layout.fragment_learn_flow_item, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_learn_flow_study_instruction, container, false);
 
         return rootView;
     }

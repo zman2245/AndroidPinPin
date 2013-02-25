@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.zman2245.pinpin.data.DataItemLearnFlow;
 import com.zman2245.pinpin.fragment.learn.FragmentLearnFlowItem;
+import com.zman2245.pinpin.fragment.learn.FragmentLearnFlowStudyInstruction;
 
 /**
  * A view pager adapter for the Learn flows
@@ -28,12 +29,16 @@ public class PagerAdapterLearnFlow extends FragmentStatePagerAdapter
     @Override
     public Fragment getItem(int index)
     {
+        if (index == mData.length)
+            return FragmentLearnFlowStudyInstruction.newInstance();
+
         return FragmentLearnFlowItem.newInstance(mData[index]);
     }
 
     @Override
     public int getCount()
     {
-        return mData.length;
+        // +1 for the study section at the end
+        return mData.length + 1;
     }
 }

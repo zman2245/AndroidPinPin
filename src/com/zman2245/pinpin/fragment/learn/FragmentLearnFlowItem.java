@@ -2,6 +2,7 @@ package com.zman2245.pinpin.fragment.learn;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,9 +50,21 @@ public class FragmentLearnFlowItem extends Fragment
     {
         View rootView = inflater.inflate(R.layout.fragment_learn_flow_item, container, false);
 
+        TextView titleTextView  = (TextView)rootView.findViewById(R.id.title);
         TextView topTextView    = (TextView)rootView.findViewById(R.id.top_text);
         TextView bottomTextView = (TextView)rootView.findViewById(R.id.bottom_text);
         DataItemLearnFlow data  = (DataItemLearnFlow)getArguments().getSerializable(KEY_DATA);
+
+        // display a title if there is one
+        if (TextUtils.isEmpty(data.title))
+        {
+            titleTextView.setVisibility(View.GONE);
+        }
+        else
+        {
+            titleTextView.setVisibility(View.VISIBLE);
+            titleTextView.setText(data.title);
+        }
 
         topTextView.setText(data.topText);
         bottomTextView.setText(data.bottomText);

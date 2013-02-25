@@ -3,6 +3,7 @@ package com.zman2245.pinpin.fragment.learn;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,7 @@ import com.zman2245.pinpin.view.pagecontrol.PageControl;
  */
 public class FragmentLearnFlow extends Fragment
 {
-    public static final String KEY_TITLE    = "title";
-    public static final String KEY_TOPS     = "tops";
-    public static final String KEY_BOTTOMS  = "bottoms";
+    public static final String KEY_DATAS = "datas";
 
     /**
      * FragmentLearnFlow construction
@@ -33,12 +32,12 @@ public class FragmentLearnFlow extends Fragment
      * @param bottomBodies  The bottom text sections of the learn flow
      * @return A new instance of FragmentLearnFlow
      */
-    public static FragmentLearnFlow newInstance(DataItemLearnFlow[] data)
+    public static FragmentLearnFlow newInstance(DataItemLearnFlow[] datas)
     {
         FragmentLearnFlow frag  = new FragmentLearnFlow();
         Bundle args             = new Bundle();
 
-        args.putSerializable("data", data);
+        args.putSerializable(KEY_DATAS, datas);
 
         frag.setArguments(args);
 
@@ -59,20 +58,34 @@ public class FragmentLearnFlow extends Fragment
         View rootView = inflater.inflate(R.layout.fragment_learn_flow, container, false);
 
         ViewPager pager                 = (ViewPager)rootView.findViewById(R.id.pager);
-        PageControl pageControl         = (PageControl)rootView.findViewById(R.id.page_control);
+        final PageControl pageControl   = (PageControl)rootView.findViewById(R.id.page_control);
 
         // just for a test
-        DataItemLearnFlow[] datas = new DataItemLearnFlow[2];
-        datas[0] = new DataItemLearnFlow();
-        datas[1] = new DataItemLearnFlow();
-        datas[0].topText = "This is a test for top text of page 0";
-        datas[0].bottomText = "This is a test for bottom text of page 0";
-        datas[1].topText = "This is a test for top text of page 1";
-        datas[1].bottomText = "This is a test for bottom text of page 1";
-
-        PagerAdapterLearnFlow adapter = new PagerAdapterLearnFlow(getChildFragmentManager(), datas);
+        DataItemLearnFlow[] datas       = (DataItemLearnFlow[])getArguments().getSerializable(KEY_DATAS);
+        PagerAdapterLearnFlow adapter   = new PagerAdapterLearnFlow(getChildFragmentManager(), datas);
 
         pager.setAdapter(adapter);
+        pageControl.setPageNumber(datas.length + 1);
+        pageControl.setSelectedPageIndex(0);
+
+        pager.setOnPageChangeListener(new OnPageChangeListener()
+        {
+            @Override
+            public void onPageSelected(int index)
+            {
+                pageControl.setSelectedPageIndex(index);
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2)
+            {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0)
+            {
+            }
+        });
 
         return rootView;
     }

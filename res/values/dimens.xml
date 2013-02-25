@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="pagecontrol_spacing">5dp</dimen>
+    <dimen name="textsize_learn_title">24sp</dimen>
+    <dimen name="margin_learn_pages">20dp</dimen>
     
 </resources>
