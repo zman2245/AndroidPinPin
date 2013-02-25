@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Learn List Content -->
+    <string-array name="strings_learn_list_titles">
+        <item>Introduction</item>
+        <item>Getting started</item>
+        <item>More simple sounds</item>
+        <item>Adding o finals</item>
+        <item>Challenging initials I</item>
+        <item>Challenging initials II</item>
+        <item>Wrapping up a and o</item>
+        <item>Adding e to the mix</item>
+        <item>Effort with e</item>
+        <item>Wrapping up e</item>
+        <item>Introducing i</item>
+        <item>Expanding i</item>
+        <item>Exceptions with i</item>
+        <item>Challenging initials&#8230;</item>
+        <item>The u final</item>
+        <item>A big step with u</item>
+        <item>Concluding u</item>
+        <item>Last but not least</item>
+    </string-array>
+
+    <string-array name="strings_learn_list_bodies">
+        <item>Learning Pinyin with Pin Pin</item>
+        <item>b, p, m, f with a</item>
+        <item>d, t, n, l with a</item>
+        <item>b, p, m, f, d, t, n, l with o</item>
+        <item>s, c, z with a and o</item>
+        <item>sh, ch, zh, r with a and o</item>
+        <item>g, k, h with a and o</item>
+        <item>b, p, m, f, d, t, n, l with e</item>
+        <item>s, c, z, sh, ch, zh, r with e</item>
+        <item>g, k, h with e</item>
+        <item>b, p, m, d, t, n, l with i</item>
+        <item>b, p, m, d, t, n, l with i</item>
+        <item>s, c, z, sh, ch, zh, r with i</item>
+        <item>x, q, j with i</item>
+        <item>b, p, m, f, d, t, n, l with u</item>
+        <item>s, c, z, sh, ch, zh, r with u</item>
+        <item>g, k, h with u</item>
+        <item>n, l, x, q, and j with &#252;</item> <!-- u with umlaut -->
+    </string-array>
+    
+    <!-- Content for each section, top-level name should match the list content above -->
+    <string-array name="strings_learn_introduction_toptext">
+        <item>Hello, this is a test for top text</item>
+    </string-array>
+    
+    <string-array name="strings_learn_introduction_bottomtext">
+        <item>Hello, this is a test for bottom text</item>
+    </string-array>
+        
+    <array name="strings_learn_introduction">
+        <item name="toptext">@array/strings_learn_introduction_toptext</item>
+        <item name="bottomtext">@array/strings_learn_introduction_bottomtext</item>
+    </array>
+    
+    <!-- Accumulation -->
+    <array name="LearnContent">
+        <item name="Introduction">@array/strings_learn_introduction</item>
+    </array>
+
+</resources>

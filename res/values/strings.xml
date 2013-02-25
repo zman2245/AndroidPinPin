@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Basic app info -->
+    <string name="app_name">Pin Pin</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+
+    <!-- "Study This Section" -->
+    <string name="learn_study_section_title">Study this section</string>
+    <string name="learn_study_section_body">Practice recognizing and saying each pinyin sound in this section to build proficiency in the language.</string>
+    <string name="learn_study_section_start_button">Start</string>
+    
+    <!-- Main Learn Section -->
+    
+    
+</resources>
