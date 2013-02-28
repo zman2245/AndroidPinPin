@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Quiz list banner -->
+    <string name="quiz_start_banner">Put your skills to the test!</string>
+
+    <!-- Quiz List Content -->
+    <string-array name="quiz_list_titles">
+        <item>Level 1</item>
+        <item>Level 2</item>
+        <item>Level 3</item>
+        <item>Level 4</item>
+        <item>Level 5</item>
+    </string-array>
+
+</resources>

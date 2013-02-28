@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Study this sectio -->
-    <string name="study_title">Study this section</string>
-    <string name="study_body">Practice recognizing and saying each pinyin sound in this section to build proficiency in the language.</string>
-    <string name="study_button_label">Start</string>
+    <!-- "Study This Section" -->
+    <string name="learn_study_title">Study this section</string>
+    <string name="learn_study_body">Practice recognizing and saying each pinyin sound in this section to build proficiency in the language.</string>
+    <string name="learn_study_start_button">Start</string>
 
     <!-- Learn List Content -->
     <string-array name="strings_learn_list_titles">
@@ -67,8 +67,8 @@
     
     <!-- Getting Started -->
     <string-array name="strings_learn_getting_started_toptext">
-        <item>Pinyin sounds are composed of an "initial" and a "final." Most finals are full pinyin sounds in themselves such as the most basic final, "a." The "a" final is pronounced like the "a" in the English word "father."</item>
-        <item>The "b," "p," "m," and "f" initials are pronounced like their English counterparts.</item>
+        <item>Pinyin sounds are composed of an \"initial\" and a \"final.\" Most finals are full pinyin sounds in themselves such as the most basic final, \"a.\" The \"a\" final is pronounced like the \"a\" in the English word \"father.\"</item>
+        <item>The \"b,\" \"p,\" \"m,\" and \"f\" initials are pronounced like their English counterparts.</item>
     </string-array>
     
     <string-array name="strings_learn_getting_started_bottomtext">
@@ -81,10 +81,44 @@
         <item name="bottomtext">@array/strings_learn_getting_started_bottomtext</item>
     </array>
 
+    <!-- More simple sounds -->
+    <string-array name="learn_more_simple_sounds_toptext">
+        <item>The \"d\", \"t\", \"n\" and \"l\" initials are pronounced as they would be in English.</item>
+    </string-array>
+    
+    <string-array name="learn_more_simple_sounds_bottomtext">
+        <item></item>
+    </string-array>
+
+    <array name="learn_more_simple_sounds">
+        <item name="toptext">@array/learn_more_simple_sounds_toptext</item>
+        <item name="bottomtext">@array/learn_more_simple_sounds_bottomtext</item>
+    </array>
+    
+    <!-- Adding o finals -->
+    <string-array name="learn_adding_o_finals_toptext">
+        <item>The Mandarin \"o\" final by itself only combines with the \"b\", \"p\", \"m\" and \"f\" initials.</item>
+        <item>The \"o\" in the \"ong\" final is very similar to the English \"oh\" sound. That is, \"long\" is pronounced \"l-oh-ng\", not \"l-ah-ng\".</item>
+        <item>The \"ou\" final is very similar to the English \"oh\" sound, except one\'s lips start to round towards the end. This creates a slightly more exaggerated \"oo\" sound at the end.</item>
+    </string-array>
+    
+    <string-array name="learn_adding_o_finals_bottomtext">
+        <item>While not completely foreign, this sound is very different from any sound in English.</item>
+        <item>The \"ong\" final is not a valid pinyin sound unless combined with an initial. It also does not combine with the \"b\", \"p\", \"m\" and \"f\" initials.</item>
+        <item>This final combines with all of the initials we\'ve covered so far except for the \"o\" final.</item>
+    </string-array>
+
+    <array name="learn_adding_o_finals">
+        <item name="toptext">@array/learn_adding_o_finals_toptext</item>
+        <item name="bottomtext">@array/learn_adding_o_finals_bottomtext</item>
+    </array>
+
     <!-- Accumulation -->
     <array name="arrays_learn_content">
         <item name="content_introduction">@array/strings_learn_introduction</item>
         <item name="content_getting_started">@array/strings_learn_getting_started</item>
+        <item name="content_more_simple_sounds">@array/learn_more_simple_sounds</item>
+        <item name="content_adding_o_finals">@array/learn_adding_o_finals</item>
     </array>
 
 </resources>
