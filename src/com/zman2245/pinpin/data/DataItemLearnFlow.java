@@ -16,5 +16,5 @@ public class DataItemLearnFlow implements Serializable
     public String topText       = "";
     public String bottomText    = "";
 
-    public String[][] syllables = {};
+    public String[][] syllables = null;
 }

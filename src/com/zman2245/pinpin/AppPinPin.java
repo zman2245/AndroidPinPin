@@ -1,6 +1,7 @@
 package com.zman2245.pinpin;
 
 import android.app.Application;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 
 /**
@@ -17,6 +18,11 @@ public class AppPinPin extends Application
         super();
 
         sInstance = this;
+    }
+
+    public static Resources getAppResources()
+    {
+        return sInstance.getResources();
     }
 
     public static String[] getStringArray(int id)
