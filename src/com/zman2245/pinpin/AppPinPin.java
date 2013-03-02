@@ -20,6 +20,11 @@ public class AppPinPin extends Application
         sInstance = this;
     }
 
+    public static AppPinPin getInstance()
+    {
+        return sInstance;
+    }
+
     public static Resources getAppResources()
     {
         return sInstance.getResources();
