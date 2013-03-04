@@ -4,4 +4,6 @@
     <dimen name="textsize_learn_title">24sp</dimen>
     <dimen name="margin_learn_pages">20dp</dimen>
     
+    <!-- Shadows -->
+    <dimen name="shadow_height">9dp</dimen>
 </resources>
