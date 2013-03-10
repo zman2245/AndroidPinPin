@@ -4,6 +4,9 @@ import android.app.Application;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 
+import com.zman2245.pinpin.util.audio.AudioResourceMapper;
+import com.zman2245.pinpin.util.audio.AudioResourceMapperImpl;
+
 /**
  * The Pin Pin application!
  *
@@ -12,12 +15,14 @@ import android.content.res.TypedArray;
 public class AppPinPin extends Application
 {
     private static AppPinPin sInstance;
+    private final AudioResourceMapper mAudioMapper;
 
     public AppPinPin()
     {
         super();
 
         sInstance = this;
+        mAudioMapper = new AudioResourceMapperImpl();
     }
 
     public static AppPinPin getInstance()
@@ -38,5 +43,10 @@ public class AppPinPin extends Application
     public static TypedArray getTypedArray(int id)
     {
         return sInstance.getResources().obtainTypedArray(id);
+    }
+
+    public static AudioResourceMapper getAudioMapper()
+    {
+        return sInstance.mAudioMapper;
     }
 }

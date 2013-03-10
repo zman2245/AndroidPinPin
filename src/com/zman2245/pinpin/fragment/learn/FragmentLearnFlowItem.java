@@ -6,10 +6,15 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.TextView;
 
+import com.zman2245.pinpin.AppPinPin;
 import com.zman2245.pinpin.R;
+import com.zman2245.pinpin.adapter.grid.AdapterGridReference;
 import com.zman2245.pinpin.data.DataItemLearnFlow;
+import com.zman2245.pinpin.util.UtilAudioPlayer;
 
 /**
  * A fragment for a single learn flow item (aka page)
@@ -52,6 +57,7 @@ public class FragmentLearnFlowItem extends Fragment
 
         TextView titleTextView  = (TextView)rootView.findViewById(R.id.title);
         TextView topTextView    = (TextView)rootView.findViewById(R.id.top_text);
+        GridView gridView       = (GridView)rootView.findViewById(R.id.grid);
         TextView bottomTextView = (TextView)rootView.findViewById(R.id.bottom_text);
         DataItemLearnFlow data  = (DataItemLearnFlow)getArguments().getSerializable(KEY_DATA);
 
@@ -68,6 +74,31 @@ public class FragmentLearnFlowItem extends Fragment
 
         topTextView.setText(data.topText);
         bottomTextView.setText(data.bottomText);
+
+        if (data.syllables == null || data.syllables.length <= 0)
+        {
+            gridView.setVisibility(View.GONE);
+        }
+        else
+        {
+            final AdapterGridReference adapter = new AdapterGridReference(data.syllables, inflater);
+
+            gridView.setVisibility(View.VISIBLE);
+            gridView.setAdapter(adapter);
+            gridView.setNumColumns(data.syllables[0].length);
+            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                {
+                    String word = (String)adapter.getItem(position);
+
+                    int resId = AppPinPin.getAudioMapper().getResourceForString(word);
+
+                    UtilAudioPlayer.playSound(resId);
+                }
+            });
+        }
 
         return rootView;
     }

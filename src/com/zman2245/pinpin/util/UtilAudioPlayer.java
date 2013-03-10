@@ -19,7 +19,6 @@ public class UtilAudioPlayer
      */
     public static void playSound(int resId)
     {
-        // TOOD: This likely needs to run on a background thread. start() I think needs to run on ui thread though
         MediaPlayer player = MediaPlayer.create(AppPinPin.getInstance().getApplicationContext(), resId);
 
         player.setLooping(false);

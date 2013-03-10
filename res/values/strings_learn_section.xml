@@ -75,24 +75,50 @@
         <item>Tap the pinyin to hear how it is pronounced.</item>
         <item>Note that some initial-final combinations do not exist in Mandarin.</item>
     </string-array>
-    
+
+    <string-array name="learn_getting_started_btns_page1_row1">
+        <item>&#x101;</item>
+        <item>&#x101;i</item>
+        <item>&#x101;o</item>
+        <item>&#x101;n</item>
+        <item>&#x101;ng</item>
+    </string-array>
+    <array name="learn_getting_started_btns_page1">
+        <item>@array/learn_getting_started_btns_page1_row1</item>
+    </array>
     <string-array name="learn_getting_started_btns_page2_row1">
-        <item>ba</item>
-        <item>bai</item>
-        <item>bao</item>
-        <item>ban</item>
-        <item>bang</item>
+        <item>b&#x101;</item>
+        <item>b&#x101;i</item>
+        <item>b&#x101;o</item>
+        <item>b&#x101;n</item>
+        <item>b&#x101;ng</item>
     </string-array>
     <string-array name="learn_getting_started_btns_page2_row2">
-        <item>pa</item>
-        <item>pai</item>
-        <item>pao</item>
-        <item>pan</item>
-        <item>pang</item>
+        <item>p&#x101;</item>
+        <item>p&#x101;i</item>
+        <item>p&#x101;o</item>
+        <item>p&#x101;n</item>
+        <item>p&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_getting_started_btns_page2_row3">
+        <item>m&#x101;</item>
+        <item>m&#x101;i</item>
+        <item>m&#x101;o</item>
+        <item>m&#x101;n</item>
+        <item>m&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_getting_started_btns_page2_row4">
+        <item>f&#x101;</item>
+        <item></item>
+        <item></item>
+        <item>f&#x101;n</item>
+        <item>f&#x101;ng</item>
     </string-array>
     <array name="learn_getting_started_btns_page2">
         <item>@array/learn_getting_started_btns_page2_row1</item>
         <item>@array/learn_getting_started_btns_page2_row2</item>
+        <item>@array/learn_getting_started_btns_page2_row3</item>
+        <item>@array/learn_getting_started_btns_page2_row4</item>
     </array>
     <array name="learn_getting_started_btns">
         <item></item>

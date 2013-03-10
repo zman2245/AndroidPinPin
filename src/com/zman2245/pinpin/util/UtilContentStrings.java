@@ -61,12 +61,12 @@ public class UtilContentStrings
 
         datas[0].title = AppPinPin.getStringArray(R.array.strings_learn_list_titles)[pos];
 
-        Log.d("TESTING", "get content time taken: " + (System.currentTimeMillis() - ts));
-
         // Important to recycle!
         arraysLearnContent.recycle();
         sectionTa.recycle();
         sectionButtons.recycle();
+
+        Log.d("TESTING", "get content time taken: " + (System.currentTimeMillis() - ts));
 
         return datas;
     }

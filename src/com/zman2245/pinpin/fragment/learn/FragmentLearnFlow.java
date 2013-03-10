@@ -49,7 +49,7 @@ public class FragmentLearnFlow extends Fragment
     {
         super.onCreate(savedInstanceState);
 
-//        setRetainInstance(true);
+        setRetainInstance(true);
     }
 
     @Override
