@@ -73,4 +73,14 @@ public class AdapterGridReference extends BaseAdapter
 
         return convertView;
     }
+
+    @Override
+    public boolean isEnabled(int position)
+    {
+        Object item = getItem(position);
+        if (item == null || "".equals(item))
+            return false;
+
+        return true;
+    }
 }

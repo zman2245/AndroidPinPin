@@ -140,9 +140,48 @@
         <item></item>
     </string-array>
 
+    <string-array name="learn_simple_sounds_btns_page1_row1">
+        <item>d&#x101;</item>
+        <item>d&#x101;i</item>
+        <item>d&#x101;o</item>
+        <item>d&#x101;n</item>
+        <item>d&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_simple_sounds_btns_page1_row2">
+        <item>t&#x101;</item>
+        <item>t&#x101;i</item>
+        <item>t&#x101;o</item>
+        <item>t&#x101;n</item>
+        <item>t&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_simple_sounds_btns_page1_row3">
+        <item>n&#x101;</item>
+        <item>n&#x101;i</item>
+        <item>n&#x101;o</item>
+        <item>n&#x101;n</item>
+        <item>n&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_simple_sounds_btns_page1_row4">
+        <item>l&#x101;</item>
+        <item>l&#x101;i</item>
+        <item>l&#x101;o</item>
+        <item>l&#x101;n</item>
+        <item>l&#x101;ng</item>
+    </string-array>
+    <array name="learn_simple_sounds_btns_page1">
+        <item>@array/learn_simple_sounds_btns_page1_row1</item>
+        <item>@array/learn_simple_sounds_btns_page1_row2</item>
+        <item>@array/learn_simple_sounds_btns_page1_row3</item>
+        <item>@array/learn_simple_sounds_btns_page1_row4</item>
+    </array>
+    <array name="learn_simple_sounds_btns">
+        <item>@array/learn_simple_sounds_btns_page1</item>
+    </array>
+    
     <array name="learn_more_simple_sounds">
         <item name="toptext">@array/learn_more_simple_sounds_toptext</item>
         <item name="bottomtext">@array/learn_more_simple_sounds_bottomtext</item>
+        <item name="btns">@array/learn_simple_sounds_btns</item>
     </array>
     
     <!-- Adding o finals -->
@@ -158,9 +197,51 @@
         <item>This final combines with all of the initials we\'ve covered so far except for the \"o\" final.</item>
     </string-array>
 
+    <string-array name="learn_adding_o_finals_btns_page1_row1">
+        <item>&#x14D;</item>
+        <item>b&#x14D;</item>
+        <item>p&#x14D;</item>
+        <item>m&#x14D;</item>
+        <item>f&#x14D;</item>
+    </string-array>
+    <array name="learn_adding_o_finals_btns_page1">
+        <item>@array/learn_adding_o_finals_btns_page1_row1</item>
+    </array>
+    <string-array name="learn_adding_o_finals_btns_page2_row1">
+        <item>d&#x14D;ng</item>
+        <item>t&#x14D;ng</item>
+        <item>n&#x14D;ng</item>
+        <item>l&#x14D;ng</item>
+    </string-array>
+    <array name="learn_adding_o_finals_btns_page2">
+        <item>@array/learn_adding_o_finals_btns_page2_row1</item>
+    </array>
+    <string-array name="learn_adding_o_finals_btns_page3_row1">
+        <item>&#x14D;u</item>
+        <item>p&#x14D;u</item>
+        <item>m&#x14D;u</item>
+        <item>f&#x14D;u</item>
+    </string-array>
+    <string-array name="learn_adding_o_finals_btns_page3_row2">
+        <item>d&#x14D;u</item>
+        <item>t&#x14D;u</item>
+        <item>n&#x14D;u</item>
+        <item>l&#x14D;u</item>
+    </string-array>
+    <array name="learn_adding_o_finals_btns_page3">
+        <item>@array/learn_adding_o_finals_btns_page3_row1</item>
+        <item>@array/learn_adding_o_finals_btns_page3_row2</item>
+    </array>
+    <array name="learn_adding_o_finals_btns">
+        <item>@array/learn_adding_o_finals_btns_page1</item>
+        <item>@array/learn_adding_o_finals_btns_page2</item>
+        <item>@array/learn_adding_o_finals_btns_page3</item>
+    </array>
+
     <array name="learn_adding_o_finals">
         <item name="toptext">@array/learn_adding_o_finals_toptext</item>
         <item name="bottomtext">@array/learn_adding_o_finals_bottomtext</item>
+        <item name="btns">@array/learn_adding_o_finals_btns</item>
     </array>
 
     <!-- Challenging initials I -->
@@ -178,9 +259,97 @@
         <item></item>
     </string-array>
 
+    <string-array name="learn_challenging_initials_i_btns_page1_row1">
+        <item>s&#x101;</item>
+        <item>s&#x101;i</item>
+        <item>s&#x101;o</item>
+        <item>s&#x101;n</item>
+        <item>s&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_i_btns_page1_row2">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>s&#x14D;ng</item>
+        <item>s&#x14D;u</item>
+    </string-array>
+    <array name="learn_challenging_initials_i_btns_page1">
+        <item>@array/learn_challenging_initials_i_btns_page1_row1</item>
+        <item>@array/learn_challenging_initials_i_btns_page1_row2</item>
+    </array>
+    <string-array name="learn_challenging_initials_i_btns_page2_row1">
+        <item>c&#x101;</item>
+        <item>c&#x101;i</item>
+        <item>c&#x101;o</item>
+        <item>c&#x101;n</item>
+        <item>c&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_i_btns_page2_row2">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>c&#x14D;ng</item>
+        <item>c&#x14D;u</item>
+    </string-array>
+    <array name="learn_challenging_initials_i_btns_page2">
+        <item>@array/learn_challenging_initials_i_btns_page2_row1</item>
+        <item>@array/learn_challenging_initials_i_btns_page2_row2</item>
+    </array>
+    <string-array name="learn_challenging_initials_i_btns_page3_row1">
+        <item>z&#x101;</item>
+        <item>z&#x101;i</item>
+        <item>z&#x101;o</item>
+        <item>z&#x101;n</item>
+        <item>z&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_i_btns_page3_row2">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>z&#x14D;ng</item>
+        <item>z&#x14D;u</item>
+    </string-array>
+    <array name="learn_challenging_initials_i_btns_page3">
+        <item>@array/learn_challenging_initials_i_btns_page3_row1</item>
+        <item>@array/learn_challenging_initials_i_btns_page3_row2</item>
+    </array>
+    <string-array name="learn_challenging_initials_i_btns_page4_row1">
+        <item>s&#x101;</item>
+        <item>s&#x101;i</item>
+        <item>s&#x101;o</item>
+        <item>s&#x101;ng</item>
+        <item>s&#x14D;ng</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_i_btns_page4_row2">
+        <item>c&#x101;</item>
+        <item>c&#x101;i</item>
+        <item>c&#x101;o</item>
+        <item>c&#x101;ng</item>
+        <item>c&#x14D;ng</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_i_btns_page4_row3">
+        <item>z&#x101;</item>
+        <item>z&#x101;i</item>
+        <item>z&#x101;o</item>
+        <item>z&#x101;ng</item>
+        <item>z&#x14D;ng</item>
+    </string-array>
+    <array name="learn_challenging_initials_i_btns_page4">
+        <item>@array/learn_challenging_initials_i_btns_page4_row1</item>
+        <item>@array/learn_challenging_initials_i_btns_page4_row2</item>
+        <item>@array/learn_challenging_initials_i_btns_page4_row3</item>
+    </array>
+    <array name="learn_challenging_initials_i_btns">
+        <item>@array/learn_challenging_initials_i_btns_page1</item>
+        <item>@array/learn_challenging_initials_i_btns_page2</item>
+        <item>@array/learn_challenging_initials_i_btns_page3</item>
+        <item>@array/learn_challenging_initials_i_btns_page4</item>
+    </array>
+
     <array name="learn_challenging_initials_i">
         <item name="toptext">@array/learn_challenging_initials_i_toptext</item>
         <item name="bottomtext">@array/learn_challenging_initials_i_bottomtext</item>
+        <item name="btns">@array/learn_challenging_initials_i_btns</item>
     </array>
     
     <!-- Challenging initials II -->
@@ -200,9 +369,124 @@
         <item></item>
     </string-array>
 
+    <string-array name="learn_challenging_initials_ii_btns_page1_row1">
+        <item>sh&#x101;</item>
+        <item>sh&#x101;i</item>
+        <item>sh&#x101;o</item>
+        <item>sh&#x101;n</item>
+        <item>sh&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_ii_btns_page1_row2">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>sh&#x14D;u</item>
+    </string-array>
+    <array name="learn_challenging_initials_ii_btns_page1">
+        <item>@array/learn_challenging_initials_ii_btns_page1_row1</item>
+        <item>@array/learn_challenging_initials_ii_btns_page1_row2</item>
+    </array>
+    <string-array name="learn_challenging_initials_ii_btns_page2_row1">
+        <item>ch&#x101;</item>
+        <item>ch&#x101;i</item>
+        <item>ch&#x101;o</item>
+        <item>ch&#x101;n</item>
+        <item>ch&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_ii_btns_page2_row2">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>ch&#x14D;ng</item>
+        <item>ch&#x14D;u</item>
+    </string-array>
+    <array name="learn_challenging_initials_ii_btns_page2">
+        <item>@array/learn_challenging_initials_ii_btns_page2_row1</item>
+        <item>@array/learn_challenging_initials_ii_btns_page2_row2</item>
+    </array>
+    <string-array name="learn_challenging_initials_ii_btns_page3_row1">
+        <item>zh&#x101;</item>
+        <item>zh&#x101;i</item>
+        <item>zh&#x101;o</item>
+        <item>zh&#x101;n</item>
+        <item>zh&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_ii_btns_page3_row2">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>zh&#x14D;ng</item>
+        <item>zh&#x14D;u</item>
+    </string-array>
+    <array name="learn_challenging_initials_ii_btns_page3">
+        <item>@array/learn_challenging_initials_ii_btns_page3_row1</item>
+        <item>@array/learn_challenging_initials_ii_btns_page3_row2</item>
+    </array>
+    <string-array name="learn_challenging_initials_ii_btns_page4_row1">
+        <item></item>
+        <item></item>
+        <item>r&#x101;o</item>
+        <item>r&#x101;n</item>
+        <item>r&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_ii_btns_page4_row2">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>r&#x14D;ng</item>
+        <item>r&#x14D;u</item>
+    </string-array>
+    <array name="learn_challenging_initials_ii_btns_page4">
+        <item>@array/learn_challenging_initials_ii_btns_page4_row1</item>
+        <item>@array/learn_challenging_initials_ii_btns_page4_row2</item>
+    </array>
+    <string-array name="learn_challenging_initials_ii_btns_page5_row1">
+        <item>sh&#x101;</item>
+        <item>sh&#x101;o</item>
+        <item>sh&#x101;n</item>
+        <item>sh&#x101;ng</item>
+        <item>sh&#x14D;u</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_ii_btns_page5_row2">
+        <item>ch&#x101;</item>
+        <item>ch&#x101;o</item>
+        <item>ch&#x101;n</item>
+        <item>ch&#x101;ng</item>
+        <item>ch&#x14D;u</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_ii_btns_page5_row3">
+        <item>zh&#x101;</item>
+        <item>zh&#x101;o</item>
+        <item>zh&#x101;n</item>
+        <item>zh&#x101;ng</item>
+        <item>zh&#x14D;u</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_ii_btns_page5_row4">
+        <item></item>
+        <item>r&#x101;o</item>
+        <item>r&#x101;n</item>
+        <item>r&#x101;ng</item>
+        <item>r&#x14D;u</item>
+    </string-array>
+    <array name="learn_challenging_initials_ii_btns_page5">
+        <item>@array/learn_challenging_initials_ii_btns_page5_row1</item>
+        <item>@array/learn_challenging_initials_ii_btns_page5_row2</item>
+        <item>@array/learn_challenging_initials_ii_btns_page5_row3</item>
+        <item>@array/learn_challenging_initials_ii_btns_page5_row4</item>
+    </array>
+    <array name="learn_challenging_initials_ii_btns">
+        <item>@array/learn_challenging_initials_ii_btns_page1</item>
+        <item>@array/learn_challenging_initials_ii_btns_page2</item>
+        <item>@array/learn_challenging_initials_ii_btns_page3</item>
+        <item>@array/learn_challenging_initials_ii_btns_page4</item>
+        <item>@array/learn_challenging_initials_ii_btns_page5</item>
+    </array>
+    
     <array name="learn_challenging_initials_ii">
         <item name="toptext">@array/learn_challenging_initials_ii_toptext</item>
         <item name="bottomtext">@array/learn_challenging_initials_ii_bottomtext</item>
+        <item name="btns">@array/learn_challenging_initials_ii_btns</item>
     </array>
         
     <!-- Wrapping up a and o -->
@@ -216,9 +500,58 @@
         <item></item>
     </string-array>
 
+    <string-array name="learn_wrapping_up_a_and_o_btns_page1_row1">
+        <item>g&#x101;</item>
+        <item>g&#x101;i</item>
+        <item>g&#x101;o</item>
+        <item>g&#x101;n</item>
+        <item>g&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_wrapping_up_a_and_o_btns_page1_row2">
+        <item>k&#x101;</item>
+        <item>k&#x101;i</item>
+        <item>k&#x101;o</item>
+        <item>k&#x101;n</item>
+        <item>k&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_wrapping_up_a_and_o_btns_page1_row3">
+        <item>h&#x101;</item>
+        <item>h&#x101;i</item>
+        <item>h&#x101;o</item>
+        <item>h&#x101;n</item>
+        <item>h&#x101;ng</item>
+    </string-array>
+    <array name="learn_wrapping_up_a_and_o_btns_page1">
+        <item>@array/learn_wrapping_up_a_and_o_btns_page1_row1</item>
+        <item>@array/learn_wrapping_up_a_and_o_btns_page1_row2</item>
+        <item>@array/learn_wrapping_up_a_and_o_btns_page1_row3</item>
+    </array>
+    <string-array name="learn_wrapping_up_a_and_o_btns_page2_row1">
+        <item>g&#x14D;ng</item>
+        <item>g&#x14D;u</item>
+    </string-array>
+    <string-array name="learn_wrapping_up_a_and_o_btns_page2_row2">
+        <item>k&#x14D;ng</item>
+        <item>k&#x14D;u</item>
+    </string-array>
+    <string-array name="learn_wrapping_up_a_and_o_btns_page2_row3">
+        <item>h&#x14D;ng</item>
+        <item>h&#x14D;u</item>
+    </string-array>
+    <array name="learn_wrapping_up_a_and_o_btns_page2">
+        <item>@array/learn_wrapping_up_a_and_o_btns_page2_row1</item>
+        <item>@array/learn_wrapping_up_a_and_o_btns_page2_row2</item>
+        <item>@array/learn_wrapping_up_a_and_o_btns_page2_row3</item>
+    </array>
+    <array name="learn_wrapping_up_a_and_o_btns">
+        <item>@array/learn_wrapping_up_a_and_o_btns_page1</item>
+        <item>@array/learn_wrapping_up_a_and_o_btns_page2</item>
+    </array>
+
     <array name="learn_wrapping_up_a_and_o">
         <item name="toptext">@array/learn_wrapping_up_a_and_o_toptext</item>
         <item name="bottomtext">@array/learn_wrapping_up_a_and_o_bottomtext</item>
+        <item name="btns">@array/learn_wrapping_up_a_and_o_btns</item>
     </array>
     
     <!-- Adding e to the mix -->
@@ -234,9 +567,81 @@
         <item>As you may have noticed, the \"er\" final does not combine with any initials.</item>
     </string-array>
 
+    <string-array name="learn_adding_e_to_the_mix_btns_page1_row1">
+        <item>&#x113;</item>
+        <item>&#x113;n</item>
+        <item>&#x113;ng</item>
+        <item>&#x113;r</item>
+    </string-array>
+    <array name="learn_adding_e_to_the_mix_btns_page1">
+        <item>@array/learn_adding_e_to_the_mix_btns_page1_row1</item>
+    </array>
+    <string-array name="learn_adding_e_to_the_mix_btns_page2_row1">
+        <item>b&#x113;i</item>
+        <item>b&#x113;n</item>
+        <item>b&#x113;ng</item>
+    </string-array>
+    <string-array name="learn_adding_e_to_the_mix_btns_page2_row2">
+        <item>p&#x113;i</item>
+        <item>p&#x113;n</item>
+        <item>p&#x113;ng</item>
+    </string-array>
+    <string-array name="learn_adding_e_to_the_mix_btns_page2_row3">
+        <item>m&#x113;i</item>
+        <item>m&#x113;n</item>
+        <item>m&#x113;ng</item>
+    </string-array>
+    <string-array name="learn_adding_e_to_the_mix_btns_page2_row4">
+        <item>f&#x113;i</item>
+        <item>f&#x113;n</item>
+        <item>f&#x113;ng</item>
+    </string-array>
+    <array name="learn_adding_e_to_the_mix_btns_page2">
+        <item>@array/learn_adding_e_to_the_mix_btns_page2_row1</item>
+        <item>@array/learn_adding_e_to_the_mix_btns_page2_row2</item>
+        <item>@array/learn_adding_e_to_the_mix_btns_page2_row3</item>
+        <item>@array/learn_adding_e_to_the_mix_btns_page2_row4</item>
+    </array>
+    <string-array name="learn_adding_e_to_the_mix_btns_page3_row1">
+        <item>d&#x113;</item>
+        <item>d&#x113;i</item>
+        <item></item>
+        <item>d&#x113;ng</item>
+    </string-array>
+    <string-array name="learn_adding_e_to_the_mix_btns_page3_row2">
+        <item>t&#x113;</item>
+        <item></item>
+        <item></item>
+        <item>t&#x113;ng</item>
+    </string-array>
+    <string-array name="learn_adding_e_to_the_mix_btns_page3_row3">
+        <item>n&#x113;</item>
+        <item>n&#x113;i</item>
+        <item>n&#x113;n</item>
+        <item>n&#x113;ng</item>
+    </string-array>
+    <string-array name="learn_adding_e_to_the_mix_btns_page3_row4">
+        <item>l&#x113;</item>
+        <item>l&#x113;i</item>
+        <item></item>
+        <item>l&#x113;ng</item>
+    </string-array>
+    <array name="learn_adding_e_to_the_mix_btns_page3">
+        <item>@array/learn_adding_e_to_the_mix_btns_page3_row1</item>
+        <item>@array/learn_adding_e_to_the_mix_btns_page3_row2</item>
+        <item>@array/learn_adding_e_to_the_mix_btns_page3_row3</item>
+        <item>@array/learn_adding_e_to_the_mix_btns_page3_row4</item>
+    </array>
+    <array name="learn_adding_e_to_the_mix_btns">
+        <item>@array/learn_adding_e_to_the_mix_btns_page1</item>
+        <item>@array/learn_adding_e_to_the_mix_btns_page2</item>
+        <item>@array/learn_adding_e_to_the_mix_btns_page3</item>
+    </array>
+
     <array name="learn_adding_e_to_the_mix">
         <item name="toptext">@array/learn_adding_e_to_the_mix_toptext</item>
         <item name="bottomtext">@array/learn_adding_e_to_the_mix_bottomtext</item>
+        <item name="btns">@array/learn_adding_e_to_the_mix_btns</item>
     </array>
     
     <!-- Effort with e -->
@@ -250,9 +655,68 @@
         <item>Note again that the \"er\" final does not combine with any initials.</item>
     </string-array>
 
+    <string-array name="learn_effort_with_e_btns_page1_row1">
+        <item>s&#x113;</item>
+        <item></item>
+        <item>s&#x113;n</item>
+        <item>s&#x113;ng</item>
+    </string-array>
+    <string-array name="learn_effort_with_e_btns_page1_row2">
+        <item>c&#x113;</item>
+        <item></item>
+        <item>c&#x113;n</item>
+        <item>c&#x113;ng</item>
+    </string-array>
+    <string-array name="learn_effort_with_e_btns_page1_row3">
+        <item>z&#x113;</item>
+        <item>z&#x113;i</item>
+        <item>z&#x113;n</item>
+        <item>z&#x113;ng</item>
+    </string-array>
+    <array name="learn_effort_with_e_btns_page1">
+        <item>@array/learn_effort_with_e_btns_page1_row1</item>
+        <item>@array/learn_effort_with_e_btns_page1_row2</item>
+        <item>@array/learn_effort_with_e_btns_page1_row3</item>
+    </array>
+    <string-array name="learn_effort_with_e_btns_page2_row1">
+        <item>sh&#x113;</item>
+        <item>sh&#x113;i</item>
+        <item>sh&#x113;n</item>
+        <item>sh&#x113;ng</item>
+    </string-array>
+    <string-array name="learn_effort_with_e_btns_page2_row2">
+        <item>ch&#x113;</item>
+        <item></item>
+        <item>ch&#x113;n</item>
+        <item>ch&#x113;ng</item>
+    </string-array>
+    <string-array name="learn_effort_with_e_btns_page2_row3">
+        <item>zh&#x113;</item>
+        <item>zh&#x113;i</item>
+        <item>zh&#x113;n</item>
+        <item>zh&#x113;ng</item>
+    </string-array>
+    <string-array name="learn_effort_with_e_btns_page2_row4">
+        <item>r&#x113;</item>
+        <item></item>
+        <item>r&#x113;n</item>
+        <item>r&#x113;ng</item>
+    </string-array>
+    <array name="learn_effort_with_e_btns_page2">
+        <item>@array/learn_effort_with_e_btns_page2_row1</item>
+        <item>@array/learn_effort_with_e_btns_page2_row2</item>
+        <item>@array/learn_effort_with_e_btns_page2_row3</item>
+        <item>@array/learn_effort_with_e_btns_page2_row4</item>
+    </array>
+    <array name="learn_effort_with_e_btns">
+        <item>@array/learn_effort_with_e_btns_page1</item>
+        <item>@array/learn_effort_with_e_btns_page2</item>
+    </array>
+
     <array name="learn_effort_with_e">
         <item name="toptext">@array/learn_effort_with_e_toptext</item>
         <item name="bottomtext">@array/learn_effort_with_e_bottomtext</item>
+        <item name="btns">@array/learn_effort_with_e_btns</item>
     </array>
 
     <!-- Wrapping up e -->
@@ -264,9 +728,37 @@
         <item></item>
     </string-array>
 
+    <string-array name="learn_wrapping_up_e_btns_page1_row1">
+        <item>g&#x113;</item>
+        <item>g&#x113;i</item>
+        <item>g&#x113;n</item>
+        <item>g&#x113;ng</item>
+    </string-array>
+    <string-array name="learn_wrapping_up_e_btns_page1_row2">
+        <item>k&#x113;</item>
+        <item></item>
+        <item>k&#x113;n</item>
+        <item>k&#x113;ng</item>
+    </string-array>
+    <string-array name="learn_wrapping_up_e_btns_page1_row3">
+        <item>h&#x113;</item>
+        <item>h&#x113;i</item>
+        <item>h&#x113;n</item>
+        <item>h&#x113;ng</item>
+    </string-array>
+    <array name="learn_wrapping_up_e_btns_page1">
+        <item>@array/learn_wrapping_up_e_btns_page1_row1</item>
+        <item>@array/learn_wrapping_up_e_btns_page1_row2</item>
+        <item>@array/learn_wrapping_up_e_btns_page1_row3</item>
+    </array>
+    <array name="learn_wrapping_up_e_btns">
+        <item>@array/learn_wrapping_up_e_btns_page1</item>
+    </array>
+
     <array name="learn_wrapping_up_e">
         <item name="toptext">@array/learn_wrapping_up_e_toptext</item>
         <item name="bottomtext">@array/learn_effort_with_e_bottomtext</item>
+        <item name="btns">@array/learn_wrapping_up_e_btns</item>
     </array>
 
     <!-- Introducing i -->
@@ -282,9 +774,83 @@
         <item></item>
     </string-array>
 
+    <string-array name="learn_introducing_i_btns_page1_row1">
+        <item>y&#x12B;</item>
+        <item>y&#x101;</item>
+        <item>y&#x101;o</item>
+        <item>y&#x113;</item>
+        <item>y&#x14D;u</item>
+    </string-array>
+    <array name="learn_introducing_i_btns_page1">
+        <item>@array/learn_introducing_i_btns_page1_row1</item>
+    </array>
+    <string-array name="learn_introducing_i_btns_page2_row1">
+        <item>b&#x12B;</item>
+        <item>bi&#x101;o</item>
+        <item>bi&#x113;</item>
+        <item></item>
+    </string-array>
+    <string-array name="learn_introducing_i_btns_page2_row2">
+        <item>p&#x12B;</item>
+        <item>pi&#x101;o</item>
+        <item>pi&#x113;</item>
+        <item></item>
+    </string-array>
+    <string-array name="learn_introducing_i_btns_page2_row3">
+        <item>m&#x12B;</item>
+        <item>mi&#x101;o</item>
+        <item>mi&#x113;</item>
+        <item>mi&#x16B;</item>
+    </string-array>
+    <array name="learn_introducing_i_btns_page2">
+        <item>@array/learn_introducing_i_btns_page2_row1</item>
+        <item>@array/learn_introducing_i_btns_page2_row2</item>
+        <item>@array/learn_introducing_i_btns_page2_row3</item>
+    </array>
+    <string-array name="learn_introducing_i_btns_page3_row1">
+        <item>d&#x12B;</item>
+        <item></item>
+        <item>di&#x101;o</item>
+        <item>di&#x113;</item>
+        <item>di&#x16B;</item>
+    </string-array>
+    <string-array name="learn_introducing_i_btns_page3_row2">
+        <item>t&#x12B;</item>
+        <item></item>
+        <item>ti&#x101;o</item>
+        <item>ti&#x113;</item>
+        <item></item>
+    </string-array>
+    <string-array name="learn_introducing_i_btns_page3_row3">
+        <item>n&#x12B;</item>
+        <item></item>
+        <item>ni&#x101;o</item>
+        <item>ni&#x113;</item>
+        <item>ni&#x16B;</item>
+    </string-array>
+    <string-array name="learn_introducing_i_btns_page3_row4">
+        <item>l&#x12B;</item>
+        <item>li&#x101;</item>
+        <item>li&#x101;o</item>
+        <item>li&#x113;</item>
+        <item>li&#x16B;</item>
+    </string-array>
+    <array name="learn_introducing_i_btns_page3">
+        <item>@array/learn_introducing_i_btns_page3_row1</item>
+        <item>@array/learn_introducing_i_btns_page3_row2</item>
+        <item>@array/learn_introducing_i_btns_page3_row3</item>
+        <item>@array/learn_introducing_i_btns_page3_row4</item>
+    </array>
+    <array name="learn_introducing_i_btns">
+        <item>@array/learn_introducing_i_btns_page1</item>
+        <item>@array/learn_introducing_i_btns_page2</item>
+        <item>@array/learn_introducing_i_btns_page3</item>
+    </array>
+
     <array name="learn_introducing_i">
         <item name="toptext">@array/learn_introducing_i_toptext</item>
         <item name="bottomtext">@array/learn_introducing_i_bottomtext</item>
+        <item name="btns">@array/learn_introducing_i_btns</item>
     </array>
 
     <!-- Expanding i -->
@@ -300,9 +866,76 @@
         <item></item>
     </string-array>
 
+    <string-array name="learn_expanding_i_btns_page1_row1">
+        <item>y&#x101;n</item>
+        <item>y&#x101;ng</item>
+        <item>y&#x12B;n</item>
+        <item>y&#x12B;ng</item>
+        <item>y&#x14D;ng</item>
+    </string-array>
+    <array name="learn_expanding_i_btns_page1">
+        <item>@array/learn_expanding_i_btns_page1_row1</item>
+    </array>
+    <string-array name="learn_expanding_i_btns_page2_row1">
+        <item>bi&#x101;n</item>
+        <item>b&#x12B;n</item>
+        <item>b&#x12B;ng</item>
+    </string-array>
+    <string-array name="learn_expanding_i_btns_page2_row2">
+        <item>pi&#x101;n</item>
+        <item>p&#x12B;n</item>
+        <item>p&#x12B;ng</item>
+    </string-array>
+    <string-array name="learn_expanding_i_btns_page2_row3">
+        <item>mi&#x101;n</item>
+        <item>m&#x12B;n</item>
+        <item>m&#x12B;ng</item>
+    </string-array>
+    <array name="learn_expanding_i_btns_page2">
+        <item>@array/learn_expanding_i_btns_page2_row1</item>
+        <item>@array/learn_expanding_i_btns_page2_row2</item>
+        <item>@array/learn_expanding_i_btns_page2_row3</item>
+    </array>
+    <string-array name="learn_expanding_i_btns_page3_row1">
+        <item>di&#x101;n</item>
+        <item></item>
+        <item></item>
+        <item>d&#x12B;ng</item>
+    </string-array>
+    <string-array name="learn_expanding_i_btns_page3_row2">
+        <item>ti&#x101;n</item>
+        <item></item>
+        <item></item>
+        <item>t&#x12B;ng</item>
+    </string-array>
+    <string-array name="learn_expanding_i_btns_page3_row3">
+        <item>ni&#x101;n</item>
+        <item>ni&#x101;ng</item>
+        <item>ni&#x101;n</item>
+        <item>n&#x12B;ng</item>
+    </string-array>
+    <string-array name="learn_expanding_i_btns_page3_row4">
+        <item>li&#x101;n</item>
+        <item>li&#x101;ng</item>
+        <item>li&#x101;n</item>
+        <item>l&#x12B;ng</item>
+    </string-array>
+    <array name="learn_expanding_i_btns_page3">
+        <item>@array/learn_expanding_i_btns_page3_row1</item>
+        <item>@array/learn_expanding_i_btns_page3_row2</item>
+        <item>@array/learn_expanding_i_btns_page3_row3</item>
+        <item>@array/learn_expanding_i_btns_page3_row4</item>
+    </array>
+    <array name="learn_expanding_i_btns">
+        <item>@array/learn_expanding_i_btns_page1</item>
+        <item>@array/learn_expanding_i_btns_page2</item>
+        <item>@array/learn_expanding_i_btns_page3</item>
+    </array>
+
     <array name="learn_expanding_i">
         <item name="toptext">@array/learn_expanding_i_toptext</item>
         <item name="bottomtext">@array/learn_expanding_i_bottomtext</item>
+        <item name="btns">@array/learn_expanding_i_btns</item>
     </array>
 
     <!-- Exceptions with i -->
@@ -316,9 +949,32 @@
         <item>Try saying the (American) English word \"shirt\" a few times, but stop before the \"r\" sound gets too string. This is a reasonable starting point for pronouncing \"shi\".</item>
     </string-array>
 
+    <string-array name="learn_exceptions_with_i_btns_page1_row1">
+        <item>s&#x12B;</item>
+        <item>c&#x12B;</item>
+        <item>z&#x12B;</item>
+    </string-array>
+    <array name="learn_exceptions_with_i_btns_page1">
+        <item>@array/learn_exceptions_with_i_btns_page1_row1</item>
+    </array>
+    <string-array name="learn_exceptions_with_i_btns_page2_row1">
+        <item>sh&#x12B;</item>
+        <item>ch&#x12B;</item>
+        <item>zh&#x12B;</item>
+        <item>r&#x12B;</item>
+    </string-array>
+    <array name="learn_exceptions_with_i_btns_page2">
+        <item>@array/learn_exceptions_with_i_btns_page2_row1</item>
+    </array>
+    <array name="learn_exceptions_with_i_btns">
+        <item>@array/learn_exceptions_with_i_btns_page1</item>
+        <item>@array/learn_exceptions_with_i_btns_page2</item>
+    </array>
+
     <array name="learn_exceptions_with_i">
         <item name="toptext">@array/learn_exceptions_with_i_toptext</item>
         <item name="bottomtext">@array/learn_exceptions_with_i_bottomtext</item>
+        <item name="btns">@array/learn_exceptions_with_i_btns</item>
     </array>
 
     <!-- Challenging initials III -->
@@ -332,9 +988,67 @@
         <item>Note that the tongue being at the bottom of the mouth rather than at the top of the mouth is what distinguishes these sounds from the \"sh\", \"ch\" and \"zh\" initials.</item>
     </string-array>
 
+    <string-array name="learn_challenging_initials_iii_btns_page1_row1">
+        <item>x&#x12B;</item>
+        <item>xi&#x101;</item>
+        <item>xi&#x101;o</item>
+        <item>xi&#x113;</item>
+        <item>xi&#x16B;</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_iii_btns_page1_row2">
+        <item>q&#x12B;</item>
+        <item>qi&#x101;</item>
+        <item>qi&#x101;o</item>
+        <item>qi&#x113;</item>
+        <item>qi&#x16B;</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_iii_btns_page1_row3">
+        <item>j&#x12B;</item>
+        <item>ji&#x101;</item>
+        <item>ji&#x101;o</item>
+        <item>ji&#x113;</item>
+        <item>ji&#x16B;</item>
+    </string-array>
+    <array name="learn_challenging_initials_iii_btns_page1">
+        <item>@array/learn_challenging_initials_iii_btns_page1_row1</item>
+        <item>@array/learn_challenging_initials_iii_btns_page1_row2</item>
+        <item>@array/learn_challenging_initials_iii_btns_page1_row3</item>
+    </array>
+    <string-array name="learn_challenging_initials_iii_btns_page2_row1">
+        <item>xi&#x101;n</item>
+        <item>xi&#x101;ng</item>
+        <item>x&#x12B;n</item>
+        <item>x&#x12B;ng</item>
+        <item>xi&#x14D;ng</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_iii_btns_page2_row2">
+        <item>qi&#x101;n</item>
+        <item>qi&#x101;ng</item>
+        <item>q&#x12B;n</item>
+        <item>q&#x12B;ng</item>
+        <item>qi&#x14D;ng</item>
+    </string-array>
+    <string-array name="learn_challenging_initials_iii_btns_page2_row3">
+        <item>ji&#x101;n</item>
+        <item>ji&#x101;ng</item>
+        <item>j&#x12B;n</item>
+        <item>j&#x12B;ng</item>
+        <item>ji&#x14D;ng</item>
+    </string-array>
+    <array name="learn_challenging_initials_iii_btns_page2">
+        <item>@array/learn_challenging_initials_iii_btns_page2_row1</item>
+        <item>@array/learn_challenging_initials_iii_btns_page2_row2</item>
+        <item>@array/learn_challenging_initials_iii_btns_page2_row3</item>
+    </array>
+    <array name="learn_challenging_initials_iii_btns">
+        <item>@array/learn_challenging_initials_iii_btns_page1</item>
+        <item>@array/learn_challenging_initials_iii_btns_page2</item>
+    </array>
+
     <array name="learn_challenging_initials_iii">
         <item name="toptext">@array/learn_challenging_initials_iii_toptext</item>
         <item name="bottomtext">@array/learn_challenging_initials_iii_bottomtext</item>
+        <item name="btns">@array/learn_challenging_initials_iii_btns</item>
     </array>
     
     <!-- The u final -->
@@ -350,9 +1064,76 @@
         <item>Notice that \"uei\" is abbreviated as \"ui\" when combined with an initial. Also, \"uen\" is abbreviated as \"un\".</item>
     </string-array>
 
+    <string-array name="learn_the_u_final_btns_page1_row1">
+        <item>w&#x16B;</item>
+        <item>b&#x16B;</item>
+        <item>p&#x16B;</item>
+        <item>m&#x16B;</item>
+        <item>f&#x16B;</item>
+    </string-array>
+    <array name="learn_the_u_final_btns_page1">
+        <item>@array/learn_the_u_final_btns_page1_row1</item>
+    </array>
+    <string-array name="learn_the_u_final_btns_page2_row1">
+        <item>w&#x101;</item>
+        <item>w&#x14D;</item>
+        <item>w&#x113;i</item>
+        <item>w&#x101;i</item>
+    </string-array>
+    <string-array name="learn_the_u_final_btns_page2_row2">
+        <item>w&#x101;n</item>
+        <item>w&#x113;n</item>
+        <item>w&#x101;ng</item>
+        <item>w&#x113;ng</item>
+    </string-array>
+    <array name="learn_the_u_final_btns_page2">
+        <item>@array/learn_the_u_final_btns_page2_row1</item>
+        <item>@array/learn_the_u_final_btns_page2_row2</item>
+    </array>
+    <string-array name="learn_the_u_final_btns_page3_row1">
+        <item>d&#x16B;</item>
+        <item>d&#x16B;o</item>
+        <item>du&#x12B;</item>
+        <item>du&#x101;n</item>
+        <item>d&#x16B;n</item>
+    </string-array>
+    <string-array name="learn_the_u_final_btns_page3_row2">
+        <item>t&#x16B;</item>
+        <item>t&#x16B;o</item>
+        <item>tu&#x12B;</item>
+        <item>tu&#x101;n</item>
+        <item>t&#x16B;n</item>
+    </string-array>
+    <string-array name="learn_the_u_final_btns_page3_row3">
+        <item>n&#x16B;</item>
+        <item>n&#x16B;o</item>
+        <item></item>
+        <item>nu&#x101;n</item>
+        <item></item>
+    </string-array>
+    <string-array name="learn_the_u_final_btns_page3_row4">
+        <item>l&#x16B;</item>
+        <item>l&#x16B;o</item>
+        <item></item>
+        <item>lu&#x101;n</item>
+        <item>l&#x16B;n</item>
+    </string-array>
+    <array name="learn_the_u_final_btns_page3">
+        <item>@array/learn_the_u_final_btns_page3_row1</item>
+        <item>@array/learn_the_u_final_btns_page3_row2</item>
+        <item>@array/learn_the_u_final_btns_page3_row3</item>
+        <item>@array/learn_the_u_final_btns_page3_row4</item>
+    </array>
+    <array name="learn_the_u_final_btns">
+        <item>@array/learn_the_u_final_btns_page1</item>
+        <item>@array/learn_the_u_final_btns_page2</item>
+        <item>@array/learn_the_u_final_btns_page3</item>
+    </array>
+
     <array name="learn_the_u_final">
         <item name="toptext">@array/learn_the_u_final_toptext</item>
         <item name="bottomtext">@array/learn_the_u_final_bottomtext</item>
+        <item name="btns">@array/learn_the_u_final_btns</item>
     </array>
     
     <!-- A big step with u -->
@@ -368,9 +1149,102 @@
         <item></item>
     </string-array>
 
+    <string-array name="learn_a_big_step_with_u_btns_page1_row1">
+        <item>s&#x16B;</item>
+        <item>s&#x16B;o</item>
+        <item>su&#x12B;</item>
+        <item>su&#x101;n</item>
+        <item>s&#x16B;n</item>
+    </string-array>
+    <string-array name="learn_a_big_step_with_u_btns_page1_row2">
+        <item>c&#x16B;</item>
+        <item>c&#x16B;o</item>
+        <item>cu&#x12B;</item>
+        <item>cu&#x101;n</item>
+        <item>c&#x16B;n</item>
+    </string-array>
+    <string-array name="learn_a_big_step_with_u_btns_page1_row3">
+        <item>z&#x16B;</item>
+        <item>z&#x16B;o</item>
+        <item>zu&#x12B;</item>
+        <item>zu&#x101;n</item>
+        <item>z&#x16B;n</item>
+    </string-array>
+    <array name="learn_a_big_step_with_u_btns_page1">
+        <item>@array/learn_a_big_step_with_u_btns_page1_row1</item>
+        <item>@array/learn_a_big_step_with_u_btns_page1_row2</item>
+        <item>@array/learn_a_big_step_with_u_btns_page1_row3</item>
+    </array>
+    <string-array name="learn_a_big_step_with_u_btns_page2_row1">
+        <item>sh&#x16B;</item>
+        <item>shu&#x101;</item>
+        <item>sh&#x16B;o</item>
+        <item>shu&#x12B;</item>
+        <item>shu&#x101;i</item>
+    </string-array>
+    <string-array name="learn_a_big_step_with_u_btns_page2_row2">
+        <item>ch&#x16B;</item>
+        <item>chu&#x101;</item>
+        <item>ch&#x16B;o</item>
+        <item>chu&#x12B;</item>
+        <item>chu&#x101;i</item>
+    </string-array>
+    <string-array name="learn_a_big_step_with_u_btns_page2_row3">
+        <item>zh&#x16B;</item>
+        <item>zhu&#x101;</item>
+        <item>zh&#x16B;o</item>
+        <item>zhu&#x12B;</item>
+        <item>zhu&#x101;i</item>
+    </string-array>
+    <string-array name="learn_a_big_step_with_u_btns_page2_row4">
+        <item>r&#x16B;</item>
+        <item></item>
+        <item>r&#x16B;o</item>
+        <item>ru&#x12B;</item>
+        <item></item>
+    </string-array>
+    <array name="learn_a_big_step_with_u_btns_page2">
+        <item>@array/learn_a_big_step_with_u_btns_page2_row1</item>
+        <item>@array/learn_a_big_step_with_u_btns_page2_row2</item>
+        <item>@array/learn_a_big_step_with_u_btns_page2_row3</item>
+        <item>@array/learn_a_big_step_with_u_btns_page2_row4</item>
+    </array>
+    <string-array name="learn_a_big_step_with_u_btns_page3_row1">
+        <item>shu&#x101;n</item>
+        <item>sh&#x16B;n</item>
+        <item>shu&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_a_big_step_with_u_btns_page3_row2">
+        <item>chu&#x101;n</item>
+        <item>ch&#x16B;n</item>
+        <item>chu&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_a_big_step_with_u_btns_page3_row3">
+        <item>zhu&#x101;n</item>
+        <item>zh&#x16B;n</item>
+        <item>zhu&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_a_big_step_with_u_btns_page3_row4">
+        <item>ru&#x101;n</item>
+        <item>r&#x16B;n</item>
+        <item></item>
+    </string-array>
+    <array name="learn_a_big_step_with_u_btns_page3">
+        <item>@array/learn_a_big_step_with_u_btns_page3_row1</item>
+        <item>@array/learn_a_big_step_with_u_btns_page3_row2</item>
+        <item>@array/learn_a_big_step_with_u_btns_page3_row3</item>
+        <item>@array/learn_a_big_step_with_u_btns_page3_row4</item>
+    </array>
+    <array name="learn_a_big_step_with_u_btns">
+        <item>@array/learn_a_big_step_with_u_btns_page1</item>
+        <item>@array/learn_a_big_step_with_u_btns_page2</item>
+        <item>@array/learn_a_big_step_with_u_btns_page3</item>
+    </array>
+
     <array name="learn_a_big_step_with_u">
         <item name="toptext">@array/learn_a_big_step_with_u_toptext</item>
         <item name="bottomtext">@array/learn_a_big_step_with_u_bottomtext</item>
+        <item name="btns">@array/learn_a_big_step_with_u_btns</item>
     </array>
 
     <!-- Concluding u -->
@@ -384,9 +1258,61 @@
         <item>As you may have noticed, the \"ueng\" final does not combine with any initials and exists only as \"weng\"</item>
     </string-array>
 
+    <string-array name="learn_concluding_u_btns_page1_row1">
+        <item>g&#x16B;</item>
+        <item>gu&#x101;</item>
+        <item>g&#x16B;o</item>
+        <item>gu&#x12B;</item>
+        <item>gu&#x101;i</item>
+    </string-array>
+    <string-array name="learn_concluding_u_btns_page1_row2">
+        <item>k&#x16B;</item>
+        <item>ku&#x101;</item>
+        <item>k&#x16B;o</item>
+        <item>ku&#x12B;</item>
+        <item>ku&#x101;i</item>
+    </string-array>
+    <string-array name="learn_concluding_u_btns_page1_row3">
+        <item>h&#x16B;</item>
+        <item>hu&#x101;</item>
+        <item>h&#x16B;o</item>
+        <item>hu&#x12B;</item>
+        <item>hu&#x101;i</item>
+    </string-array>
+    <array name="learn_concluding_u_btns_page1">
+        <item>@array/learn_concluding_u_btns_page1_row1</item>
+        <item>@array/learn_concluding_u_btns_page1_row2</item>
+        <item>@array/learn_concluding_u_btns_page1_row3</item>
+    </array>
+    <string-array name="learn_concluding_u_btns_page2_row1">
+        <item>gu&#x101;n</item>
+        <item>g&#x16B;n</item>
+        <item>gu&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_concluding_u_btns_page2_row2">
+        <item>ku&#x101;n</item>
+        <item>k&#x16B;n</item>
+        <item>ku&#x101;ng</item>
+    </string-array>
+    <string-array name="learn_concluding_u_btns_page2_row3">
+        <item>hu&#x101;n</item>
+        <item>h&#x16B;n</item>
+        <item>hu&#x101;ng</item>
+    </string-array>
+    <array name="learn_concluding_u_btns_page2">
+        <item>@array/learn_concluding_u_btns_page2_row1</item>
+        <item>@array/learn_concluding_u_btns_page2_row2</item>
+        <item>@array/learn_concluding_u_btns_page2_row3</item>
+    </array>
+    <array name="learn_concluding_u_btns">
+        <item>@array/learn_concluding_u_btns_page1</item>
+        <item>@array/learn_concluding_u_btns_page2</item>
+    </array>
+
     <array name="learn_concluding_u">
         <item name="toptext">@array/learn_concluding_u_toptext</item>
         <item name="bottomtext">@array/learn_concluding_u_bottomtext</item>
+        <item name="btns">@array/learn_concluding_u_btns</item>
     </array>
 
     <!-- Last but not least -->
@@ -402,9 +1328,57 @@
         <item></item>
     </string-array>
 
+    <string-array name="learn_last_but_not_least_btns_page1_row1">
+        <item>y&#x16B;</item>
+        <item>y&#x16B;e</item>
+        <item>yu&#x101;n</item>
+        <item>y&#x16B;n</item>
+    </string-array>
+    <array name="learn_last_but_not_least_btns_page1">
+        <item>@array/learn_last_but_not_least_btns_page1_row1</item>
+    </array>
+    <string-array name="learn_last_but_not_least_btns_page2_row1">
+        <item>n&#x1D6;</item>
+        <item>n&#x1D6;e</item>
+        <item>l&#x1D6;</item>
+        <item>l&#x1D6;e</item>
+    </string-array>
+    <array name="learn_last_but_not_least_btns_page2">
+        <item>@array/learn_last_but_not_least_btns_page2_row1</item>
+    </array>
+    <string-array name="learn_last_but_not_least_btns_page3_row1">
+        <item>x&#x16B;</item>
+        <item>x&#x16B;e</item>
+        <item>xu&#x101;n</item>
+        <item>x&#x16B;n</item>
+    </string-array>
+    <string-array name="learn_last_but_not_least_btns_page3_row2">
+        <item>q&#x16B;</item>
+        <item>q&#x16B;e</item>
+        <item>qu&#x101;n</item>
+        <item>q&#x16B;n</item>
+    </string-array>
+    <string-array name="learn_last_but_not_least_btns_page3_row3">
+        <item>j&#x16B;</item>
+        <item>j&#x16B;e</item>
+        <item>ju&#x101;n</item>
+        <item>j&#x16B;n</item>
+    </string-array>
+    <array name="learn_last_but_not_least_btns_page3">
+        <item>@array/learn_last_but_not_least_btns_page3_row1</item>
+        <item>@array/learn_last_but_not_least_btns_page3_row2</item>
+        <item>@array/learn_last_but_not_least_btns_page3_row3</item>
+    </array>
+    <array name="learn_last_but_not_least_btns">
+        <item>@array/learn_last_but_not_least_btns_page1</item>
+        <item>@array/learn_last_but_not_least_btns_page2</item>
+        <item>@array/learn_last_but_not_least_btns_page3</item>
+    </array>
+
     <array name="learn_last_but_not_least">
         <item name="toptext">@array/learn_last_but_not_least_toptext</item>
         <item name="bottomtext">@array/learn_last_but_not_least_bottomtext</item>
+        <item name="btns">@array/learn_last_but_not_least_btns</item>
     </array>
 
     <!-- Accumulation -->

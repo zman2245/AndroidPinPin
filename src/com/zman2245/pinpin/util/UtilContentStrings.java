@@ -64,7 +64,9 @@ public class UtilContentStrings
         // Important to recycle!
         arraysLearnContent.recycle();
         sectionTa.recycle();
-        sectionButtons.recycle();
+
+        if (sectionButtons != null)
+            sectionButtons.recycle();
 
         Log.d("TESTING", "get content time taken: " + (System.currentTimeMillis() - ts));
 

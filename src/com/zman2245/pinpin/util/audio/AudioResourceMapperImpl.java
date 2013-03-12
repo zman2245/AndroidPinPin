@@ -19,35 +19,35 @@ public class AudioResourceMapperImpl implements AudioResourceMapper
 
         // First Tones
         wordMap.put("\u0101", new AudioMapping("a", "_1"));
-//        wordMap.put("\u0113", new AudioMapping("e", "_1"));
-//        wordMap.put("\u012B;", new AudioMapping("i", "_1"));
-//        wordMap.put("\u014D", new AudioMapping("o", "_1"));
-//        wordMap.put("\u016B", new AudioMapping("u", "_1"));
-//        wordMap.put("\u01D6", new AudioMapping("_umlaut", "_1"));
-//
-//        // Second Tones
-//        wordMap.put("\u00E1", new AudioMapping("a", "_2"));
-//        wordMap.put("\u00E9", new AudioMapping("e", "_2"));
-//        wordMap.put("\u00ED;", new AudioMapping("i", "_2"));
-//        wordMap.put("\u00F3", new AudioMapping("o", "_2"));
-//        wordMap.put("\u00FA", new AudioMapping("u", "_2"));
-//        wordMap.put("\u01D8", new AudioMapping("_umlaut", "_2"));
-//
-//        // Third Tones
-//        wordMap.put("\u01CE", new AudioMapping("a", "_3"));
-//        wordMap.put("\u011B", new AudioMapping("e", "_3"));
-//        wordMap.put("\u01D0;", new AudioMapping("i", "_3"));
-//        wordMap.put("\u01D2", new AudioMapping("o", "_3"));
-//        wordMap.put("\u01D4", new AudioMapping("u", "_3"));
-//        wordMap.put("\u01DA", new AudioMapping("_umlaut", "_3"));
-//
-//        // Fourth Tones
-//        wordMap.put("\u00E0", new AudioMapping("a", "_4"));
-//        wordMap.put("\u00E8", new AudioMapping("e", "_4"));
-//        wordMap.put("\u00EC;", new AudioMapping("i", "_4"));
-//        wordMap.put("\u00F2", new AudioMapping("o", "_4"));
-//        wordMap.put("\u00F9", new AudioMapping("u", "_4"));
-//        wordMap.put("\u01DC", new AudioMapping("_umlaut", "_4"));
+        wordMap.put("\u0113", new AudioMapping("e", "_1"));
+        wordMap.put("\u012B", new AudioMapping("i", "_1"));
+        wordMap.put("\u014D", new AudioMapping("o", "_1"));
+        wordMap.put("\u016B", new AudioMapping("u", "_1"));
+        wordMap.put("\u01D6", new AudioMapping("_umlaut", "_1"));
+
+        // Second Tones
+        wordMap.put("\u00E1", new AudioMapping("a", "_2"));
+        wordMap.put("\u00E9", new AudioMapping("e", "_2"));
+        wordMap.put("\u00ED", new AudioMapping("i", "_2"));
+        wordMap.put("\u00F3", new AudioMapping("o", "_2"));
+        wordMap.put("\u00FA", new AudioMapping("u", "_2"));
+        wordMap.put("\u01D8", new AudioMapping("_umlaut", "_2"));
+
+        // Third Tones
+        wordMap.put("\u01CE", new AudioMapping("a", "_3"));
+        wordMap.put("\u011B", new AudioMapping("e", "_3"));
+        wordMap.put("\u01D0", new AudioMapping("i", "_3"));
+        wordMap.put("\u01D2", new AudioMapping("o", "_3"));
+        wordMap.put("\u01D4", new AudioMapping("u", "_3"));
+        wordMap.put("\u01DA", new AudioMapping("_umlaut", "_3"));
+
+        // Fourth Tones
+        wordMap.put("\u00E0", new AudioMapping("a", "_4"));
+        wordMap.put("\u00E8", new AudioMapping("e", "_4"));
+        wordMap.put("\u00EC", new AudioMapping("i", "_4"));
+        wordMap.put("\u00F2", new AudioMapping("o", "_4"));
+        wordMap.put("\u00F9", new AudioMapping("u", "_4"));
+        wordMap.put("\u01DC", new AudioMapping("_umlaut", "_4"));
 
         return wordMap;
     }
