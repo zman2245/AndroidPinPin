@@ -3,9 +3,11 @@ package com.zman2245.pinpin.fragment.learn;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -85,7 +87,9 @@ public class FragmentLearnFlowItem extends Fragment
 
             gridView.setVisibility(View.VISIBLE);
             gridView.setAdapter(adapter);
+            Log.d("TESTING", "Setting number of columns to: " + data.syllables[0].length);
             gridView.setNumColumns(data.syllables[0].length);
+            fixGridViewWidth(gridView, data.syllables[0].length, getResources().getDimensionPixelSize(R.dimen.gridview_words_cell_width));
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener()
             {
                 @Override
@@ -101,5 +105,19 @@ public class FragmentLearnFlowItem extends Fragment
         }
 
         return rootView;
+    }
+
+    /**
+     * Apparently wrap_content doesn't work with GridView:
+     * http://stackoverflow.com/questions/11870077/android-how-to-force-gridview-width-to-wrap-content
+     *
+     * So this method sets the width of the GridView manually :(
+     *
+     */
+    private void fixGridViewWidth(GridView gv, int numCols, int cellWidth)
+    {
+        LayoutParams lps = gv.getLayoutParams();
+        lps.width = (numCols * cellWidth);
+        gv.setLayoutParams(lps);
     }
 }

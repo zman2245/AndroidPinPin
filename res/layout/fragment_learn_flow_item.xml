@@ -24,7 +24,9 @@
         android:id="@+id/grid"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_marginBottom="@dimen/margin_learn_pages"
         android:layout_below="@id/top_text"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/bg_border_black"/>
     
     <TextView 

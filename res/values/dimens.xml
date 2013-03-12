@@ -6,4 +6,8 @@
     
     <!-- Shadows -->
     <dimen name="shadow_height">9dp</dimen>
+    
+    <!-- GridView cell dimensions for the word button grids -->
+    <dimen name="gridview_words_cell_width">55dp</dimen>
+    <dimen name="gridview_words_cell_height">30dp</dimen>
 </resources>
