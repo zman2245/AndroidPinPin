@@ -7,10 +7,16 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.zman2245.pinpin.adapter.grid.AdapterGridReference;
+import com.zman2245.pinpin.util.UtilAudioPlayer;
+import com.zman2245.pinpin.util.UtilContentStrings;
+import com.zman2245.pinpin.util.UtilUi;
+import com.zman2245.pinpin.util.audio.Tone;
 
 /**
- * Quiz Activity
+ * Reference Activity
  *
  * @author zack
  */
@@ -27,16 +33,22 @@ public class ActivityReference extends SherlockFragmentActivity
 
         GridView gridView = (GridView)findViewById(R.id.grid);
 
-        String[][] test = {{"row0_col0", "row0_col1", "row0_col2"}, {"row1_col0", "row1_col1", "row1_col2"}};
-        mAdapter        = new AdapterGridReference(test, getLayoutInflater());
+        String[][] content = UtilContentStrings.getReferenceStrings(Tone.THIRD);
+        mAdapter           = new AdapterGridReference(content, getLayoutInflater());
 
+        gridView.setNumColumns(content[0].length);
+        UtilUi.fixGridViewWidth(gridView, content[0].length, getResources().getDimensionPixelSize(R.dimen.gridview_words_cell_width));
         gridView.setAdapter(mAdapter);
         gridView.setOnItemClickListener(new OnItemClickListener()
         {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                // TODO: play some audio
+                String word = (String)mAdapter.getItem(position);
+
+                int resId = AppPinPin.getAudioMapper().getResourceForString(word);
+
+                UtilAudioPlayer.playSound(resId);
             }
         });
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener()
@@ -49,6 +61,21 @@ public class ActivityReference extends SherlockFragmentActivity
                 return true;
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getSupportMenuInflater();
+
+        inflater.inflate(R.menu.menu_default, menu);
+
+        return true;
+    }
+
+    private void setContent(Tone tone)
+    {
+
     }
 
     private void navigateToPractice(int index)

@@ -19,7 +19,7 @@ public class MainSectionsActivity extends FragmentActivity
 
         setContentView(R.layout.activity_main_sections);
 
-        Intent intent = new Intent(this, ActivityLearn.class);
+        Intent intent = new Intent(this, ActivityReference.class);
         startActivity(intent);
 
         // if I go with one base activity with mad fragments

@@ -1,5 +1,6 @@
 package com.zman2245.pinpin.adapter.grid;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,9 @@ import com.zman2245.pinpin.R;
 public class AdapterGridReference extends BaseAdapter
 {
     private final LayoutInflater mInflater;
-    private final String[][] mWords;
-    private final int mNumRows;
-    private final int mNumCols;
+    private String[][] mWords;
+    private int mNumRows;
+    private int mNumCols;
 
     /**
      * Constructor
@@ -32,11 +33,23 @@ public class AdapterGridReference extends BaseAdapter
             throw new IllegalArgumentException("words and inflator must be non-null");
 
         mInflater = inflater;
-        mWords    = words;
 
+        setWords(words);
+    }
+
+    /**
+     * Set the content
+     *
+     * @param words  The data behind the presentation
+     */
+    public void setWords(String[][] words)
+    {
+        mWords       = words;
         String[] row = mWords[0];
         mNumCols     = row.length;
         mNumRows     = mWords.length;
+
+        notifyDataSetChanged();
     }
 
     @Override
@@ -64,6 +77,7 @@ public class AdapterGridReference extends BaseAdapter
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
+        Log.d("TESTING", "in getView: " + (convertView == null ? "NULL" : "VALID"));
         if (convertView == null)
             convertView = mInflater.inflate(R.layout.item_grid_reference, parent, false);
 

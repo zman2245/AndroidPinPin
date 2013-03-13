@@ -6,6 +6,7 @@ import android.util.Log;
 import com.zman2245.pinpin.AppPinPin;
 import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.data.DataItemLearnFlow;
+import com.zman2245.pinpin.util.audio.Tone;
 
 
 /**
@@ -19,6 +20,12 @@ public class UtilContentStrings
     private static final int INDEX_BOTTOM_STRINGS   = 1;
     private static final int INDEX_BUTTON_STRINGS   = 2;
 
+    /**
+     * Return the content for a "learn" section
+     *
+     * @param pos
+     * @return
+     */
     public static DataItemLearnFlow[] getLearnSectionData(int pos)
     {
         long ts = System.currentTimeMillis();
@@ -106,5 +113,27 @@ public class UtilContentStrings
         pageButtons.recycle();
 
         return val;
+    }
+
+    /**
+     * Cache the base string resources?
+     */
+
+    /**
+     * Return the content for the reference grid
+     */
+    public static String[][] getReferenceStrings(Tone tone)
+    {
+        int resId;
+        TypedArray contentArray = AppPinPin.getTypedArray(tone.refResId);
+        String[][] strings      = new String[contentArray.length()][];
+
+        for (int i = 0; i < contentArray.length(); i++)
+        {
+            resId       = contentArray.getResourceId(i, 0);
+            strings[i]  = contentArray.getResources().getStringArray(resId);
+        }
+
+        return strings;
     }
 }
