@@ -8,5 +8,10 @@
     
     <!-- Content Descriptions for ImageViews and such -->
     <string name="image_desc_trophy">trophy</string>
+    
+    <!-- Menu - Global Nav -->
+    <string name="menu_global_nav_learn">Learn</string>
+    <string name="menu_global_nav_quiz">Quiz</string>
+    <string name="menu_global_nav_reference">Reference</string>
 
 </resources>
