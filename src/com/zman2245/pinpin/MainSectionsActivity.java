@@ -1,8 +1,15 @@
 package com.zman2245.pinpin;
 
+import java.io.InputStream;
+import java.util.HashMap;
+
+import com.zman2245.pinpin.xml.XmlParserSounds;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+import android.view.inputmethod.InputBinding;
 
 /**
  * "Top-level" sections including Learn, Quiz, and Reference Fragments

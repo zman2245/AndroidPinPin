@@ -116,10 +116,6 @@ public class UtilContentStrings
     }
 
     /**
-     * Cache the base string resources?
-     */
-
-    /**
      * Return the content for the reference grid
      */
     public static String[][] getReferenceStrings(Tone tone)
@@ -136,4 +132,6 @@ public class UtilContentStrings
 
         return strings;
     }
+    
+
 }

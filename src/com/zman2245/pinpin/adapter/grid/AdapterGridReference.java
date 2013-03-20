@@ -77,7 +77,6 @@ public class AdapterGridReference extends BaseAdapter
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
-        Log.d("TESTING", "in getView: " + (convertView == null ? "NULL" : "VALID"));
         if (convertView == null)
             convertView = mInflater.inflate(R.layout.item_grid_reference, parent, false);
 

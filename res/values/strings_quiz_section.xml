@@ -13,4 +13,56 @@
         <item>Level 5</item>
     </string-array>
 
+
+
+    <!--
+    	Quiz questions: follow the following convention:
+    	   1st item: type
+    	   2nd item: answers
+    	   3rd item: choices
+    	   4th item: tones (optional - randomized if missing)
+    	   5th item: word (optional)
+     -->
+    
+    <!-- Quiz 1 -->
+    <string-array name="quiz1_question1">
+        <item>0</item>
+        <item>hao</item>
+        <item>gao|kao|hao</item>
+    </string-array>
+    <string-array name="quiz1_question2">
+        <item>0</item>
+        <item>gao|kao</item>
+        <item>gao|kao|hao</item>
+    </string-array>
+    <string-array name="quiz1_question3">
+        <item>0</item>
+        <item>dang|tang</item>
+        <item>dan|dang|tan|tang</item>
+    </string-array>
+    <string-array name="quiz1_question4">
+        <item>0</item>
+        <item>dan|tan</item>
+        <item>dan|dang|tan|tang</item>
+    </string-array>
+    <string-array name="quiz1_question5">
+        <item>0</item>
+        <item>mao</item>
+        <item>ma|mao|mo|mou</item>
+    </string-array>
+
+    <array name="quiz1">
+		<item>@array/quiz1_question1</item>
+		<item>@array/quiz1_question2</item>
+		<item>@array/quiz1_question3</item>
+		<item>@array/quiz1_question4</item>
+		<item>@array/quiz1_question5</item>
+    </array>
+    
+    
+    <array name="quiz_questions_master">
+        <item>@array/quiz1</item>
+        
+    </array>
+
 </resources>
