@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
+    <color name="bg_color_default">#FFAAAAAA</color>
+    <color name="bg_color_inset">#FF080808</color>
     <color name="learn_background">#AAAAAA</color>
     
 </resources>

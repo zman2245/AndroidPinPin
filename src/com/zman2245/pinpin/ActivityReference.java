@@ -10,10 +10,10 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.zman2245.pinpin.adapter.grid.AdapterGridReference;
-import com.zman2245.pinpin.util.UtilAudioPlayer;
-import com.zman2245.pinpin.util.UtilContentStrings;
-import com.zman2245.pinpin.util.UtilUi;
 import com.zman2245.pinpin.util.audio.Tone;
+import com.zman2245.pinpin.util.audio.UtilAudioPlayer;
+import com.zman2245.pinpin.util.content.UtilContentStrings;
+import com.zman2245.pinpin.util.content.UtilUi;
 
 /**
  * Reference Activity

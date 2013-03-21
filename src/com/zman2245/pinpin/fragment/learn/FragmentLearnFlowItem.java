@@ -15,8 +15,8 @@ import com.zman2245.pinpin.AppPinPin;
 import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.adapter.grid.AdapterGridReference;
 import com.zman2245.pinpin.data.DataItemLearnFlow;
-import com.zman2245.pinpin.util.UtilAudioPlayer;
-import com.zman2245.pinpin.util.UtilUi;
+import com.zman2245.pinpin.util.audio.UtilAudioPlayer;
+import com.zman2245.pinpin.util.content.UtilUi;
 
 /**
  * A fragment for a single learn flow item (aka page)

@@ -65,4 +65,10 @@
         <item name="android:divider">#AAAAAA</item>
     </style>
 
+    <!-- Buttons -->
+    <style name="ButtonDefault" parent="@android:style/Widget.Button">
+        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">#FF000000</item>
+    </style>
 </resources>

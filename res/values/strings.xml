@@ -8,10 +8,15 @@
     
     <!-- Content Descriptions for ImageViews and such -->
     <string name="image_desc_trophy">trophy</string>
+    <string name="image_condesc_microphone">Microphone</string>
+    <string name="image_condesc_quiz_choice_correct">Correctness Indicator</string>
     
     <!-- Menu - Global Nav -->
     <string name="menu_global_nav_learn">Learn</string>
     <string name="menu_global_nav_quiz">Quiz</string>
     <string name="menu_global_nav_reference">Reference</string>
+
+    <!-- Buttons -->
+    <string name="btn_quiz_question_continue">Continue</string>
 
 </resources>

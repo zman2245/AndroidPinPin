@@ -12,7 +12,7 @@ import android.widget.ListView;
 import com.zman2245.pinpin.adapter.list.AdapterListLearn;
 import com.zman2245.pinpin.data.DataItemLearnFlow;
 import com.zman2245.pinpin.fragment.learn.FragmentLearnFlow;
-import com.zman2245.pinpin.util.UtilContentStrings;
+import com.zman2245.pinpin.util.content.UtilContentStrings;
 
 /**
  * Learn Activity

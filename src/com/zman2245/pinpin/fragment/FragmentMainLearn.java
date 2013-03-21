@@ -15,7 +15,7 @@ import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.adapter.list.AdapterListLearn;
 import com.zman2245.pinpin.data.DataItemLearnFlow;
 import com.zman2245.pinpin.fragment.learn.FragmentLearnFlow;
-import com.zman2245.pinpin.util.UtilContentStrings;
+import com.zman2245.pinpin.util.content.UtilContentStrings;
 
 /**
  * A fragment for the list of learning sections

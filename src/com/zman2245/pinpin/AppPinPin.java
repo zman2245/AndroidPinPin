@@ -8,9 +8,9 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.util.Log;
 
-import com.zman2245.pinpin.util.UtilQuizGenerator;
 import com.zman2245.pinpin.util.audio.AudioResourceMapper;
 import com.zman2245.pinpin.util.audio.AudioResourceMapperImpl;
+import com.zman2245.pinpin.util.content.UtilQuizGenerator;
 import com.zman2245.pinpin.xml.XmlParserSounds;
 
 /**

@@ -1,4 +1,4 @@
-package com.zman2245.pinpin.util;
+package com.zman2245.pinpin.util.audio;
 
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;

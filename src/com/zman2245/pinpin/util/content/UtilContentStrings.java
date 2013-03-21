@@ -1,4 +1,4 @@
-package com.zman2245.pinpin.util;
+package com.zman2245.pinpin.util.content;
 
 import android.content.res.TypedArray;
 import android.util.Log;

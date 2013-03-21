@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color_default" >
+
+    <LinearLayout
+        android:id="@+id/answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:orientation="horizontal"
+        android:background="#FFFF0000"
+        android:clickable="true"
+        >
+
+        <TextView
+            android:id="@+id/answer_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Someth"
+            android:background="@drawable/bg_border_black_bottom_only"
+            />
+        
+        <ImageView 
+            android:id="@+id/img_mic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/abs__ic_search"
+            android:contentDescription="@string/image_condesc_microphone"
+            />
+        
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_continue"
+        style="@style/ButtonDefault"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/btn_quiz_question_continue"
+        />
+
+    <GridView
+        android:id="@+id/grid_choice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/answer"
+        android:layout_above="@id/btn_continue"
+        android:background="@color/bg_color_inset"
+        />
+
+</RelativeLayout>

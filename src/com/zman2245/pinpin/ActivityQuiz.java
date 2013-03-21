@@ -11,11 +11,10 @@ import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.zman2245.pinpin.adapter.list.AdapterListQuiz;
-import com.zman2245.pinpin.data.DataItemLearnFlow;
 import com.zman2245.pinpin.data.DataItemQuiz;
-import com.zman2245.pinpin.fragment.learn.FragmentLearnFlow;
-import com.zman2245.pinpin.util.UtilContentStrings;
-import com.zman2245.pinpin.util.UtilQuizGenerator;
+import com.zman2245.pinpin.fragment.event.Event;
+import com.zman2245.pinpin.fragment.event.FragmentEventListener;
+import com.zman2245.pinpin.fragment.quiz.FragmentQuizQuestion;
 
 /**
  * Quiz Activity
@@ -23,7 +22,11 @@ import com.zman2245.pinpin.util.UtilQuizGenerator;
  * @author zack
  */
 public class ActivityQuiz extends SherlockFragmentActivity
+	implements FragmentEventListener
 {
+	private DataItemQuiz[] mCurrentQuizData;
+	private int mCurrentQuestionIndex;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -48,17 +51,28 @@ public class ActivityQuiz extends SherlockFragmentActivity
     private void navigateToQuizSection(int index)
     {
         // TBD
-        DataItemQuiz[] datas = AppPinPin.sQuizGenerator.getQuizQuestions(index);
-        Log.d("TESTING", "quiz data: " + datas[0].answers[0]);
-       
-/*
-        FragmentLearnFlow frag  = FragmentLearnFlow.newInstance(datas);
+    	mCurrentQuizData = AppPinPin.sQuizGenerator.getQuizQuestions(index);
+        Log.d("TESTING", "quiz data: " + mCurrentQuizData[0].answers[0]);
+
+        FragmentQuizQuestion frag  = FragmentQuizQuestion.newInstance(mCurrentQuizData[0]);
         FragmentManager fm      = getSupportFragmentManager();
         FragmentTransaction ft  = fm.beginTransaction();
 
-        ft.add(R.id.container, frag, "learn_flow");
-        ft.addToBackStack("learn_flow");
+        ft.add(R.id.container, frag, "quit_flow");
+        ft.addToBackStack("quit_flow");
         ft.commit();
-        */
     }
+
+    private void moveToNextQuizItem()
+    {
+
+    }
+
+    // FragmentEventListener impl
+
+	@Override
+	public void handleEvent(Event event)
+	{
+
+	}
 }
