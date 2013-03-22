@@ -3,7 +3,6 @@ package com.zman2245.pinpin;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -14,7 +13,9 @@ import com.zman2245.pinpin.adapter.list.AdapterListQuiz;
 import com.zman2245.pinpin.data.DataItemQuiz;
 import com.zman2245.pinpin.fragment.event.Event;
 import com.zman2245.pinpin.fragment.event.FragmentEventListener;
+import com.zman2245.pinpin.fragment.modelwrapper.FragmentModelWrapper;
 import com.zman2245.pinpin.fragment.quiz.FragmentQuizQuestion;
+import com.zman2245.pinpin.model.ModelQuiz;
 
 /**
  * Quiz Activity
@@ -24,8 +25,28 @@ import com.zman2245.pinpin.fragment.quiz.FragmentQuizQuestion;
 public class ActivityQuiz extends SherlockFragmentActivity
 	implements FragmentEventListener
 {
-	private DataItemQuiz[] mCurrentQuizData;
-	private int mCurrentQuestionIndex;
+	private FragmentModelWrapper<ModelQuiz> mFragModel;
+	private ModelQuiz mModelQuiz;
+
+    // FragmentEventListener impl
+
+	@Override
+	public void handleEvent(Event event)
+	{
+		switch (event.type)
+		{
+		case QUIZ_CONTINUE:
+			moveToNextQuizItem();
+			break;
+
+		case QUIZ_END:
+			break;
+
+		default:
+		}
+	}
+
+	// Fragment hooks
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,33 +67,50 @@ public class ActivityQuiz extends SherlockFragmentActivity
                 navigateToQuizSection(position);
             }
         });
+
+        initModel();
+    }
+
+    // private helpers
+
+    @SuppressWarnings("unchecked")
+	private void initModel()
+    {
+    	FragmentManager mgr = getSupportFragmentManager();
+    	mFragModel = (FragmentModelWrapper<ModelQuiz>)mgr.findFragmentByTag("model");
+    	if (mFragModel == null)
+    	{
+    		mFragModel = FragmentModelWrapper.<ModelQuiz>newInstance(null);
+    	}
+    	else
+    	{
+    		mModelQuiz = mFragModel.getModel();
+    		// TODO: do we need to restore ui state?
+    	}
     }
 
     private void navigateToQuizSection(int index)
     {
-        // TBD
-    	mCurrentQuizData = AppPinPin.sQuizGenerator.getQuizQuestions(index);
-        Log.d("TESTING", "quiz data: " + mCurrentQuizData[0].answers[0]);
+    	DataItemQuiz[] datas 	= AppPinPin.sQuizGenerator.getQuizQuestions(index);
+    	mModelQuiz 				= new ModelQuiz(datas);
+    	mFragModel.setModel(mModelQuiz);
 
-        FragmentQuizQuestion frag  = FragmentQuizQuestion.newInstance(mCurrentQuizData[0]);
-        FragmentManager fm      = getSupportFragmentManager();
-        FragmentTransaction ft  = fm.beginTransaction();
-
-        ft.add(R.id.container, frag, "quit_flow");
-        ft.addToBackStack("quit_flow");
-        ft.commit();
+        moveToNextQuizItem();
     }
 
     private void moveToNextQuizItem()
     {
+    	FragmentQuizQuestion frag  = FragmentQuizQuestion.newInstance(mModelQuiz.next());
+        FragmentManager fm      = getSupportFragmentManager();
+        FragmentTransaction ft  = fm.beginTransaction();
 
+        ft.setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+
+        if (fm.findFragmentByTag("quiz_flow") == null)
+        	ft.add(R.id.container, frag, "quiz_flow");
+        else
+        	ft.replace(R.id.container, frag, "quiz_flow");
+
+        ft.commit();
     }
-
-    // FragmentEventListener impl
-
-	@Override
-	public void handleEvent(Event event)
-	{
-
-	}
 }

@@ -1,5 +1,7 @@
 package com.zman2245.pinpin.model;
 
+import java.util.Arrays;
+
 
 /**
  * Quiz question model
@@ -14,17 +16,32 @@ public class ModelQuizQuestion
 	}
 
 	private final QuizQuestionState[] mStates;
+	private final boolean[] mCorrects;
 	private final String[] mAnswers;
+
+	/**
+	 * Returns a new array of states initialized to all "UNANSWERED"
+	 *
+	 * @param len
+	 * @return
+	 */
+	public static QuizQuestionState[] getNewArray(int len)
+	{
+		QuizQuestionState[] states = new QuizQuestionState[len];
+
+		for (int i = 0; i < len; i++)
+		{
+			states[i] = QuizQuestionState.UNANSWERED;
+		}
+
+		return states;
+	}
 
 	public ModelQuizQuestion(String[] answers)
 	{
 		mAnswers 	= answers;
-		mStates 	= new QuizQuestionState[mAnswers.length];
-
-		for (int i = 0; i < mStates.length; i++)
-		{
-			mStates[i] = QuizQuestionState.UNANSWERED;
-		}
+		mStates 	= getNewArray(answers.length);
+		mCorrects	= new boolean[mAnswers.length];
 	}
 
 	public QuizQuestionState[] getStates()
@@ -36,6 +53,32 @@ public class ModelQuizQuestion
 	{
 		return mStates[index];
 	}
+
+	public String getAnswerText()
+	{
+		StringBuilder builder = new StringBuilder();
+
+		for (int i = 0; i < mAnswers.length; i++)
+		{
+			if (mCorrects[i])
+			{
+				builder.append(mAnswers[i]);
+			}
+			else
+			{
+				// put in an empty placeholder for the unanswered
+				char[] charArray = new char[mAnswers[i].length()];
+				Arrays.fill(charArray,' ');
+				builder.append(charArray);
+			}
+
+			if (i < mAnswers.length - 1)
+				builder.append(" ");
+		}
+
+		return builder.toString();
+	}
+
 
 	/**
 	 * Check the validity of a guess
@@ -51,6 +94,8 @@ public class ModelQuizQuestion
 		{
 			mStates[index] = isCorrect ? QuizQuestionState.CORRECT : QuizQuestionState.INCORRECT;
 		}
+
+		mCorrects[index] = isCorrect;
 
 		return isCorrect;
 	}

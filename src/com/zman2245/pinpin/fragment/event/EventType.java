@@ -9,7 +9,7 @@ public enum EventType
 {
 	QUIZ_LISTITEM_CLICK("quiz-listitem-click"),
 	QUIZ_END("quiz-end"),
-	QUIZ_NEXT("quiz-next");
+	QUIZ_CONTINUE("quiz-continue");
 
 	public String name;
 

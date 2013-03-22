@@ -1,20 +1,29 @@
 package com.zman2245.pinpin.fragment.quiz;
 
+import java.util.HashMap;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.zman2245.pinpin.AppPinPin;
 import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.adapter.grid.AdapterGridQuizItem;
 import com.zman2245.pinpin.data.DataItemQuiz;
 import com.zman2245.pinpin.fragment.event.Event;
+import com.zman2245.pinpin.fragment.event.EventData;
+import com.zman2245.pinpin.fragment.event.EventType;
 import com.zman2245.pinpin.fragment.event.FragmentEventListener;
 import com.zman2245.pinpin.model.ModelQuizQuestion;
 import com.zman2245.pinpin.util.audio.UtilAudioPlayer;
@@ -31,6 +40,9 @@ public class FragmentQuizQuestion extends Fragment
 	private static final String KEY_DATA = "data";
 
 	private GridView mGrid;
+	private TextView mAnswerText;
+	private Button mContinueButton;
+
 	private AdapterGridQuizItem mAdapter;
 	private DataItemQuiz mData;
 	private ModelQuizQuestion mModel;
@@ -71,12 +83,26 @@ public class FragmentQuizQuestion extends Fragment
 	{
 		View rootView = inflater.inflate(R.layout.fragment_quiz_item, container, false);
 
-		mGrid	 = (GridView)rootView.findViewById(R.id.grid_choice);
-		mAdapter = new AdapterGridQuizItem(mData.choices, inflater);
+		mContinueButton = (Button)rootView.findViewById(R.id.btn_continue);
+		mAnswerText = (TextView)rootView.findViewById(R.id.answer_text);
+		mGrid	 	= (GridView)rootView.findViewById(R.id.grid_choice);
+		mAdapter 	= new AdapterGridQuizItem(mData.choices, inflater);
 
 		mGrid.setNumColumns(mNumSubQuestions);
 		mGrid.setAdapter(mAdapter);
 		mGrid.setOnItemClickListener(this);
+
+		mContinueButton.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				HashMap<String, Object> data = new HashMap<String, Object>();
+				data.put(EventData.DATA_KEY_MODEL, mModel);
+				Event event = new Event(EventType.QUIZ_CONTINUE, data);
+				sendEvent(event);
+			}
+		});
 
 		View answerView = rootView.findViewById(R.id.answer);
 		answerView.setOnClickListener(new View.OnClickListener()
@@ -92,6 +118,8 @@ public class FragmentQuizQuestion extends Fragment
 		return rootView;
 	}
 
+	// OnItemClickListener impl
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
@@ -102,14 +130,19 @@ public class FragmentQuizQuestion extends Fragment
         boolean isCorrect = mModel.answer(word, subQuestion);
         if (isCorrect)
         {
+        	Log.d("TESTING", "setting text: " + mModel.getAnswerText());
+        	mAnswerText.setText(mModel.getAnswerText());
         	choiceView.setCorrect();
         	mAdapter.setColumnEnabled(subQuestion, false);
+        	showContinueButton();
         }
         else
         {
         	choiceView.setIncorrect();
         }
     }
+
+    // private helpers
 
     private int getSubQuestionNum(int position)
     {
@@ -124,6 +157,13 @@ public class FragmentQuizQuestion extends Fragment
 
 	        UtilAudioPlayer.playSound(resId);
 		}
+    }
+
+    private void showContinueButton()
+    {
+    	mContinueButton.setVisibility(View.VISIBLE);
+    	Animation anim = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_default);
+    	mContinueButton.startAnimation(anim);
     }
 
     /**
