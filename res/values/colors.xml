@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
+    <!-- Default backgrounds -->
     <color name="bg_color_default">#FFAAAAAA</color>
     <color name="bg_color_inset">#FF080808</color>
     <color name="learn_background">#AAAAAA</color>
+    
+    <!-- Win/lose good/bad colors -->
+    <color name="win_color">#FF00FF00</color>
+    <color name="lose_color">#FFFF0000</color>
     
 </resources>

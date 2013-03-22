@@ -58,10 +58,91 @@
 		<item>@array/quiz1_question4</item>
 		<item>@array/quiz1_question5</item>
     </array>
+    <!-- TODO: finish quiz1, leaving short for now for testing purposes -->
     
+    
+    <!-- Quiz 2 -->
+    <string-array name="quiz2_question1">
+        <item>0</item>
+        <item>bin|pin</item>
+        <item>bin|bing|pin|ping</item>
+    </string-array>
+    <string-array name="quiz2_question2">
+        <item>0</item>
+        <item>bing|ping</item>
+        <item>bin|bing|pin|ping</item>
+    </string-array>
+    <string-array name="quiz2_question3">
+        <item>0</item>
+        <item>lian|liang</item>
+        <item>nian|niang|lian|liang</item>
+    </string-array>
+    <string-array name="quiz2_question4">
+        <item>0</item>
+        <item>nin|lin</item>
+        <item>nin|ning|lin|ling</item>
+    </string-array>
+    <string-array name="quiz2_question5">
+        <item>0</item>
+        <item>ning|ling</item>
+        <item>nin|ning|lin|ling</item>
+    </string-array>
+    <string-array name="quiz2_question6">
+        <item>0</item>
+        <item>ren|zhen</item>
+        <item>ren|reng|zhen|zheng</item>
+    </string-array>
+    <string-array name="quiz2_question7">
+        <item>0</item>
+        <item>cai|zai|sai</item>
+        <item>sai|cai|zai</item>
+    </string-array>
+    <string-array name="quiz2_question8">
+        <item>0</item>
+        <item>cao|zao</item>
+        <item>cao|chao|zao|zhao</item>
+    </string-array>
+    <string-array name="quiz2_question9">
+        <item>0</item>
+        <item>zhe|che</item>
+        <item>ce|che|ze|zhe</item>
+    </string-array>
+    <string-array name="quiz2_question10">
+        <item>1</item>
+        <item>zai</item>
+    </string-array>
+    <string-array name="quiz2_question11">
+        <item>1</item>
+        <item>shi</item>
+    </string-array>
+    <string-array name="quiz2_question12">
+        <item>1</item>
+        <item>zhong</item>
+    </string-array>
+    <string-array name="quiz2_question13">
+        <item>1</item>
+        <item>pin</item>
+    </string-array>
+
+    <array name="quiz2">
+        <!--  <item>@array/quiz2_question1</item>
+        <item>@array/quiz2_question2</item>
+        <item>@array/quiz2_question3</item>
+        <item>@array/quiz2_question4</item>
+        <item>@array/quiz2_question5</item>
+        <item>@array/quiz2_question6</item>
+        <item>@array/quiz2_question7</item>
+        <item>@array/quiz2_question8</item>
+        <item>@array/quiz2_question9</item>-->
+        <item>@array/quiz2_question10</item>
+        <item>@array/quiz2_question11</item>
+        <item>@array/quiz2_question12</item>
+        <item>@array/quiz2_question13</item>
+    </array>
     
     <array name="quiz_questions_master">
         <item>@array/quiz1</item>
+        <item>@array/quiz2</item>
         
     </array>
 

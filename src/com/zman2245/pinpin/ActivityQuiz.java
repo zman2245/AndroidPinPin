@@ -1,6 +1,9 @@
 package com.zman2245.pinpin;
 
+import java.util.HashMap;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -9,13 +12,17 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.zman2245.pinpin.adapter.list.AdapterListQuiz;
 import com.zman2245.pinpin.data.DataItemQuiz;
 import com.zman2245.pinpin.fragment.event.Event;
+import com.zman2245.pinpin.fragment.event.EventData;
 import com.zman2245.pinpin.fragment.event.FragmentEventListener;
 import com.zman2245.pinpin.fragment.modelwrapper.FragmentModelWrapper;
+import com.zman2245.pinpin.fragment.quiz.FragmentQuizEnd;
 import com.zman2245.pinpin.fragment.quiz.FragmentQuizQuestion;
 import com.zman2245.pinpin.model.ModelQuiz;
+import com.zman2245.pinpin.model.ModelQuizQuestion;
 
 /**
  * Quiz Activity
@@ -36,10 +43,14 @@ public class ActivityQuiz extends SherlockFragmentActivity
 		switch (event.type)
 		{
 		case QUIZ_CONTINUE:
+			HashMap<String, Object> map = event.data;
+			mModelQuiz.updateWithQuestionModel((ModelQuizQuestion)map.get(EventData.DATA_KEY_MODEL));
+
 			moveToNextQuizItem();
 			break;
 
 		case QUIZ_END:
+			endQuiz();
 			break;
 
 		default:
@@ -71,6 +82,28 @@ public class ActivityQuiz extends SherlockFragmentActivity
         initModel();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+            	if (getSupportFragmentManager().findFragmentByTag("quiz_flow") != null)
+            		cancelQuiz();
+            	return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+	public void onBackPressed()
+    {
+    	// TODO: should handle nav within a quiz
+    	super.onBackPressed();
+    }
+
     // private helpers
 
     @SuppressWarnings("unchecked")
@@ -96,11 +129,24 @@ public class ActivityQuiz extends SherlockFragmentActivity
     	mFragModel.setModel(mModelQuiz);
 
         moveToNextQuizItem();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void moveToNextQuizItem()
     {
-    	FragmentQuizQuestion frag  = FragmentQuizQuestion.newInstance(mModelQuiz.next());
+    	Fragment frag;
+    	DataItemQuiz data = mModelQuiz.next();
+
+    	if (data == null)
+    	{
+    		// End of quiz
+    		frag = FragmentQuizEnd.newInstance(mModelQuiz.getQuizEndData());
+    	}
+    	else
+    	{
+    		frag = FragmentQuizQuestion.newInstance(data);
+    	}
+
         FragmentManager fm      = getSupportFragmentManager();
         FragmentTransaction ft  = fm.beginTransaction();
 
@@ -112,5 +158,28 @@ public class ActivityQuiz extends SherlockFragmentActivity
         	ft.replace(R.id.container, frag, "quiz_flow");
 
         ft.commit();
+    }
+
+    // TODO: save state? Right now "cancel" and "end" are the same, but should they be?
+    private void endQuiz()
+    {
+    	FragmentManager fm      = getSupportFragmentManager();
+        FragmentTransaction ft  = fm.beginTransaction();
+        Fragment frag 			= fm.findFragmentByTag("quiz_flow");
+
+        ft.setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+
+        if (frag != null)
+        {
+        	ft.remove(frag);
+        }
+
+        ft.commit();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+    }
+
+    private void cancelQuiz()
+    {
+    	endQuiz();
     }
 }
