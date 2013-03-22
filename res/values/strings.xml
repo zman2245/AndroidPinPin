@@ -19,10 +19,10 @@
     <!-- Quiz section -->
     <string name="btn_quiz_question_continue">Continue</string>
     <string name="btn_quiz_question_done">Done</string>
-    <string name="quiz_end_title_win">Keep practicing!</string>
-    <string name="quiz_end_subtitle_win">Score higher to earn a trophy!</string>
-    <!--  TODO -->
-    <string name="quiz_end_title_lose">you lost!</string>
-    <string name="quiz_end_subtitle_lose">you lost!</string>
+        <!--  TODO -->
+    <string name="quiz_end_title_win">you won!</string>
+    <string name="quiz_end_subtitle_win">you won!</string>
+    <string name="quiz_end_title_lose">Keep practicing!</string>
+    <string name="quiz_end_subtitle_lose">Score higher to earn a trophy!</string>
 
 </resources>

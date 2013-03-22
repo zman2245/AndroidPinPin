@@ -5,7 +5,6 @@ import java.util.HashMap;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +71,7 @@ public class FragmentQuizQuestion extends Fragment
 		super.onCreate(savedInstanceState);
 
 		mData 				= (DataItemQuiz)getArguments().get(KEY_DATA);
-		mModel 				= new ModelQuizQuestion(mData.answers);
+		mModel 				= new ModelQuizQuestion(mData);
 		mNumSubQuestions 	= mData.answers.length;
 
 		setRetainInstance(true);
@@ -115,6 +114,17 @@ public class FragmentQuizQuestion extends Fragment
 		});
 		playAnswer();
 
+		// if already answered populate the answer and disable choices
+		if (mData.alreadyComplete)
+		{
+			mAnswerText.setText(mModel.getAnswerText());
+			for (int i = 0; i < mNumSubQuestions; i++)
+			{
+				mAdapter.setColumnEnabled(i, false);
+			}
+        	showContinueButton();
+		}
+
 		return rootView;
 	}
 
@@ -130,7 +140,6 @@ public class FragmentQuizQuestion extends Fragment
         boolean isCorrect = mModel.answer(word, subQuestion);
         if (isCorrect)
         {
-        	Log.d("TESTING", "setting text: " + mModel.getAnswerText());
         	mAnswerText.setText(mModel.getAnswerText());
         	choiceView.setCorrect();
         	mAdapter.setColumnEnabled(subQuestion, false);

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Data to be presented for a quiz question
- * 
+ *
  * Note that one question may have multipe parts
  *
  * @author zack
@@ -15,4 +15,7 @@ public class DataItemQuiz implements Serializable
 
     public String answers[]		= {};
     public String[][] choices   = {};
+
+    // Tells whether this question already completed
+    public boolean alreadyComplete = false;
 }

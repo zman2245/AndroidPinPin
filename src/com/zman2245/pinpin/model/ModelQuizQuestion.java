@@ -2,6 +2,8 @@ package com.zman2245.pinpin.model;
 
 import java.util.Arrays;
 
+import com.zman2245.pinpin.data.DataItemQuiz;
+
 
 /**
  * Quiz question model
@@ -15,6 +17,7 @@ public class ModelQuizQuestion
 		UNANSWERED, CORRECT, INCORRECT
 	}
 
+	private final DataItemQuiz mData;
 	private final QuizQuestionState[] mStates;
 	private final boolean[] mCorrects;
 	private final String[] mAnswers;
@@ -37,10 +40,11 @@ public class ModelQuizQuestion
 		return states;
 	}
 
-	public ModelQuizQuestion(String[] answers)
+	public ModelQuizQuestion(DataItemQuiz data)
 	{
-		mAnswers 	= answers;
-		mStates 	= getNewArray(answers.length);
+		mData		= data;
+		mAnswers 	= data.answers;
+		mStates 	= getNewArray(mAnswers.length);
 		mCorrects	= new boolean[mAnswers.length];
 	}
 
@@ -60,7 +64,7 @@ public class ModelQuizQuestion
 
 		for (int i = 0; i < mAnswers.length; i++)
 		{
-			if (mCorrects[i])
+			if (mCorrects[i] || mData.alreadyComplete)
 			{
 				builder.append(mAnswers[i]);
 			}
@@ -98,5 +102,13 @@ public class ModelQuizQuestion
 		mCorrects[index] = isCorrect;
 
 		return isCorrect;
+	}
+
+	/**
+	 * Returns true if this question was already completed
+	 */
+	public boolean isAlreadyComplete()
+	{
+		return mData.alreadyComplete;
 	}
 }

@@ -32,7 +32,42 @@ public class ModelQuiz
 	{
 		mCurrentQuestion++;
 
-		if (mQuizDatas == null || mCurrentQuestion >= mQuizDatas.length)
+		return getCurrentData();
+	}
+
+	/**
+	 * Decrements the current question pointer and returns the
+	 * quiz question data at the new pointer
+	 *
+	 * @return
+	 */
+	public DataItemQuiz previous()
+	{
+		mCurrentQuestion--;
+
+		return getCurrentData();
+	}
+
+	/**
+	 * Gives the data for the current quiz question
+	 *
+	 * The current pointer is not changed
+	 *
+	 * @return
+	 */
+	public DataItemQuiz peek()
+	{
+		return getCurrentData();
+	}
+
+	/**
+	 * Helper used by various data-fetching methods
+	 *
+	 * @return
+	 */
+	private DataItemQuiz getCurrentData()
+	{
+		if (mQuizDatas == null || mCurrentQuestion < 0 || mCurrentQuestion >= mQuizDatas.length)
 			return null;
 
 		return mQuizDatas[mCurrentQuestion];
@@ -42,6 +77,7 @@ public class ModelQuiz
 	 * Update state of the quiz given the question model
 	 *
 	 * Rules:
+	 * - If the question is already complete, keep it marked as CORRECT and "already complete"
 	 * - All sub-questions must be CORRECT for the question to be marked
 	 * CORRECT
 	 * - If any sub-questions are UNANSWERED, the question as a whole is UNANSWERED
@@ -50,13 +86,19 @@ public class ModelQuiz
 	 */
 	public void updateWithQuestionModel(ModelQuizQuestion model)
 	{
-		mQuestionStates[mCurrentQuestion] = QuizQuestionState.CORRECT;
+		mQuestionStates[mCurrentQuestion] 			 = QuizQuestionState.CORRECT;
+
+		if (model.isAlreadyComplete())
+			return;
+
+		mQuizDatas[mCurrentQuestion].alreadyComplete = true;
 
 		for (QuizQuestionState state : model.getStates())
 		{
 			if (state == QuizQuestionState.UNANSWERED)
 			{
 				mQuestionStates[mCurrentQuestion] = QuizQuestionState.UNANSWERED;
+				mQuizDatas[mCurrentQuestion].alreadyComplete = false;
 				return;
 			}
 			else if (state == QuizQuestionState.INCORRECT)

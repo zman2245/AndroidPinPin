@@ -100,8 +100,13 @@ public class ActivityQuiz extends SherlockFragmentActivity
     @Override
 	public void onBackPressed()
     {
-    	// TODO: should handle nav within a quiz
-    	super.onBackPressed();
+    	if (getSupportFragmentManager().findFragmentByTag("quiz_flow") == null)
+    	{
+    		super.onBackPressed();
+    		return;
+    	}
+
+    	moveToPreviousQuizItem();
     }
 
     // private helpers
@@ -122,6 +127,11 @@ public class ActivityQuiz extends SherlockFragmentActivity
     	}
     }
 
+    /**
+     * Start a new quiz
+     *
+     * @param index
+     */
     private void navigateToQuizSection(int index)
     {
     	DataItemQuiz[] datas 	= AppPinPin.sQuizGenerator.getQuizQuestions(index);
@@ -132,10 +142,18 @@ public class ActivityQuiz extends SherlockFragmentActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    /**
+     * Move to next question in a quiz
+     */
     private void moveToNextQuizItem()
     {
     	Fragment frag;
     	DataItemQuiz data = mModelQuiz.next();
+
+        FragmentManager fm      = getSupportFragmentManager();
+        FragmentTransaction ft  = fm.beginTransaction();
+
+        ft.setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
 
     	if (data == null)
     	{
@@ -147,15 +165,38 @@ public class ActivityQuiz extends SherlockFragmentActivity
     		frag = FragmentQuizQuestion.newInstance(data);
     	}
 
-        FragmentManager fm      = getSupportFragmentManager();
-        FragmentTransaction ft  = fm.beginTransaction();
-
-        ft.setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
-
         if (fm.findFragmentByTag("quiz_flow") == null)
         	ft.add(R.id.container, frag, "quiz_flow");
         else
         	ft.replace(R.id.container, frag, "quiz_flow");
+
+        ft.commit();
+    }
+
+    /**
+     * Move back to a previous question in a quiz
+     */
+    private void moveToPreviousQuizItem()
+    {
+    	Fragment frag;
+    	DataItemQuiz data = mModelQuiz.previous();
+
+        FragmentManager fm      = getSupportFragmentManager();
+        FragmentTransaction ft  = fm.beginTransaction();
+
+        ft.setCustomAnimations(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
+
+    	if (data == null)
+    	{
+    		// At start of quiz, just go back to list
+    		frag = fm.findFragmentByTag("quiz_flow");
+    		ft.remove(frag);
+    	}
+    	else
+    	{
+    		frag = FragmentQuizQuestion.newInstance(data);
+        	ft.replace(R.id.container, frag, "quiz_flow");
+    	}
 
         ft.commit();
     }
