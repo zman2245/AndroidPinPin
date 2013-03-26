@@ -19,7 +19,7 @@
     	Quiz questions: follow the following convention:
     	   1st item: type
     	   2nd item: answers
-    	   3rd item: choices
+    	   3rd item: choices (empty for "type 1" questions)
     	   4th item: tones (optional - randomized if missing)
     	   5th item: word (optional)
      -->
@@ -50,6 +50,51 @@
         <item>mao</item>
         <item>ma|mao|mo|mou</item>
     </string-array>
+    <string-array name="quiz1_question6">
+        <item>0</item>
+        <item>mo|mou</item>
+        <item>ma|mao|mo|mou</item>
+    </string-array>
+    <string-array name="quiz1_question7">
+        <item>0</item>
+        <item>dong|tong</item>
+        <item>dang|dong|tang|tong</item>
+    </string-array>
+    <string-array name="quiz1_question8">
+        <item>0</item>
+        <item>dang|dong|tang|tong</item>
+        <item>dang|dong|tang|tong</item>
+    </string-array>
+    <string-array name="quiz1_question9">
+        <item>0</item>
+        <item>po|pou</item>
+        <item>po|pou</item>
+    </string-array>
+    <string-array name="quiz1_question10">
+        <item>0</item>
+        <item>nao|lao</item>
+        <item>nao|nou|lao|lou</item>
+    </string-array>
+    <string-array name="quiz1_question11">
+        <item>1</item>
+        <item>fan</item>
+    </string-array>
+    <string-array name="quiz1_question12">
+        <item>1</item>
+        <item>lai</item>
+    </string-array>
+    <string-array name="quiz1_question13">
+        <item>1</item>
+        <item>dao</item>
+    </string-array>
+    <string-array name="quiz1_question14">
+        <item>1</item>
+        <item>bao</item>
+    </string-array>
+    <string-array name="quiz1_question15">
+        <item>1</item>
+        <item>ma</item>
+    </string-array>
 
     <array name="quiz1">
 		<item>@array/quiz1_question1</item>
@@ -57,8 +102,17 @@
 		<item>@array/quiz1_question3</item>
 		<item>@array/quiz1_question4</item>
 		<item>@array/quiz1_question5</item>
+		<item>@array/quiz1_question6</item>
+		<item>@array/quiz1_question7</item>
+		<item>@array/quiz1_question8</item>
+		<item>@array/quiz1_question9</item>
+		<item>@array/quiz1_question10</item>
+		<item>@array/quiz1_question11</item>
+		<item>@array/quiz1_question12</item>
+		<item>@array/quiz1_question13</item>
+		<item>@array/quiz1_question14</item>
+		<item>@array/quiz1_question15</item>
     </array>
-    <!-- TODO: finish quiz1, leaving short for now for testing purposes -->
     
     
     <!-- Quiz 2 -->
