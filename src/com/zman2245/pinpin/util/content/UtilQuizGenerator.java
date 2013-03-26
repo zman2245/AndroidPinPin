@@ -28,7 +28,6 @@ public class UtilQuizGenerator
 {
 	private static int TYPE_SINGLE_TONE = 0;
 	private static int TYPE_MULTI_TONE 	= 1;
-	private static String KEY_RANDOM = "_random";
 
 	private static int INDEX_TYPE 		= 0;
 	private static int INDEX_ANSWERS 	= 1;
@@ -37,7 +36,7 @@ public class UtilQuizGenerator
 	private static int INDEX_WORD 		= 4;
 
 	private static String SPLIT 		= "\\|";
-	private static String UNION			= "\\&";
+	private static String UNION			= "\\+";
 
 	public DataItemQuiz[] getQuizQuestions(int index)
 	{
