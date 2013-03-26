@@ -1,6 +1,7 @@
 package com.zman2245.pinpin.util.content;
 
 import java.util.HashMap;
+import java.util.Random;
 
 import android.content.res.TypedArray;
 
@@ -69,6 +70,9 @@ public class UtilQuizGenerator
 		masterArray.recycle();
 		quizArray.recycle();
 
+		// randomize the questions for this quiz
+		shuffle(items);
+
 		return items;
 	}
 
@@ -125,6 +129,9 @@ public class UtilQuizGenerator
 				question.answers[i] = titles[tone.index];
 				question.choices[i] = titles;
 			}
+
+			// randomize the choices
+			shuffle(question.choices[i]);
 		}
 
 		return question;
@@ -200,5 +207,26 @@ public class UtilQuizGenerator
 		}
 
 		return mappedChoices;
+	}
+
+	/**
+	 * Shuffle an array of objects by exchanging each element randomly
+	 *
+	 * Note: this method modifies the input array
+	 *
+	 * @param objects
+	 */
+	private void shuffle(Object[] objects)
+	{
+		Random rgen = new Random();
+
+		//--- Shuffle by exchanging each element randomly
+		for (int i=0; i < objects.length; i++)
+		{
+			int randomPosition = rgen.nextInt(objects.length);
+			Object temp = objects[i];
+			objects[i] = objects[randomPosition];
+			objects[randomPosition] = temp;
+		}
 	}
 }
