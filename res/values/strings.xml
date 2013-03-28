@@ -24,5 +24,6 @@
     <string name="quiz_end_subtitle_win">you won!</string>
     <string name="quiz_end_title_lose">Keep practicing!</string>
     <string name="quiz_end_subtitle_lose">Score higher to earn a trophy!</string>
+	<string name="quiz_answer_unknown">\?</string>    
 
 </resources>
