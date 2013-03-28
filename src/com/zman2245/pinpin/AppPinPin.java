@@ -6,6 +6,7 @@ import java.util.HashMap;
 import android.app.Application;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.zman2245.pinpin.util.audio.AudioResourceMapper;
@@ -37,6 +38,8 @@ public class AppPinPin extends Application
     @Override
     public void onCreate ()
     {
+    	dumpDeviceInfo();
+    	
         // TODO: find somewhere to put this
         if (AppPinPin.sSoundMap == null)
         {
@@ -82,5 +85,36 @@ public class AppPinPin extends Application
     public static AudioResourceMapper getAudioMapper()
     {
         return sInstance.mAudioMapper;
+    }
+    
+    private void dumpDeviceInfo()
+    {
+    	DisplayMetrics metrics = getResources().getDisplayMetrics();
+    	String density = "";
+
+    	switch (metrics.densityDpi)
+    	{
+    	case DisplayMetrics.DENSITY_HIGH:
+    		density = "hdpi";
+    		break;
+    	case DisplayMetrics.DENSITY_LOW:
+    		density = "ldpi";
+    		break;
+    	case DisplayMetrics.DENSITY_MEDIUM:
+    		density = "mdpi";
+    		break;
+    	case DisplayMetrics.DENSITY_TV:
+    		density = "tvdpi";
+    		break;
+    	case DisplayMetrics.DENSITY_XHIGH:
+    		density = "xhdpi";
+    		break;
+    	case DisplayMetrics.DENSITY_XXHIGH:
+    		density = "xxhdpi";
+    		break;
+    	}
+
+    	Log.d("DeviceInfo", "density = " + density + ". dimensions = " + metrics.widthPixels + " x " + metrics.heightPixels);
+    	Log.d("DeviceInfo", "scale = " + metrics.density);
     }
 }

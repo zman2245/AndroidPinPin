@@ -45,7 +45,7 @@ public class ModelQuizEnd
 	public int getTrophyResourceId()
 	{
 		// TODO
-		return didPass() ? R.id.abs__checkbox : R.id.abs__checkbox;
+		return didPass() ? R.id.img_trophy : R.id.img_trophy;
 	}
 
 	public String getCorrectPctText()
