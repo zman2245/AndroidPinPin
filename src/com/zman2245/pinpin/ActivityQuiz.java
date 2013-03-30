@@ -153,8 +153,6 @@ public class ActivityQuiz extends SherlockFragmentActivity
         FragmentManager fm      = getSupportFragmentManager();
         FragmentTransaction ft  = fm.beginTransaction();
 
-        ft.setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
-
     	if (data == null)
     	{
     		// End of quiz
@@ -166,9 +164,15 @@ public class ActivityQuiz extends SherlockFragmentActivity
     	}
 
         if (fm.findFragmentByTag("quiz_flow") == null)
+        {
+        	ft.setCustomAnimations(R.anim.slide_in_from_bottom, R.anim.slide_out_to_bottom);
         	ft.add(R.id.container, frag, "quiz_flow");
+        }
         else
+        {
+        	ft.setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
         	ft.replace(R.id.container, frag, "quiz_flow");
+        }
 
         ft.commit();
     }
@@ -184,16 +188,16 @@ public class ActivityQuiz extends SherlockFragmentActivity
         FragmentManager fm      = getSupportFragmentManager();
         FragmentTransaction ft  = fm.beginTransaction();
 
-        ft.setCustomAnimations(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
-
     	if (data == null)
     	{
+    		ft.setCustomAnimations(R.anim.slide_in_from_bottom, R.anim.slide_out_to_bottom);
     		// At start of quiz, just go back to list
     		frag = fm.findFragmentByTag("quiz_flow");
     		ft.remove(frag);
     	}
     	else
     	{
+    		ft.setCustomAnimations(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
     		frag = FragmentQuizQuestion.newInstance(data);
         	ft.replace(R.id.container, frag, "quiz_flow");
     	}
@@ -208,7 +212,7 @@ public class ActivityQuiz extends SherlockFragmentActivity
         FragmentTransaction ft  = fm.beginTransaction();
         Fragment frag 			= fm.findFragmentByTag("quiz_flow");
 
-        ft.setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+        ft.setCustomAnimations(R.anim.slide_in_from_bottom, R.anim.slide_out_to_bottom);
 
         if (frag != null)
         {
