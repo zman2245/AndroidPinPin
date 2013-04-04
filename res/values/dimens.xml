@@ -11,7 +11,7 @@
     
     <!-- GridView cell dimensions for the word button grids -->
     <dimen name="gridview_words_cell_width">55dp</dimen>
-    <dimen name="gridview_words_cell_height">30dp</dimen>
+    <dimen name="gridview_words_cell_height">55dp</dimen>
     <dimen name="gridview_quiz_choices_cell_height">70dp</dimen>
     
     <!-- Text sizes -->

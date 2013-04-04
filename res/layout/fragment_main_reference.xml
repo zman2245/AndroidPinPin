@@ -31,6 +31,7 @@ doesn&apos;t fit the layout and goes beyond the width of the layout." />
                 android:gravity="center"
                 android:stretchMode="columnWidth"
                 android:scrollbars="vertical"
+                android:listSelector="@color/orange_default"
                 />
         </LinearLayout>
     </HorizontalScrollView>
