@@ -30,124 +30,123 @@ import com.zman2245.pinpin.view.listitem.ViewQuizChoice;
 
 /**
  * A fragment for a single quiz question
- *
+ * 
  * @author zack
  */
-public class FragmentQuizQuestion extends Fragment
-	implements OnItemClickListener
+public class FragmentQuizQuestion extends Fragment implements OnItemClickListener
 {
-	private static final String KEY_DATA = "data";
+    private static final String KEY_DATA = "data";
 
-	private GridView mGrid;
-	private TextView mAnswerText;
-	private Button mContinueButton;
+    private GridView            mGrid;
+    private TextView            mAnswerText;
+    private Button              mContinueButton;
 
-	private AdapterGridQuizItem mAdapter;
-	private DataItemQuiz mData;
-	private ModelQuizQuestion mModel;
-	private int mNumSubQuestions;
+    private AdapterGridQuizItem mAdapter;
+    private DataItemQuiz        mData;
+    private ModelQuizQuestion   mModel;
+    private int                 mNumSubQuestions;
 
-	/**
-	 * FragmentQuizItem construction
-	 *
-	 * @param data
-	 *            The data this fragment will present
-	 * @return A new instance of FragmentLearnFlowItem
-	 */
-	public static FragmentQuizQuestion newInstance(DataItemQuiz data)
-	{
-		FragmentQuizQuestion frag = new FragmentQuizQuestion();
-		Bundle args = new Bundle();
+    /**
+     * FragmentQuizItem construction
+     * 
+     * @param data
+     *            The data this fragment will present
+     * @return A new instance of FragmentLearnFlowItem
+     */
+    public static FragmentQuizQuestion newInstance(DataItemQuiz data)
+    {
+        FragmentQuizQuestion frag = new FragmentQuizQuestion();
+        Bundle args = new Bundle();
 
-		args.putSerializable(KEY_DATA, data);
-		frag.setArguments(args);
+        args.putSerializable(KEY_DATA, data);
+        frag.setArguments(args);
 
-		return frag;
-	}
+        return frag;
+    }
 
-	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
 
-		mData 				= (DataItemQuiz)getArguments().get(KEY_DATA);
-		mModel 				= new ModelQuizQuestion(mData);
-		mNumSubQuestions 	= mData.answers.length;
+        mData = (DataItemQuiz) getArguments().get(KEY_DATA);
+        mModel = new ModelQuizQuestion(mData);
+        mNumSubQuestions = mData.answers.length;
 
-		setRetainInstance(true);
-	}
+        setRetainInstance(true);
+    }
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-	{
-		View rootView = inflater.inflate(R.layout.fragment_quiz_item, container, false);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        View rootView = inflater.inflate(R.layout.fragment_quiz_item, container, false);
 
-		mContinueButton = (Button)rootView.findViewById(R.id.btn_continue);
-		mAnswerText = (TextView)rootView.findViewById(R.id.answer_text);
-		mGrid	 	= (GridView)rootView.findViewById(R.id.grid_choice);
-		mAdapter 	= new AdapterGridQuizItem(mData.choices, inflater);
+        mContinueButton = (Button) rootView.findViewById(R.id.btn_continue);
+        mAnswerText = (TextView) rootView.findViewById(R.id.answer_text);
+        mGrid = (GridView) rootView.findViewById(R.id.grid_choice);
+        mAdapter = new AdapterGridQuizItem(mData.choices, inflater);
 
-		mGrid.setNumColumns(mNumSubQuestions);
-		mGrid.setAdapter(mAdapter);
-		mGrid.setOnItemClickListener(this);
+        mGrid.setNumColumns(mNumSubQuestions);
+        mGrid.setAdapter(mAdapter);
+        mGrid.setOnItemClickListener(this);
 
-		mContinueButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				HashMap<String, Object> data = new HashMap<String, Object>();
-				data.put(EventData.DATA_KEY_MODEL, mModel);
-				Event event = new Event(EventType.QUIZ_CONTINUE, data);
-				sendEvent(event);
-			}
-		});
+        mContinueButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                HashMap<String, Object> data = new HashMap<String, Object>();
+                data.put(EventData.DATA_KEY_MODEL, mModel);
+                Event event = new Event(EventType.QUIZ_CONTINUE, data);
+                sendEvent(event);
+            }
+        });
 
-		View answerView = rootView.findViewById(R.id.answer);
-		answerView.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				playAnswer();
-			}
-		});
-		playAnswer();
+        View answerView = rootView.findViewById(R.id.answer);
+        answerView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                playAnswer();
+            }
+        });
+        playAnswer();
 
-		// if already answered populate the answer and disable choices
-		if (mData.alreadyComplete)
-		{
-			mAnswerText.setText(mModel.getAnswerText());
-			for (int i = 0; i < mNumSubQuestions; i++)
-			{
-				mAdapter.setColumnEnabled(i, false);
-			}
-        	showContinueButton();
-		}
+        // if already answered populate the answer and disable choices
+        if (mData.alreadyComplete)
+        {
+            mAnswerText.setText(mModel.getAnswerText());
+            for (int i = 0; i < mNumSubQuestions; i++)
+            {
+                mAdapter.setColumnEnabled(i, false);
+            }
+            showContinueButton();
+        }
 
-		return rootView;
-	}
+        return rootView;
+    }
 
-	// OnItemClickListener impl
+    // OnItemClickListener impl
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
-    	ViewQuizChoice choiceView 	= (ViewQuizChoice)view;
-        String word 				= (String)mAdapter.getItem(position);
-        int subQuestion 			= getSubQuestionNum(position);
+        ViewQuizChoice choiceView = (ViewQuizChoice) view;
+        String word = (String) mAdapter.getItem(position);
+        int subQuestion = getSubQuestionNum(position);
 
         boolean isCorrect = mModel.answer(word, subQuestion);
         if (isCorrect)
         {
-        	mAnswerText.setText(mModel.getAnswerText());
-        	choiceView.setCorrect();
-        	mAdapter.setColumnEnabled(subQuestion, false);
-        	showContinueButton();
+            mAnswerText.setText(mModel.getAnswerText());
+            choiceView.setCorrect();
+            mAdapter.setColumnEnabled(subQuestion, false);
+            showContinueButton();
         }
         else
         {
-        	choiceView.setIncorrect();
+            choiceView.setIncorrect();
         }
     }
 
@@ -155,44 +154,46 @@ public class FragmentQuizQuestion extends Fragment
 
     private int getSubQuestionNum(int position)
     {
-    	return position % mNumSubQuestions;
+        return position % mNumSubQuestions;
     }
 
     private void playAnswer()
     {
-		for (String answer : mData.answers)
-		{
-	        int resId = AppPinPin.getAudioMapper().getResourceForString(answer);
+        for (String answer : mData.answers)
+        {
+            int resId = AppPinPin.getAudioMapper().getResourceForString(answer);
 
-	        UtilAudioPlayer.playSound(resId);
-		}
+            UtilAudioPlayer.playSound(resId);
+        }
     }
 
     private void showContinueButton()
     {
-    	mContinueButton.setVisibility(View.VISIBLE);
-    	Animation anim = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_default);
-    	mContinueButton.startAnimation(anim);
+        mContinueButton.setVisibility(View.VISIBLE);
+        Animation anim = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_default);
+        mContinueButton.startAnimation(anim);
     }
 
     /**
-     * Send an event to this fragment's parent (could be a parent fragment or an activity)
-     *
-     * @param event The event to send
+     * Send an event to this fragment's parent (could be a parent fragment or an
+     * activity)
+     * 
+     * @param event
+     *            The event to send
      */
     private void sendEvent(Event event)
     {
-    	Fragment frag = getParentFragment();
-    	if (frag != null && frag instanceof FragmentEventListener)
-    	{
-    		((FragmentEventListener)frag).handleEvent(event);
-    		return;
-    	}
+        Fragment frag = getParentFragment();
+        if (frag != null && frag instanceof FragmentEventListener)
+        {
+            ((FragmentEventListener) frag).handleEvent(event);
+            return;
+        }
 
-    	Activity activity = getActivity();
-    	if (activity != null && activity instanceof FragmentEventListener)
-    	{
-    		((FragmentEventListener)activity).handleEvent(event);
-    	}
+        Activity activity = getActivity();
+        if (activity != null && activity instanceof FragmentEventListener)
+        {
+            ((FragmentEventListener) activity).handleEvent(event);
+        }
     }
 }

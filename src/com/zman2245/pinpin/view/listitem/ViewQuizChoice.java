@@ -2,6 +2,7 @@ package com.zman2245.pinpin.view.listitem;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -50,10 +51,12 @@ public class ViewQuizChoice extends RelativeLayout
     public void setCorrect()
     {
         mImage.setImageResource(R.drawable.check_green);
+        mImage.setVisibility(View.VISIBLE);
     }
 
     public void setIncorrect()
     {
         mImage.setImageResource(R.drawable.x_red);
+        mImage.setVisibility(View.VISIBLE);
     }
 }

@@ -8,17 +8,21 @@
         android:id="@+id/choice"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
         android:gravity="center"
         android:textSize="@dimen/textsize_quiz_choice"
         android:textColor="@drawable/quiz_choice_textcolor_selector"
          />
-    
+        
     <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_toLeftOf="@id/choice"
-        android:src="@drawable/x_red"
+        android:layout_marginRight="5dp"
+        android:scaleType="center"
+        android:src="@drawable/check_green"
+        android:visibility="invisible"
         android:contentDescription="@string/image_condesc_quiz_choice_correct"
         />
     

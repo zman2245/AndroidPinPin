@@ -20,7 +20,7 @@
     <dimen name="textsize_learn_body">18sp</dimen>
     <dimen name="textsize_learn_button">22sp</dimen>
     <dimen name="textsize_button_default">20sp</dimen>
-    <dimen name="textsize_quiz_choice">30sp</dimen>
+    <dimen name="textsize_quiz_choice">25sp</dimen>
     <dimen name="textsize_quiz_answer">40sp</dimen>
     
     <!-- Button sizes -->
