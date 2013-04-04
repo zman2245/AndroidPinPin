@@ -5,6 +5,11 @@
     <string name="learn_study_title">Study this section</string>
     <string name="learn_study_body">Practice recognizing and saying each pinyin sound in this section to build proficiency in the language.</string>
     <string name="learn_study_start_button">Start</string>
+    
+    <!-- "Intro Complete Section" -->
+    <string name="learn_intro_complete_title">That\'s it!</string>
+    <string name="learn_intro_complete_body">Tap \"Complete\" below to finish the introduction and start learning.</string>
+    <string name="learn_intro_complete_button">Complete</string>
 
     <!-- Learn List Content -->
     <string-array name="strings_learn_list_titles">
@@ -52,12 +57,25 @@
     <!-- Content for each section, top-level name should match the list content above -->
     
     <!-- Introduction -->
-    <string-array name="strings_learn_introduction_toptext">
-        <item>Hello, intro top text</item>
-    </string-array>
+    <string name="learn_intro_title_1">Introducing Pin Pin</string>
+    <string name="learn_intro_title_2">About Pinyin</string>
+    <string name="learn_intro_title_3">Learn</string>
+    <string name="learn_intro_title_4">Reference</string>
+    <string name="learn_intro_title_5">That\'s it!</string>
+    <string name="learn_intro_complete_btn">Complete</string>
     
+    <string-array name="strings_learn_introduction_toptext">
+        <item>Pin Pin is designed to help build your foundation in Mandarin.</item>
+        <item>Pinyin is the most widely-used system for describing the sounds of Mandarin with Latin-based characters.</item>
+        <item>Pin Pin breaks the pinyin table into small, easily-digestable sections of similar/related sounds.</item>
+        <item>Use the menu at the top to flip to the Reference mode at any time.</item>
+    </string-array>
+
     <string-array name="strings_learn_introduction_bottomtext">
-        <item>Hello, intro bottom text</item>
+        <item>By first learning the sounds of Mandarin, your speaking and listening skills will grow at an accelerated rate.</item>
+        <item>It is also a solid first step toward learning Mandarin Chinese.</item>
+        <item>Step through each section and master every sound in the language!</item>
+        <item>Use the same menu to flip back and continue learning one section at a time when you\'re ready.</item>
     </string-array>
 
     <array name="strings_learn_introduction">

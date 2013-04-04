@@ -4,7 +4,8 @@
     <!-- Default backgrounds -->
     <color name="bg_color_default">#FFAAAAAA</color>
     <color name="bg_color_inset">#FF080808</color>
-    <color name="learn_background">#AAAAAA</color>
+    <color name="learn_background">#EEEEEE</color>
+    <color name="learn_grid_border">#AAAAAA</color>
     
     <!-- Win/lose good/bad colors -->
     <color name="win_color">#FF00FF00</color>

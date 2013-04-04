@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:src="@drawable/icon"
+            android:src="@drawable/microphone"
             android:contentDescription="@string/image_condesc_microphone"
             />
         

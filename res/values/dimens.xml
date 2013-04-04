@@ -4,7 +4,6 @@
     <dimen name="margin_default">20dp</dimen>
     
     <dimen name="pagecontrol_spacing">5dp</dimen>
-    <dimen name="textsize_learn_title">24sp</dimen>
     <dimen name="margin_learn_pages">20dp</dimen>
     
     <!-- Shadows -->
@@ -16,4 +15,10 @@
     
     <!-- Text sizes -->
     <dimen name="textsize_results_pct">20sp</dimen>
+    <dimen name="textsize_learn_title">30sp</dimen>
+    <dimen name="textsize_learn_body">18sp</dimen>
+    <dimen name="textsize_learn_button">22sp</dimen>
+    
+    <!-- Button sizes -->
+    <dimen name="button_height_default">70dp</dimen>
 </resources>

@@ -4,17 +4,20 @@ import java.io.Serializable;
 
 /**
  * Data to be presented on a learn flow page
- *
+ * 
  * @author zack
  */
 public class DataItemLearnFlow implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    public String title         = "";
+    public String             title            = "";
 
-    public String topText       = "";
-    public String bottomText    = "";
+    public String             topText          = "";
+    public String             bottomText       = "";
 
-    public String[][] syllables = null;
+    public String[][]         syllables        = null;
+
+    // only used for the Introduction section
+    public int                image;
 }
