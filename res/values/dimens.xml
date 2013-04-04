@@ -12,13 +12,18 @@
     <!-- GridView cell dimensions for the word button grids -->
     <dimen name="gridview_words_cell_width">55dp</dimen>
     <dimen name="gridview_words_cell_height">30dp</dimen>
+    <dimen name="gridview_quiz_choices_cell_height">70dp</dimen>
     
     <!-- Text sizes -->
     <dimen name="textsize_results_pct">20sp</dimen>
     <dimen name="textsize_learn_title">30sp</dimen>
     <dimen name="textsize_learn_body">18sp</dimen>
     <dimen name="textsize_learn_button">22sp</dimen>
+    <dimen name="textsize_button_default">20sp</dimen>
+    <dimen name="textsize_quiz_choice">30sp</dimen>
+    <dimen name="textsize_quiz_answer">40sp</dimen>
     
     <!-- Button sizes -->
     <dimen name="button_height_default">70dp</dimen>
+
 </resources>

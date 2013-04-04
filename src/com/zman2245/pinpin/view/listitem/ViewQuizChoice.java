@@ -10,50 +10,50 @@ import com.zman2245.pinpin.R;
 
 /**
  * A quiz choice list item
- *
+ * 
  * @author Zack
  */
 public class ViewQuizChoice extends RelativeLayout
 {
-	private ImageView mImage;
-	private TextView mText;
+    private ImageView mImage;
+    private TextView  mText;
 
-	public ViewQuizChoice(Context context)
-	{
-		super(context);
-	}
+    public ViewQuizChoice(Context context)
+    {
+        super(context);
+    }
 
-	public ViewQuizChoice(Context context, AttributeSet attrs)
-	{
-		super(context, attrs);
-	}
+    public ViewQuizChoice(Context context, AttributeSet attrs)
+    {
+        super(context, attrs);
+    }
 
-	public ViewQuizChoice(Context context, AttributeSet attrs, int defStyle)
-	{
-		super(context, attrs, defStyle);
-	}
+    public ViewQuizChoice(Context context, AttributeSet attrs, int defStyle)
+    {
+        super(context, attrs, defStyle);
+    }
 
-	@Override
-	protected void onFinishInflate()
-	{
-		super.onFinishInflate();
+    @Override
+    protected void onFinishInflate()
+    {
+        super.onFinishInflate();
 
-		mImage = (ImageView)findViewById(R.id.image);
-		mText  = (TextView)findViewById(R.id.choice);
-	}
+        mImage = (ImageView) findViewById(R.id.image);
+        mText = (TextView) findViewById(R.id.choice);
+    }
 
-	public void setText(String text)
-	{
-		mText.setText(text);
-	}
+    public void setText(String text)
+    {
+        mText.setText(text);
+    }
 
-	public void setCorrect()
-	{
-		// TBD
-	}
+    public void setCorrect()
+    {
+        mImage.setImageResource(R.drawable.check_green);
+    }
 
-	public void setIncorrect()
-	{
-		// TBD
-	}
+    public void setIncorrect()
+    {
+        mImage.setImageResource(R.drawable.x_red);
+    }
 }
