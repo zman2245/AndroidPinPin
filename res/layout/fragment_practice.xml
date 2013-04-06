@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin_learn_pages" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/margin_learn_pages"
+        android:textSize="@dimen/textsize_practice_word"
+        />
+    
+    <!-- The tone buttons -->
+    <LinearLayout
+        android:id="@+id/tones"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@id/title"
+        android:orientation="horizontal">
+        
+        <Button 
+            android:id="@+id/btn_tone_first"
+            style="@style/ButtonPracticeTone"
+            />
+        <Button 
+            android:id="@+id/btn_tone_second"
+            style="@style/ButtonPracticeTone"
+            />
+        <Button 
+            android:id="@+id/btn_tone_third"
+            style="@style/ButtonPracticeTone"
+            />
+        <Button 
+            android:id="@+id/btn_tone_fourth"
+            style="@style/ButtonPracticeTone"
+            />
+        
+    </LinearLayout>
+    
+    <!-- The audio control buttons -->
+    <LinearLayout
+        android:id="@+id/audio_controls"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@id/tones"
+        android:orientation="horizontal">
+        
+        <Button 
+            android:id="@+id/btn_microphone"
+            style="@style/ButtonPracticeAudioControl"
+            />
+        <Button 
+            android:id="@+id/btn_record"
+            style="@style/ButtonPracticeAudioControl"
+            />
+        <Button 
+            android:id="@+id/btn_play"
+            style="@style/ButtonPracticeAudioControl"
+            />
+        
+    </LinearLayout>
+    
+    <Button
+        android:id="@+id/btn_continue"
+        style="@style/ButtonDefault"
+        android:layout_margin="20dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/btn_quiz_question_continue"
+        />
+
+</RelativeLayout>

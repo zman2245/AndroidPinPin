@@ -79,4 +79,14 @@
         <item name="android:textSize">@dimen/textsize_button_default</item>
         <item name="android:textColor">#FF000000</item>
     </style>
+    
+    <style name="ButtonPracticeTone" parent="@android:style/Widget.Button">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    
+    <style name="ButtonPracticeAudioControl" parent="@android:style/Widget.Button">
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
 </resources>

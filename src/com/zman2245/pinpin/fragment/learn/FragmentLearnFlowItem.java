@@ -3,7 +3,6 @@ package com.zman2245.pinpin.fragment.learn;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,7 +84,6 @@ public class FragmentLearnFlowItem extends Fragment
 
             gridView.setVisibility(View.VISIBLE);
             gridView.setAdapter(adapter);
-            Log.d("TESTING", "Setting number of columns to: " + data.syllables[0].length);
             gridView.setNumColumns(data.syllables[0].length);
             UtilUi.fixGridViewWidth(gridView, data.syllables[0].length, getResources().getDimensionPixelSize(R.dimen.gridview_words_cell_width));
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener()
