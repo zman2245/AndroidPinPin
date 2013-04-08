@@ -11,9 +11,9 @@ import com.zman2245.pinpin.util.content.UtilPracticeContent;
 
 /**
  * A view pager adapter for the Learn flows
- *
- * TODO: add the final "study this section page"  ? decorator?
- *
+ * 
+ * TODO: add the final "study this section page" ? decorator?
+ * 
  * @author zack
  */
 public class PagerAdapterLearnFlow extends FragmentStatePagerAdapter

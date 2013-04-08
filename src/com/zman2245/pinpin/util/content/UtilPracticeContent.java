@@ -7,15 +7,14 @@ import com.zman2245.pinpin.data.DataItemPractice;
 
 /**
  * Util for building content for the practice screen
- *
+ * 
  * @author Zack
- *
  */
 public class UtilPracticeContent
 {
     /**
      * Derive practice data from an array of learn data
-     *
+     * 
      * @param learnDatas
      * @return
      */

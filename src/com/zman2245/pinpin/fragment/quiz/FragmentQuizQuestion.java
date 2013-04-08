@@ -72,8 +72,6 @@ public class FragmentQuizQuestion extends Fragment implements OnItemClickListene
         mData = (DataItemQuiz) getArguments().get(KEY_DATA);
         mModel = new ModelQuizQuestion(mData);
         mNumSubQuestions = mData.answers.length;
-
-        setRetainInstance(true);
     }
 
     @Override

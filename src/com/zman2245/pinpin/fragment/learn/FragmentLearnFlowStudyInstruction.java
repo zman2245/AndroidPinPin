@@ -15,18 +15,18 @@ import com.zman2245.pinpin.model.ModelPracticeSet;
 
 /**
  * A fragment for the "Study this section" page
- *
+ * 
  * @author zack
  */
 public class FragmentLearnFlowStudyInstruction extends Fragment
 {
     private static final String KEY_DATA = "data";
 
-    private ModelPracticeSet mModel;
+    private ModelPracticeSet    mModel;
 
     /**
      * FragmentLearnFlowStudyInstruction construction
-     *
+     * 
      * @return A new instance of FragmentLearnFlowStudyInstruction
      */
     public static FragmentLearnFlowStudyInstruction newInstance(DataItemPractice[] datas)
@@ -45,9 +45,8 @@ public class FragmentLearnFlowStudyInstruction extends Fragment
     {
         super.onCreate(savedInstanceState);
 
-        DataItemPractice[] datas    = (DataItemPractice[])getArguments().get(KEY_DATA);
-        mModel                      = new ModelPracticeSet(datas);
-//        setRetainInstance(true);
+        DataItemPractice[] datas = (DataItemPractice[]) getArguments().get(KEY_DATA);
+        mModel = new ModelPracticeSet(datas);
     }
 
     @Override
@@ -55,7 +54,7 @@ public class FragmentLearnFlowStudyInstruction extends Fragment
     {
         View rootView = inflater.inflate(R.layout.fragment_learn_flow_study_instruction, container, false);
 
-        Button study = (Button)rootView.findViewById(R.id.btn_study);
+        Button study = (Button) rootView.findViewById(R.id.btn_study);
         study.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -74,8 +73,8 @@ public class FragmentLearnFlowStudyInstruction extends Fragment
         Fragment frag;
         DataItemPractice data = mModel.next();
 
-        FragmentManager fm      = getChildFragmentManager();
-        FragmentTransaction ft  = fm.beginTransaction();
+        FragmentManager fm = getChildFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
 
         if (data == null)
         {
