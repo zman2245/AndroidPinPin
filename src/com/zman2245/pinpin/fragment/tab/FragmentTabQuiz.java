@@ -13,12 +13,12 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.MenuItem;
 import com.zman2245.pinpin.AppPinPin;
 import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.adapter.list.AdapterListQuiz;
 import com.zman2245.pinpin.data.DataItemQuiz;
+import com.zman2245.pinpin.fragment.PinBaseFragment;
 import com.zman2245.pinpin.fragment.event.Event;
 import com.zman2245.pinpin.fragment.event.EventData;
 import com.zman2245.pinpin.fragment.event.FragmentEventListener;
@@ -28,7 +28,7 @@ import com.zman2245.pinpin.fragment.quiz.FragmentQuizQuestion;
 import com.zman2245.pinpin.model.ModelQuiz;
 import com.zman2245.pinpin.model.ModelQuizQuestion;
 
-public class FragmentTabQuiz extends SherlockFragment implements FragmentEventListener
+public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventListener
 {
     private FragmentModelWrapper<ModelQuiz> mFragModel;
     private ModelQuiz                       mModelQuiz;
@@ -61,6 +61,8 @@ public class FragmentTabQuiz extends SherlockFragment implements FragmentEventLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View rootView = inflater.inflate(R.layout.fragment_main_quiz, container, false);
+
+        setHasOptionsMenu(true);
 
         ListView listView = (ListView) rootView.findViewById(R.id.list);
         final AdapterListQuiz adapter = new AdapterListQuiz(getActivity(), inflater);
@@ -95,18 +97,17 @@ public class FragmentTabQuiz extends SherlockFragment implements FragmentEventLi
         }
     }
 
-    // TODO
-    // @Override
-    // public void onBackPressed()
-    // {
-    // if (getChildFragmentManager().findFragmentByTag("quiz_flow") == null)
-    // {
-    // super.onBackPressed();
-    // return;
-    // }
-    //
-    // moveToPreviousQuizItem();
-    // }
+    @Override
+    public boolean onBackPressed()
+    {
+        if (getChildFragmentManager().findFragmentByTag("quiz_flow") == null)
+        {
+            return super.onBackPressed();
+        }
+
+        moveToPreviousQuizItem();
+        return true;
+    }
 
     // private helpers
 
@@ -139,8 +140,7 @@ public class FragmentTabQuiz extends SherlockFragment implements FragmentEventLi
 
         moveToNextQuizItem();
 
-        // TODO
-        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        enableHomeAsUp(true);
     }
 
     /**
@@ -223,8 +223,7 @@ public class FragmentTabQuiz extends SherlockFragment implements FragmentEventLi
 
         ft.commit();
 
-        // TODO
-        // getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        enableHomeAsUp(false);
     }
 
     private void cancelQuiz()

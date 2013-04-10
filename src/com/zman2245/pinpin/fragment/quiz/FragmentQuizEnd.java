@@ -1,8 +1,6 @@
 package com.zman2245.pinpin.fragment.quiz;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +10,9 @@ import android.widget.TextView;
 
 import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.data.DataItemEndQuiz;
+import com.zman2245.pinpin.fragment.PinBaseFragment;
 import com.zman2245.pinpin.fragment.event.Event;
 import com.zman2245.pinpin.fragment.event.EventType;
-import com.zman2245.pinpin.fragment.event.FragmentEventListener;
 import com.zman2245.pinpin.model.ModelQuizEnd;
 
 /**
@@ -22,7 +20,7 @@ import com.zman2245.pinpin.model.ModelQuizEnd;
  * 
  * @author zack
  */
-public class FragmentQuizEnd extends Fragment
+public class FragmentQuizEnd extends PinBaseFragment
 {
     private static final String KEY_DATA = "data";
 
@@ -79,30 +77,5 @@ public class FragmentQuizEnd extends Fragment
         });
 
         return rootView;
-    }
-
-    // private helpers
-
-    /**
-     * Send an event to this fragment's parent (could be a parent fragment or an
-     * activity)
-     * 
-     * @param event
-     *            The event to send
-     */
-    private void sendEvent(Event event)
-    {
-        Fragment frag = getParentFragment();
-        if (frag != null && frag instanceof FragmentEventListener)
-        {
-            ((FragmentEventListener) frag).handleEvent(event);
-            return;
-        }
-
-        Activity activity = getActivity();
-        if (activity != null && activity instanceof FragmentEventListener)
-        {
-            ((FragmentEventListener) activity).handleEvent(event);
-        }
     }
 }

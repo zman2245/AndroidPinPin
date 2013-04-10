@@ -8,16 +8,16 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
-import com.actionbarsherlock.app.SherlockFragment;
 import com.zman2245.pinpin.AppPinPin;
 import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.adapter.grid.AdapterGridReference;
+import com.zman2245.pinpin.fragment.PinBaseFragment;
 import com.zman2245.pinpin.util.audio.Tone;
 import com.zman2245.pinpin.util.audio.UtilAudioPlayer;
 import com.zman2245.pinpin.util.content.UtilContentStrings;
 import com.zman2245.pinpin.util.content.UtilUi;
 
-public class FragmentTabReference extends SherlockFragment
+public class FragmentTabReference extends PinBaseFragment
 {
     AdapterGridReference mAdapter;
 

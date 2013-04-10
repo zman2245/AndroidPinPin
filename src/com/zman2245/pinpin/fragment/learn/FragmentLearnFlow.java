@@ -1,7 +1,6 @@
 package com.zman2245.pinpin.fragment.learn;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -13,6 +12,9 @@ import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.adapter.viewpager.PagerAdapterIntroductionLearnFlow;
 import com.zman2245.pinpin.adapter.viewpager.PagerAdapterLearnFlow;
 import com.zman2245.pinpin.data.DataItemLearnFlow;
+import com.zman2245.pinpin.fragment.PinBaseFragment;
+import com.zman2245.pinpin.fragment.event.Event;
+import com.zman2245.pinpin.fragment.event.EventType;
 import com.zman2245.pinpin.view.pagecontrol.PageControl;
 
 /**
@@ -22,10 +24,12 @@ import com.zman2245.pinpin.view.pagecontrol.PageControl;
  * 
  * @author zack
  */
-public class FragmentLearnFlow extends Fragment
+public class FragmentLearnFlow extends PinBaseFragment
 {
     public static final String KEY_DATAS = "datas";
     public static final String KEY_INTRO = "isIntro";
+
+    private ViewPager          mPager;
 
     /**
      * FragmentLearnFlow construction
@@ -55,8 +59,23 @@ public class FragmentLearnFlow extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+    }
 
-        // setRetainInstance(true);
+    @Override
+    public boolean onBackPressed()
+    {
+        int currentPos = mPager.getCurrentItem();
+        if (currentPos == 0)
+        {
+            Event event = new Event(EventType.LEARN_END);
+            sendEvent(event);
+        }
+        else
+        {
+            mPager.setCurrentItem(currentPos - 1);
+        }
+
+        return true;
     }
 
     @Override
@@ -64,7 +83,7 @@ public class FragmentLearnFlow extends Fragment
     {
         View rootView = inflater.inflate(R.layout.fragment_learn_flow, container, false);
 
-        ViewPager pager = (ViewPager) rootView.findViewById(R.id.pager);
+        mPager = (ViewPager) rootView.findViewById(R.id.pager);
         final PageControl pageControl = (PageControl) rootView.findViewById(R.id.page_control);
 
         DataItemLearnFlow[] datas = (DataItemLearnFlow[]) getArguments().getSerializable(KEY_DATAS);
@@ -76,11 +95,11 @@ public class FragmentLearnFlow extends Fragment
         else
             adapter = new PagerAdapterLearnFlow(getChildFragmentManager(), datas);
 
-        pager.setAdapter(adapter);
+        mPager.setAdapter(adapter);
         pageControl.setPageNumber(datas.length + 1);
         pageControl.setSelectedPageIndex(0);
 
-        pager.setOnPageChangeListener(new OnPageChangeListener()
+        mPager.setOnPageChangeListener(new OnPageChangeListener()
         {
             @Override
             public void onPageSelected(int index)

@@ -1,6 +1,7 @@
 package com.zman2245.pinpin.fragment.tab;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -10,19 +11,24 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.MenuItem;
 import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.adapter.list.AdapterListLearn;
 import com.zman2245.pinpin.data.DataItemLearnFlow;
+import com.zman2245.pinpin.fragment.PinBaseFragment;
+import com.zman2245.pinpin.fragment.event.Event;
+import com.zman2245.pinpin.fragment.event.FragmentEventListener;
 import com.zman2245.pinpin.fragment.learn.FragmentLearnFlow;
 import com.zman2245.pinpin.util.content.UtilContentStrings;
 
-public class FragmentTabLearn extends SherlockFragment
+public class FragmentTabLearn extends PinBaseFragment implements FragmentEventListener
 {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View rootView = inflater.inflate(R.layout.fragment_main_learn, container, false);
+
+        setHasOptionsMenu(true);
 
         ListView listView = (ListView) rootView.findViewById(R.id.list);
         final AdapterListLearn adapter = new AdapterListLearn(getActivity(), inflater);
@@ -40,6 +46,47 @@ public class FragmentTabLearn extends SherlockFragment
         return rootView;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if (item.getItemId() == android.R.id.home)
+        {
+            endLearn();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    // PinBaseFragment overrides
+
+    @Override
+    public boolean onBackPressed()
+    {
+        Fragment frag = getChildFragmentManager().findFragmentByTag("learn_flow");
+        if (frag != null && frag instanceof PinBaseFragment)
+        {
+            return ((PinBaseFragment) frag).onBackPressed();
+        }
+
+        return false;
+    }
+
+    // FragmentEventListener impl
+
+    @Override
+    public void handleEvent(Event event)
+    {
+        switch (event.type)
+        {
+        case LEARN_END:
+            endLearn();
+            break;
+
+        default:
+        }
+    }
+
     private void navigateToLearnSection(int index)
     {
         DataItemLearnFlow[] datas = UtilContentStrings.getLearnSectionData(index);
@@ -49,7 +96,20 @@ public class FragmentTabLearn extends SherlockFragment
         FragmentTransaction ft = fm.beginTransaction();
 
         ft.add(R.id.container, frag, "learn_flow");
-        ft.addToBackStack("learn_flow");
         ft.commit();
+
+        enableHomeAsUp(true);
+    }
+
+    private void endLearn()
+    {
+        FragmentManager fm = getChildFragmentManager();
+        Fragment frag = fm.findFragmentByTag("learn_flow");
+
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.remove(frag);
+        ft.commit();
+
+        enableHomeAsUp(false);
     }
 }

@@ -1,10 +1,13 @@
 package com.zman2245.pinpin;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.zman2245.pinpin.fragment.PinBaseFragment;
 import com.zman2245.pinpin.fragment.tab.FragmentTabLearn;
 import com.zman2245.pinpin.fragment.tab.FragmentTabQuiz;
 import com.zman2245.pinpin.fragment.tab.FragmentTabReference;
@@ -29,17 +32,17 @@ public class MainSectionsActivity extends SherlockFragmentActivity
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         Tab tab1 = actionBar.newTab().setText(R.string.menu_global_nav_quiz)
-                .setTabListener(new TabListener<FragmentTabQuiz>(this, "quiztab", FragmentTabQuiz.class));
+                .setTabListener(new TabListener<FragmentTabQuiz>(this, "maintab", FragmentTabQuiz.class));
 
         actionBar.addTab(tab1, true);
 
         Tab tab2 = actionBar.newTab().setText(R.string.menu_global_nav_learn)
-                .setTabListener(new TabListener<FragmentTabLearn>(this, "learntab", FragmentTabLearn.class));
+                .setTabListener(new TabListener<FragmentTabLearn>(this, "maintab", FragmentTabLearn.class));
 
         actionBar.addTab(tab2);
 
         Tab tab3 = actionBar.newTab().setText(R.string.menu_global_nav_reference)
-                .setTabListener(new TabListener<FragmentTabReference>(this, "referencetab", FragmentTabReference.class));
+                .setTabListener(new TabListener<FragmentTabReference>(this, "maintab", FragmentTabReference.class));
 
         actionBar.addTab(tab3);
 
@@ -54,5 +57,20 @@ public class MainSectionsActivity extends SherlockFragmentActivity
         // save active tab
         outState.putInt(ACTIVE_TAB, getSupportActionBar().getSelectedNavigationIndex());
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment frag = fm.findFragmentByTag("maintab");
+
+        if (frag != null && frag instanceof PinBaseFragment)
+        {
+            if (((PinBaseFragment) frag).onBackPressed())
+                return;
+        }
+
+        super.onBackPressed();
     }
 }
