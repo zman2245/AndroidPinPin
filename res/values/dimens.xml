@@ -15,7 +15,7 @@
     <dimen name="gridview_quiz_choices_cell_height">70dp</dimen>
     
     <!-- Text sizes -->
-    <dimen name="textsize_results_pct">20sp</dimen>
+    <dimen name="textsize_results_pct">30sp</dimen>
     <dimen name="textsize_learn_title">30sp</dimen>
     <dimen name="textsize_learn_body">18sp</dimen>
     <dimen name="textsize_learn_button">22sp</dimen>

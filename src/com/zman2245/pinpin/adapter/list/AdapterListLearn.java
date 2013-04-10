@@ -11,22 +11,22 @@ import com.zman2245.pinpin.R;
 
 /**
  * ListView adapter for the main Learn section
- *
+ * 
  * @author zack
  */
 public class AdapterListLearn extends BaseAdapter
 {
     private final LayoutInflater mInflater;
 
-    private final String[] mTitles;
-    private final String[] mSubtitles;
+    private final String[]       mTitles;
+    private final String[]       mSubtitles;
 
     public AdapterListLearn(Context context, LayoutInflater inflater)
     {
         mInflater = inflater;
 
-        mTitles     = context.getResources().getStringArray(R.array.strings_learn_list_titles);
-        mSubtitles  = context.getResources().getStringArray(R.array.strings_learn_list_bodies);
+        mTitles = context.getResources().getStringArray(R.array.strings_learn_list_titles);
+        mSubtitles = context.getResources().getStringArray(R.array.strings_learn_list_bodies);
 
         if (mTitles.length != mSubtitles.length)
             throw new IllegalStateException("String arrays don't match. num titles: " + mTitles.length + ". num bodies: " + mSubtitles.length);
@@ -58,11 +58,12 @@ public class AdapterListLearn extends BaseAdapter
         ViewHolder holder;
         if (convertView == null)
         {
-            convertView         = mInflater.inflate(R.layout.item_list_learn, parent, false);
-            holder              = new ViewHolder();
-            holder.mTitle       = (TextView) convertView.findViewById(R.id.title);
-            holder.mSubtitle    = (TextView) convertView.findViewById(R.id.subtitle);
-//            holder.mSideBar = (ViewDna) convertView.findViewById(R.id.url_item_dna);
+            convertView = mInflater.inflate(R.layout.item_list_learn, parent, false);
+            holder = new ViewHolder();
+            holder.mTitle = (TextView) convertView.findViewById(R.id.title);
+            holder.mSubtitle = (TextView) convertView.findViewById(R.id.subtitle);
+            // holder.mSideBar = (ViewDna)
+            // convertView.findViewById(R.id.url_item_dna);
 
             convertView.setTag(holder);
         }

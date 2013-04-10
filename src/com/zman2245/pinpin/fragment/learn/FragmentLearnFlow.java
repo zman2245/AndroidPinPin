@@ -67,7 +67,6 @@ public class FragmentLearnFlow extends Fragment
         ViewPager pager = (ViewPager) rootView.findViewById(R.id.pager);
         final PageControl pageControl = (PageControl) rootView.findViewById(R.id.page_control);
 
-        // just for a test
         DataItemLearnFlow[] datas = (DataItemLearnFlow[]) getArguments().getSerializable(KEY_DATAS);
 
         // the intro flow has a much different format, so it is separated
