@@ -109,7 +109,6 @@ public class FragmentQuizQuestion extends Fragment implements OnItemClickListene
                 playAnswer();
             }
         });
-        playAnswer();
 
         // if already answered populate the answer and disable choices
         if (mData.alreadyComplete)
@@ -123,6 +122,14 @@ public class FragmentQuizQuestion extends Fragment implements OnItemClickListene
         }
 
         return rootView;
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+
+        playAnswer();
     }
 
     // OnItemClickListener impl
@@ -157,12 +164,15 @@ public class FragmentQuizQuestion extends Fragment implements OnItemClickListene
 
     private void playAnswer()
     {
+        int[] resIds = new int[mData.answers.length];
+        int i = 0;
         for (String answer : mData.answers)
         {
-            int resId = AppPinPin.getAudioMapper().getResourceForString(answer);
-
-            UtilAudioPlayer.playSound(resId);
+            resIds[i] = AppPinPin.getAudioMapper().getResourceForString(answer);
+            i++;
         }
+
+        UtilAudioPlayer.playSounds(resIds);
     }
 
     private void showContinueButton()
