@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.data.DataItemPractice;
+import com.zman2245.pinpin.fragment.PinBaseFragment;
 import com.zman2245.pinpin.model.ModelPracticeSet;
 
 /**
@@ -18,7 +19,7 @@ import com.zman2245.pinpin.model.ModelPracticeSet;
  * 
  * @author zack
  */
-public class FragmentLearnFlowStudyInstruction extends Fragment
+public class FragmentLearnFlowStudyInstruction extends PinBaseFragment
 {
     private static final String KEY_DATA = "data";
 
@@ -60,8 +61,7 @@ public class FragmentLearnFlowStudyInstruction extends Fragment
             @Override
             public void onClick(View v)
             {
-                // TODO Auto-generated method stub
-
+                moveToNextPractice();
             }
         });
 
