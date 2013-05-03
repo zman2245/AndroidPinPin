@@ -1,5 +1,7 @@
 package com.zman2245.pinpin.util.audio;
 
+import java.io.IOException;
+
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 
@@ -40,6 +42,19 @@ public class UtilAudioPlayer
                     listener.onCompletion(mp);
             }
         });
+
+        try
+        {
+            player.prepare();
+        }
+        catch (IllegalStateException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 
         player.start();
     }

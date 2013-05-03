@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
+import com.zman2245.pinpin.R;
 
 public class TabListener<T extends Fragment> implements ActionBar.TabListener
 {
@@ -30,7 +31,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener
             // If not, instantiate and add it to the activity
             mFragment = Fragment.instantiate(mActivity, mClass.getName());
             // mFragment.setProviderId(mTag); // id for event provider
-            ft.add(android.R.id.content, mFragment, mTag);
+            ft.add(R.id.tab_container, mFragment, mTag);
         }
         else
         {

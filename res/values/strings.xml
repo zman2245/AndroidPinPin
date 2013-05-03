@@ -26,4 +26,5 @@
     <string name="quiz_end_subtitle_lose">Score higher to earn a trophy!</string>
 	<string name="quiz_answer_unknown">\?</string>    
 
+	<string name="menu_upgrade">Upgrade</string>
 </resources>

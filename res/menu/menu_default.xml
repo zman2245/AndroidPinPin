@@ -1,22 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/menu_global_navigation"
-        android:actionProviderClass="com.zman2245.pinpin.actionprovider.ActionProviderGlobalNavigation"
+        android:id="@+id/menu_item_upgrade"
         android:enabled="true"
-        android:showAsAction="ifRoom"
-        android:title="NAV">
-        <menu>
-            <item
-                android:id="@+id/menu_item_global_nav_learn"
-                android:title="@string/menu_global_nav_learn" />
-            <item
-                android:id="@+id/menu_item_global_nav_quiz"
-                android:title="@string/menu_global_nav_quiz" />
-            <item
-                android:id="@+id/menu_item_global_nav_reference"
-                android:title="@string/menu_global_nav_reference" />
-        </menu>
+        android:showAsAction="never"
+        android:title="@string/menu_upgrade">
     </item>
 
 </menu>

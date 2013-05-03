@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.zman2245.pinpin.AppPinPin;
@@ -32,9 +31,10 @@ public class FragmentTabReference extends PinBaseFragment
         mAdapter = new AdapterGridReference(content, inflater);
 
         gridView.setNumColumns(content[0].length);
+        //        gridView.setNumRows(content.length);
         UtilUi.fixGridViewWidth(gridView, content[0].length, getResources().getDimensionPixelSize(R.dimen.gridview_words_cell_width));
         gridView.setAdapter(mAdapter);
-        gridView.setOnItemClickListener(new OnItemClickListener()
+        gridView.setOnItemClickListener(new GridView.OnItemClickListener()
         {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
@@ -46,7 +46,7 @@ public class FragmentTabReference extends PinBaseFragment
                 UtilAudioPlayer.playSound(resId);
             }
         });
-        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener()
+        gridView.setOnItemLongClickListener(new GridView.OnItemLongClickListener()
         {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)

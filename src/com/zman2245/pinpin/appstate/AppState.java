@@ -13,6 +13,8 @@ import com.zman2245.pinpin.data.DataItemProgress;
  */
 public class AppState
 {
+    private InAppPurchasesModel mPurchasesModel;
+
     private HashMap<String, DataItemProgress> mLearnProgresses;
     private HashMap<String, DataItemProgress> mQuizProgresses;
 

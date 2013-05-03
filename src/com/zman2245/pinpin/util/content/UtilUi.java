@@ -3,6 +3,8 @@ package com.zman2245.pinpin.util.content;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.GridView;
 
+import com.zman2245.pinpin.view.twowaygrid.TwoWayGridView;
+
 /**
  * Utility functions for ui components
  *
@@ -21,6 +23,13 @@ public class UtilUi
     {
         LayoutParams lps = gv.getLayoutParams();
         lps.width = (numCols * cellWidth);
+        gv.setLayoutParams(lps);
+    }
+
+    public static void fixTwoWayGridViewHeight(TwoWayGridView gv, int numRows, int cellHeight)
+    {
+        LayoutParams lps = gv.getLayoutParams();
+        lps.height = (numRows * cellHeight);
         gv.setLayoutParams(lps);
     }
 }
