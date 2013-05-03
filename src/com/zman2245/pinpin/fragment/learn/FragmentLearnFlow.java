@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zman2245.pinpin.R;
+import com.zman2245.pinpin.Registry;
 import com.zman2245.pinpin.adapter.viewpager.PagerAdapterIntroductionLearnFlow;
 import com.zman2245.pinpin.adapter.viewpager.PagerAdapterLearnFlow;
 import com.zman2245.pinpin.data.DataItemLearnFlow;
@@ -29,7 +30,9 @@ public class FragmentLearnFlow extends PinBaseFragment
     public static final String KEY_DATAS = "datas";
     public static final String KEY_INTRO = "isIntro";
 
-    private ViewPager          mPager;
+    private ViewPager           mPager;
+    private DataItemLearnFlow[] mDatas;
+    private String              mTitle;
 
     /**
      * FragmentLearnFlow construction
@@ -86,17 +89,18 @@ public class FragmentLearnFlow extends PinBaseFragment
         mPager = (ViewPager) rootView.findViewById(R.id.pager);
         final PageControl pageControl = (PageControl) rootView.findViewById(R.id.page_control);
 
-        DataItemLearnFlow[] datas = (DataItemLearnFlow[]) getArguments().getSerializable(KEY_DATAS);
+        mDatas = (DataItemLearnFlow[]) getArguments().getSerializable(KEY_DATAS);
+        mTitle = mDatas[0].title;
 
         // the intro flow has a much different format, so it is separated
         FragmentStatePagerAdapter adapter;
         if (getArguments().getBoolean(KEY_INTRO))
-            adapter = new PagerAdapterIntroductionLearnFlow(getChildFragmentManager(), datas);
+            adapter = new PagerAdapterIntroductionLearnFlow(getChildFragmentManager(), mDatas);
         else
-            adapter = new PagerAdapterLearnFlow(getChildFragmentManager(), datas);
+            adapter = new PagerAdapterLearnFlow(getChildFragmentManager(), mDatas);
 
         mPager.setAdapter(adapter);
-        pageControl.setPageNumber(datas.length + 1);
+        pageControl.setPageNumber(mDatas.length + 1);
         pageControl.setSelectedPageIndex(0);
 
         mPager.setOnPageChangeListener(new OnPageChangeListener()
@@ -105,6 +109,8 @@ public class FragmentLearnFlow extends PinBaseFragment
             public void onPageSelected(int index)
             {
                 pageControl.setSelectedPageIndex(index);
+
+                Registry.sAppState.markLearnProgress(mTitle, index, mDatas.length);
             }
 
             @Override

@@ -23,6 +23,9 @@ public class UtilPracticeContent
         ArrayList<DataItemPractice> array = new ArrayList<DataItemPractice>();
         for (DataItemLearnFlow learnData : learnDatas)
         {
+            if (learnData.syllables == null)
+                continue;
+
             for (String[] row : learnData.syllables)
             {
                 for (String word : row)

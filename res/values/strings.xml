@@ -26,5 +26,10 @@
     <string name="quiz_end_subtitle_lose">Score higher to earn a trophy!</string>
 	<string name="quiz_answer_unknown">\?</string>    
 
+	<!-- Menu -->
 	<string name="menu_upgrade">Upgrade</string>
+	
+	<!-- Learn list sidebars -->
+	<string name="sidebar_learn_new">new</string>
+	<string name="sidebar_learn_completed">complete</string>
 </resources>

@@ -23,6 +23,9 @@ import com.zman2245.pinpin.util.content.UtilContentStrings;
 
 public class FragmentTabLearn extends PinBaseFragment implements FragmentEventListener
 {
+    private ListView            mList;
+    private AdapterListLearn    mAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -30,11 +33,11 @@ public class FragmentTabLearn extends PinBaseFragment implements FragmentEventLi
 
         setHasOptionsMenu(true);
 
-        ListView listView = (ListView) rootView.findViewById(R.id.list);
-        final AdapterListLearn adapter = new AdapterListLearn(getActivity(), inflater);
+        mList       = (ListView) rootView.findViewById(R.id.list);
+        mAdapter    = new AdapterListLearn(getActivity(), inflater);
 
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new OnItemClickListener()
+        mList.setAdapter(mAdapter);
+        mList.setOnItemClickListener(new OnItemClickListener()
         {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
@@ -111,5 +114,7 @@ public class FragmentTabLearn extends PinBaseFragment implements FragmentEventLi
         ft.commit();
 
         enableHomeAsUp(false);
+
+        mAdapter.notifyDataSetChanged();
     }
 }

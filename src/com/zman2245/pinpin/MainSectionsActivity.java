@@ -27,7 +27,6 @@ import com.zman2245.pinpin.appstate.InAppPurchasesModel;
 import com.zman2245.pinpin.fragment.FragmentPurchasedQuery;
 import com.zman2245.pinpin.fragment.PinBaseFragment;
 import com.zman2245.pinpin.fragment.event.Event;
-import com.zman2245.pinpin.fragment.event.EventType;
 import com.zman2245.pinpin.fragment.event.FragmentEventListener;
 import com.zman2245.pinpin.fragment.tab.FragmentTabLearn;
 import com.zman2245.pinpin.fragment.tab.FragmentTabQuiz;
@@ -84,17 +83,17 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         Tab tab1 = actionBar.newTab().setText(R.string.menu_global_nav_quiz)
-                .setTabListener(new TabListener<FragmentTabQuiz>(this, "maintab", FragmentTabQuiz.class));
+                .setTabListener(new TabListener<FragmentTabQuiz>(this, "maintab-quiz", FragmentTabQuiz.class));
 
         actionBar.addTab(tab1, true);
 
         Tab tab2 = actionBar.newTab().setText(R.string.menu_global_nav_learn)
-                .setTabListener(new TabListener<FragmentTabLearn>(this, "maintab", FragmentTabLearn.class));
+                .setTabListener(new TabListener<FragmentTabLearn>(this, "maintab-learn", FragmentTabLearn.class));
 
         actionBar.addTab(tab2);
 
         Tab tab3 = actionBar.newTab().setText(R.string.menu_global_nav_reference)
-                .setTabListener(new TabListener<FragmentTabReference>(this, "maintab", FragmentTabReference.class));
+                .setTabListener(new TabListener<FragmentTabReference>(this, "maintab-reference", FragmentTabReference.class));
 
         actionBar.addTab(tab3);
 
@@ -193,13 +192,17 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
     @Override
     public void handleEvent(Event event)
     {
-        if (event.type == EventType.INAPP_PURCHASED)
+        switch (event.type)
         {
+        case INAPP_PURCHASED:
             ArrayList<String> purchasedProdIds = (ArrayList<String>)event.data.get("purchased");
-        }
-        else if (event.type == EventType.INAPP_PURCHASED_FAILED)
-        {
-            // TODO
+            break;
+
+        case INAPP_PURCHASED_FAILED:
+            // TODO:
+            break;
+
+        default:
         }
     }
 

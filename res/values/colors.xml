@@ -14,4 +14,7 @@
     <!-- Orange -->
     <color name="orange_default">#FFF7B168</color>
     
+    <!-- Learn sidebar -->
+    <color name="sidebar_learn_new">#FF555555</color>
+    <color name="sidebar_learn_complete">#FF00DD00</color>
 </resources>

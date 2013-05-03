@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.zman2245.pinpin.R;
+import com.zman2245.pinpin.Registry;
+import com.zman2245.pinpin.data.DataItemProgress;
 
 /**
  * ListView adapter for the main Learn section
@@ -16,21 +18,27 @@ import com.zman2245.pinpin.R;
  */
 public class AdapterListLearn extends BaseAdapter
 {
+    private final Context        mContext;
     private final LayoutInflater mInflater;
 
     private final String[]       mTitles;
     private final String[]       mSubtitles;
 
+    // Constructor
+
     public AdapterListLearn(Context context, LayoutInflater inflater)
     {
-        mInflater = inflater;
+        mContext    = context;
+        mInflater   = inflater;
 
-        mTitles = context.getResources().getStringArray(R.array.strings_learn_list_titles);
-        mSubtitles = context.getResources().getStringArray(R.array.strings_learn_list_bodies);
+        mTitles     = context.getResources().getStringArray(R.array.strings_learn_list_titles);
+        mSubtitles  = context.getResources().getStringArray(R.array.strings_learn_list_bodies);
 
         if (mTitles.length != mSubtitles.length)
             throw new IllegalStateException("String arrays don't match. num titles: " + mTitles.length + ". num bodies: " + mSubtitles.length);
     }
+
+    // BaseAdapter hooks
 
     @Override
     public int getCount()
@@ -62,8 +70,7 @@ public class AdapterListLearn extends BaseAdapter
             holder = new ViewHolder();
             holder.mTitle = (TextView) convertView.findViewById(R.id.title);
             holder.mSubtitle = (TextView) convertView.findViewById(R.id.subtitle);
-            // holder.mSideBar = (ViewDna)
-            // convertView.findViewById(R.id.url_item_dna);
+            holder.mSideBar = (TextView) convertView.findViewById(R.id.sidebar);
 
             convertView.setTag(holder);
         }
@@ -75,8 +82,22 @@ public class AdapterListLearn extends BaseAdapter
         holder.mTitle.setText(mTitles[position]);
         holder.mSubtitle.setText(mSubtitles[position]);
 
+        DataItemProgress prog = Registry.sAppState.getLearnProgress(mTitles[position]);
+        if (prog.completed)
+        {
+            holder.mSideBar.setText(mContext.getString(R.string.sidebar_learn_completed));
+            holder.mSideBar.setBackgroundColor(mContext.getResources().getColor(R.color.sidebar_learn_complete));
+        }
+        else
+        {
+            holder.mSideBar.setText(mContext.getString(R.string.sidebar_learn_new));
+            holder.mSideBar.setBackgroundColor(mContext.getResources().getColor(R.color.sidebar_learn_new));
+        }
+
         return convertView;
     }
+
+    // ViewHolder helper class
 
     private static class ViewHolder
     {

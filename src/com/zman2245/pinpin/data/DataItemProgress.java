@@ -10,5 +10,9 @@ package com.zman2245.pinpin.data;
 public class DataItemProgress
 {
     public boolean completed    = false;
-    public float   pct_complete = 0.0f;
+    public int     last_item_completed = 0;
+    public int     total_items = 0;
+
+    public int num_correct = 0;
+    public int num_wrong = 0;
 }

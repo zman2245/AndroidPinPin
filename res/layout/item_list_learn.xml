@@ -10,8 +10,8 @@
     <TextView
         android:id="@+id/sidebar"
         style="@style/TextSideBarNew"
-        android:text="new"
-        android:background="#FF0000"
+        android:textColor="#FFFFFFFF"
+        android:text="@string/sidebar_learn_new"
         />
 
     <LinearLayout
