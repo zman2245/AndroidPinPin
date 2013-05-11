@@ -15,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.widget.FrameLayout;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -23,6 +24,11 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.android.vending.billing.IInAppBillingService;
+import com.flurry.android.FlurryAdListener;
+import com.flurry.android.FlurryAdSize;
+import com.flurry.android.FlurryAdType;
+import com.flurry.android.FlurryAds;
+import com.flurry.android.FlurryAgent;
 import com.zman2245.pinpin.appstate.InAppPurchasesModel;
 import com.zman2245.pinpin.fragment.FragmentPurchasedQuery;
 import com.zman2245.pinpin.fragment.PinBaseFragment;
@@ -35,12 +41,15 @@ import com.zman2245.pinpin.fragment.tab.TabListener;
 
 /**
  * "Top-level" sections including Learn, Quiz, and Reference Fragments
- * 
+ *
  * @author zack
  */
-public class MainSectionsActivity extends SherlockFragmentActivity implements FragmentEventListener
+public class MainSectionsActivity extends SherlockFragmentActivity implements FragmentEventListener, FlurryAdListener
 {
     public static String INAPP_LOG_TAG = "InApp";
+
+    // ad container
+    private FrameLayout mAdContainer;
 
     // store the active tab here
     public static String ACTIVE_TAB = "activeTab";
@@ -79,6 +88,8 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
 
         setContentView(R.layout.activity_main_sections);
 
+        mAdContainer = (FrameLayout)findViewById(R.id.ad_container);
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -103,6 +114,10 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
 
         // For in-app billing
         bindService(new Intent("com.android.vending.billing.InAppBillingService.BIND"), mServiceConn, Context.BIND_AUTO_CREATE);
+
+        // test ads? TODO: remove before submission
+        FlurryAds.setAdListener(this);
+        FlurryAds.enableTestAds(true);
     }
 
     @Override
@@ -187,6 +202,26 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         }
     }
 
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+
+        FlurryAgent.onStartSession(this, getString(R.string.flurry_api_key));
+
+        // For ad serving. TODO: if upgraded, hide the ads banner
+        FlurryAds.fetchAd(this, "PinPinMainBottom", mAdContainer, FlurryAdSize.BANNER_BOTTOM);
+    }
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+
+        FlurryAds.removeAd(this, "PinPinMainBottom", mAdContainer);
+        FlurryAgent.onEndSession(this);
+    }
+
     // FragmentEventListener impl
 
     @Override
@@ -214,5 +249,65 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(mPurchasedQueryFragment, "purchased");
         ft.commit();
+    }
+
+    // FlurryAdListener impl
+
+    @Override
+    public void onAdClicked(String arg0)
+    {
+        Log.d("Ads", "onAdClicked: " + arg0);
+    }
+
+    @Override
+    public void onAdClosed(String arg0)
+    {
+        Log.d("Ads", "onAdClosed: " + arg0);
+    }
+
+    @Override
+    public void onAdOpened(String arg0)
+    {
+        Log.d("Ads", "onAdOpened: " + arg0);
+    }
+
+    @Override
+    public void onApplicationExit(String arg0)
+    {
+        Log.d("Ads", "onApplicationExit: " + arg0);
+    }
+
+    @Override
+    public void onRenderFailed(String arg0)
+    {
+        Log.d("Ads", "onRenderFailed: " + arg0);
+    }
+
+    @Override
+    public boolean shouldDisplayAd(String arg0, FlurryAdType arg1)
+    {
+        Log.d("Ads", "shouldDisplayAd (returning true): " + arg0 + ". Type: " + arg1);
+
+        return true;
+    }
+
+    @Override
+    public void spaceDidFailToReceiveAd(String arg0)
+    {
+        Log.d("Ads", "spaceDidFailToReceiveAd: " + arg0);
+    }
+
+    @Override
+    public void spaceDidReceiveAd(String arg0)
+    {
+        Log.d("Ads", "spaceDidReceiveAd: " + arg0);
+
+        FlurryAds.displayAd(this, "PinPinMainBottom", mAdContainer);
+    }
+
+    @Override
+    public void onVideoCompleted(String arg0)
+    {
+        Log.d("Ads", "onVideoCompleted: " + arg0);
     }
 }
