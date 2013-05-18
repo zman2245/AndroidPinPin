@@ -40,9 +40,14 @@ public class UtilContentStrings
         int resId = arraysLearnContent.getResourceId(pos, 0);
         sectionTa = AppPinPin.getTypedArray(resId);
 
+        // Get the section id
+        String sectionId = AppPinPin.getStringArray(R.array.learn_ids)[pos];
+
+        // Get top strings array
         resId = sectionTa.getResourceId(INDEX_TOP_STRINGS, 0);
         topStrings = arraysLearnContent.getResources().getStringArray(resId);
 
+        // Get bottom strings array
         resId = sectionTa.getResourceId(INDEX_BOTTOM_STRINGS, 0);
         bottomStrings = arraysLearnContent.getResources().getStringArray(resId);
 
@@ -58,9 +63,9 @@ public class UtilContentStrings
         {
             DataItemLearnFlow data = new DataItemLearnFlow();
 
+            data.section_id = sectionId;
             data.topText    = topStrings[i];
             data.bottomText = bottomStrings[i];
-
             data.syllables  = getButtonsMatrix(sectionButtons, i);
 
             datas[i] = data;

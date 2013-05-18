@@ -13,6 +13,8 @@ public class DataItemQuiz implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
+    public String quiz_id;
+
     public String answers[]		= {};
     public String[][] choices   = {};
 

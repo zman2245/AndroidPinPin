@@ -8,7 +8,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.zman2245.pinpin.AppPinPin;
 import com.zman2245.pinpin.R;
+import com.zman2245.pinpin.Registry;
+import com.zman2245.pinpin.data.DataItemProgress;
 
 /**
  * ListView adapter for the main Quiz section
@@ -20,11 +23,18 @@ public class AdapterListQuiz extends BaseAdapter
     private final LayoutInflater mInflater;
 
     private final String[] mTitles;
+    private final String[] mQuizIds;
 
     public AdapterListQuiz(Context context, LayoutInflater inflater)
     {
         mInflater = inflater;
         mTitles   = context.getResources().getStringArray(R.array.quiz_list_titles);
+
+        mQuizIds = new String[mTitles.length];
+        for (int i = 0; i < mTitles.length; i++)
+        {
+            mQuizIds[i] = AppPinPin.sQuizGenerator.getQuizQuestions(i)[0].quiz_id;
+        }
     }
 
     @Override
@@ -65,14 +75,22 @@ public class AdapterListQuiz extends BaseAdapter
             holder = (ViewHolder) convertView.getTag();
         }
 
+        DataItemProgress prog = Registry.sProgressFactory.getQuizProgress(mQuizIds[position]);
+
+        holder.mImage.setImageResource(Registry.sProgressFactory.getTrophyResource(prog));
         holder.mTitle.setText(mTitles[position]);
 
         return convertView;
     }
 
+    /**
+     * View Holder class
+     *
+     * @author zfoster
+     */
     private static class ViewHolder
     {
-        TextView mTitle;
+        TextView  mTitle;
         ImageView mImage;
     }
 }

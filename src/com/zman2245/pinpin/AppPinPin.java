@@ -9,7 +9,7 @@ import android.content.res.TypedArray;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
-import com.zman2245.pinpin.appstate.AppState;
+import com.zman2245.pinpin.appstate.ProgressFactory;
 import com.zman2245.pinpin.util.audio.AudioResourceMapper;
 import com.zman2245.pinpin.util.audio.AudioResourceMapperImpl;
 import com.zman2245.pinpin.util.content.UtilQuizGenerator;
@@ -39,7 +39,7 @@ public class AppPinPin extends Application
     @Override
     public void onCreate()
     {
-        Registry.sAppState = new AppState(this, getSharedPreferences("appstate", 0));
+        Registry.sProgressFactory = new ProgressFactory(this, getSharedPreferences("appstate", 0));
 
         dumpDeviceInfo();
 

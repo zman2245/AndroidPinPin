@@ -16,6 +16,7 @@ import android.widget.ListView;
 import com.actionbarsherlock.view.MenuItem;
 import com.zman2245.pinpin.AppPinPin;
 import com.zman2245.pinpin.R;
+import com.zman2245.pinpin.Registry;
 import com.zman2245.pinpin.adapter.list.AdapterListQuiz;
 import com.zman2245.pinpin.data.DataItemQuiz;
 import com.zman2245.pinpin.fragment.PinBaseFragment;
@@ -32,6 +33,7 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
 {
     private FragmentModelWrapper<ModelQuiz> mFragModel;
     private ModelQuiz                       mModelQuiz;
+    private AdapterListQuiz                 mAdapter;
 
     // FragmentEventListener impl
 
@@ -65,9 +67,9 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
         setHasOptionsMenu(true);
 
         ListView listView = (ListView) rootView.findViewById(R.id.list);
-        final AdapterListQuiz adapter = new AdapterListQuiz(getActivity(), inflater);
+        mAdapter = new AdapterListQuiz(getActivity(), inflater);
 
-        listView.setAdapter(adapter);
+        listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(new OnItemClickListener()
         {
             @Override
@@ -129,7 +131,7 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
 
     /**
      * Start a new quiz
-     * 
+     *
      * @param index
      */
     private void navigateToQuizSection(int index)
@@ -151,8 +153,8 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
         Fragment frag;
         DataItemQuiz data = mModelQuiz.next();
 
-        FragmentManager fm = getChildFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
+        FragmentManager fm      = getChildFragmentManager();
+        FragmentTransaction ft  = fm.beginTransaction();
 
         if (data == null)
         {
@@ -162,6 +164,9 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
         else
         {
             frag = FragmentQuizQuestion.newInstance(data);
+
+            // mark the progress
+            Registry.sProgressFactory.markQuizProgress(data.quiz_id, mModelQuiz.getCurrentIndex(), mModelQuiz.getNumQuestions(), mModelQuiz.getScore());
         }
 
         if (fm.findFragmentByTag("quiz_flow") == null)
@@ -219,6 +224,8 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
         if (frag != null)
         {
             ft.remove(frag);
+
+            mAdapter.notifyDataSetChanged();
         }
 
         ft.commit();

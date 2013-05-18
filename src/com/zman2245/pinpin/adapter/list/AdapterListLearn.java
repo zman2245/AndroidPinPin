@@ -82,7 +82,7 @@ public class AdapterListLearn extends BaseAdapter
         holder.mTitle.setText(mTitles[position]);
         holder.mSubtitle.setText(mSubtitles[position]);
 
-        DataItemProgress prog = Registry.sAppState.getLearnProgress(mTitles[position]);
+        DataItemProgress prog = Registry.sProgressFactory.getLearnProgress(mTitles[position]);
         if (prog.completed)
         {
             holder.mSideBar.setText(mContext.getString(R.string.sidebar_learn_completed));

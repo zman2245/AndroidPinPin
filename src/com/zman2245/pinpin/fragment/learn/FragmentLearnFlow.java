@@ -20,9 +20,9 @@ import com.zman2245.pinpin.view.pagecontrol.PageControl;
 
 /**
  * A fragment for a learn flow
- * 
+ *
  * Contains some flow of views
- * 
+ *
  * @author zack
  */
 public class FragmentLearnFlow extends PinBaseFragment
@@ -32,11 +32,11 @@ public class FragmentLearnFlow extends PinBaseFragment
 
     private ViewPager           mPager;
     private DataItemLearnFlow[] mDatas;
-    private String              mTitle;
+    private String              mId;
 
     /**
      * FragmentLearnFlow construction
-     * 
+     *
      * @param title
      *            The main title of the learn flow
      * @param topBodies
@@ -56,12 +56,6 @@ public class FragmentLearnFlow extends PinBaseFragment
         frag.setArguments(args);
 
         return frag;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -90,7 +84,7 @@ public class FragmentLearnFlow extends PinBaseFragment
         final PageControl pageControl = (PageControl) rootView.findViewById(R.id.page_control);
 
         mDatas = (DataItemLearnFlow[]) getArguments().getSerializable(KEY_DATAS);
-        mTitle = mDatas[0].title;
+        mId = mDatas[0].section_id;
 
         // the intro flow has a much different format, so it is separated
         FragmentStatePagerAdapter adapter;
@@ -110,18 +104,13 @@ public class FragmentLearnFlow extends PinBaseFragment
             {
                 pageControl.setSelectedPageIndex(index);
 
-                Registry.sAppState.markLearnProgress(mTitle, index, mDatas.length);
+                Registry.sProgressFactory.markLearnProgress(mId, index, mDatas.length);
             }
 
             @Override
-            public void onPageScrolled(int arg0, float arg1, int arg2)
-            {
-            }
-
+            public void onPageScrolled(int arg0, float arg1, int arg2) {}
             @Override
-            public void onPageScrollStateChanged(int arg0)
-            {
-            }
+            public void onPageScrollStateChanged(int arg0) {}
         });
 
         return rootView;

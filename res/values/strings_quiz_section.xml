@@ -13,7 +13,14 @@
         <item>Level 5</item>
     </string-array>
 
-
+    <!-- Quiz Ids: these must never change but may be re-ordered; used by progress factory -->
+    <string-array name="quiz_ids">
+        <item>quiz1</item>
+        <item>quiz2</item>
+        <item>quiz3</item>
+        <item>quiz4</item>
+        <item>quiz5</item>
+    </string-array>
 
     <!--
     	Quiz questions: follow the following convention:
@@ -98,9 +105,11 @@
 
     <array name="quiz1">
 		<item>@array/quiz1_question1</item>
-<!-- 		<item>@array/quiz1_question2</item>
+ 		<item>@array/quiz1_question2</item>
 		<item>@array/quiz1_question3</item>
 		<item>@array/quiz1_question4</item>
+		
+		<!--
 		<item>@array/quiz1_question5</item>
 		<item>@array/quiz1_question6</item>
 		<item>@array/quiz1_question7</item>
@@ -111,7 +120,8 @@
 		<item>@array/quiz1_question12</item>
 		<item>@array/quiz1_question13</item>
 		<item>@array/quiz1_question14</item>
-		<item>@array/quiz1_question15</item> -->
+		<item>@array/quiz1_question15</item>
+		-->
     </array>
     
     

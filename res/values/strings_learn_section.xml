@@ -32,6 +32,28 @@
         <item>Concluding u</item>
         <item>Last but not least</item>
     </string-array>
+    
+    <!-- Learn section ids: these must never change but may be re-ordered, used by progress factory -->
+    <string-array name="learn_ids">
+        <item>Introduction</item>
+        <item>Getting started</item>
+        <item>More simple sounds</item>
+        <item>Adding o finals</item>
+        <item>Challenging initials I</item>
+        <item>Challenging initials II</item>
+        <item>Wrapping up a and o</item>
+        <item>Adding e to the mix</item>
+        <item>Effort with e</item>
+        <item>Wrapping up e</item>
+        <item>Introducing i</item>
+        <item>Expanding i</item>
+        <item>Exceptions with i</item>
+        <item>Challenging initials III</item>
+        <item>The u final</item>
+        <item>A big step with u</item>
+        <item>Concluding u</item>
+        <item>Last but not least</item>
+    </string-array>
 
     <string-array name="strings_learn_list_bodies">
         <item>Learning Pinyin with Pin Pin</item>

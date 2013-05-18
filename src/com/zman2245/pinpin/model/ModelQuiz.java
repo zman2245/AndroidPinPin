@@ -131,6 +131,31 @@ public class ModelQuiz
 		return (correct / (correct + incorrect));
 	}
 
+	/**
+	 * Provide the number of questions in the quiz
+	 *
+	 * @return
+	 */
+	public int getNumQuestions()
+	{
+	    return mQuizDatas.length;
+	}
+
+	/**
+	 * Provide the index of the current question
+	 *
+	 * @return
+	 */
+	public int getCurrentIndex()
+	{
+	    return mCurrentQuestion;
+	}
+
+	/**
+	 * Get data necessary for displaying the results page
+	 *
+	 * @return
+	 */
 	public DataItemEndQuiz getQuizEndData()
 	{
 		DataItemEndQuiz data = new DataItemEndQuiz();

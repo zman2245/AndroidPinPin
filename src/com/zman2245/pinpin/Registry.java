@@ -1,6 +1,6 @@
 package com.zman2245.pinpin;
 
-import com.zman2245.pinpin.appstate.AppState;
+import com.zman2245.pinpin.appstate.ProgressFactory;
 
 /**
  * Contains global stuff
@@ -9,5 +9,5 @@ import com.zman2245.pinpin.appstate.AppState;
  */
 public class Registry
 {
-    public static AppState sAppState;
+    public static ProgressFactory sProgressFactory;
 }

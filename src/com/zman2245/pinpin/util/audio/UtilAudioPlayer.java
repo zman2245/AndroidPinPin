@@ -1,7 +1,5 @@
 package com.zman2245.pinpin.util.audio;
 
-import java.io.IOException;
-
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 
@@ -9,7 +7,7 @@ import com.zman2245.pinpin.AppPinPin;
 
 /**
  * Helpers for playing audio
- * 
+ *
  * @author zack
  */
 public class UtilAudioPlayer
@@ -18,7 +16,7 @@ public class UtilAudioPlayer
 
     /**
      * Play the sound given by the resId, which should be a raw mp3 resource
-     * 
+     *
      * @param resId
      */
     public static void playSound(int resId)
@@ -43,25 +41,25 @@ public class UtilAudioPlayer
             }
         });
 
-        try
-        {
-            player.prepare();
-        }
-        catch (IllegalStateException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+//        try
+//        {
+//            player.prepare();
+//        }
+//        catch (IllegalStateException e)
+//        {
+//            e.printStackTrace();
+//        }
+//        catch (IOException e)
+//        {
+//            e.printStackTrace();
+//        }
 
         player.start();
     }
 
     /**
      * Plays an array of sounds, one after the other, separated by a delay
-     * 
+     *
      * @param resIds
      */
     public static void playSounds(final int[] resIds)

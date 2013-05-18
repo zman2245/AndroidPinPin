@@ -56,13 +56,17 @@ public class UtilQuizGenerator
 		resId = masterArray.getResourceId(index, 0);
 		quizArray = AppPinPin.getTypedArray(resId);
 
+		// Get the identifier of the quiz at this index
+		String quizId = AppPinPin.getStringArray(R.array.quiz_ids)[index];
+
 		DataItemQuiz[] items = new DataItemQuiz[quizArray.length()];
 		for (int i = 0; i < quizArray.length(); i++)
 		{
 			resId = quizArray.getResourceId(i, -1);
 			String[] questionArray = quizArray.getResources().getStringArray(resId);
 
-			items[i] = getQuizQuestion(questionArray);
+			items[i]         = getQuizQuestion(questionArray);
+			items[i].quiz_id = quizId;
 		}
 
 		// Always recycle! TypedArrays are cached and re-used so
