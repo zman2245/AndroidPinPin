@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_item_tone"
+        android:enabled="true"
+        android:showAsAction="ifRoom"
+        android:title="@string/menu_tone">
+        <menu>
+            <item
+                android:id="@+id/menu_item_tone_first"
+                android:title="First"/>
+            <item
+                android:id="@+id/menu_item_tone_second"
+                android:title="Second"/>
+            <item
+                android:id="@+id/menu_item_tone_third"
+                android:title="Third"/>
+            <item
+                android:id="@+id/menu_item_tone_fourth"
+                android:title="Fourth"/>
+        </menu>
+    </item>
+
+</menu>

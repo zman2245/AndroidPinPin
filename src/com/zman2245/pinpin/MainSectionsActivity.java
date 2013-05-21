@@ -115,6 +115,9 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         // For in-app billing
         bindService(new Intent("com.android.vending.billing.InAppBillingService.BIND"), mServiceConn, Context.BIND_AUTO_CREATE);
 
+        // set action bar color to orange
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.orange_default));
+
         // test ads? TODO: remove before submission
         FlurryAds.setAdListener(this);
         FlurryAds.enableTestAds(true);

@@ -1,12 +1,18 @@
 package com.zman2245.pinpin.fragment.tab;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.zman2245.pinpin.AppPinPin;
 import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.adapter.grid.AdapterGridReference;
@@ -18,23 +24,23 @@ import com.zman2245.pinpin.util.content.UtilUi;
 
 public class FragmentTabReference extends PinBaseFragment
 {
-    AdapterGridReference mAdapter;
+    private GridView             mGridView;
+    private LinearLayout         mTopbar;
+    private AdapterGridReference mAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View rootView = inflater.inflate(R.layout.fragment_main_reference, container, false);
 
-        GridView gridView = (GridView) rootView.findViewById(R.id.grid);
+        setHasOptionsMenu(true);
 
-        String[][] content = UtilContentStrings.getReferenceStrings(Tone.THIRD);
-        mAdapter = new AdapterGridReference(content, inflater);
+        mTopbar   = (LinearLayout) rootView.findViewById(R.id.topbar);
+        mGridView = (GridView) rootView.findViewById(R.id.grid);
 
-        gridView.setNumColumns(content[0].length);
-        //        gridView.setNumRows(content.length);
-        UtilUi.fixGridViewWidth(gridView, content[0].length, getResources().getDimensionPixelSize(R.dimen.gridview_words_cell_width));
-        gridView.setAdapter(mAdapter);
-        gridView.setOnItemClickListener(new GridView.OnItemClickListener()
+        setContentTone(Tone.FIRST);
+
+        mGridView.setOnItemClickListener(new GridView.OnItemClickListener()
         {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
@@ -46,7 +52,7 @@ public class FragmentTabReference extends PinBaseFragment
                 UtilAudioPlayer.playSound(resId);
             }
         });
-        gridView.setOnItemLongClickListener(new GridView.OnItemLongClickListener()
+        mGridView.setOnItemLongClickListener(new GridView.OnItemLongClickListener()
         {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
@@ -57,23 +63,71 @@ public class FragmentTabReference extends PinBaseFragment
             }
         });
 
+        initTopbar();
+
         return rootView;
     }
 
-    // TODO
-    // @Override
-    // public boolean onCreateOptionsMenu(Menu menu)
-    // {
-    // MenuInflater inflater = getSupportMenuInflater();
-    //
-    // inflater.inflate(R.menu.menu_default, menu);
-    //
-    // return true;
-    // }
-
-    private void setContent(Tone tone)
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
     {
+        super.onCreateOptionsMenu(menu, inflater);
 
+        inflater.inflate(R.menu.menu_reference, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+        case R.id.menu_item_tone_first:
+            setContentTone(Tone.FIRST);
+            return true;
+
+        case R.id.menu_item_tone_second:
+            setContentTone(Tone.SECOND);
+            return true;
+
+        case R.id.menu_item_tone_third:
+            setContentTone(Tone.THIRD);
+            return true;
+
+        case R.id.menu_item_tone_fourth:
+            setContentTone(Tone.FOURTH);
+            return true;
+
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void setContentTone(Tone tone)
+    {
+        String[][] content  = UtilContentStrings.getReferenceStrings(tone);
+        mAdapter            = new AdapterGridReference(content, getLayoutInflater(null));
+
+        UtilUi.fixGridViewWidth(mGridView, content[0].length, getResources().getDimensionPixelSize(R.dimen.gridview_words_cell_width));
+        mGridView.setNumColumns(content[0].length);
+        mGridView.setAdapter(mAdapter);
+    }
+
+    private void initTopbar()
+    {
+        String[] topbarWords = AppPinPin.getStringArray(R.array.reference_topbar);
+
+        for (String word : topbarWords)
+        {
+            TextView txtView = new TextView(getActivity());
+            txtView.setText(word);
+            txtView.setGravity(Gravity.CENTER);
+            LinearLayout.LayoutParams lps = new LinearLayout.LayoutParams(
+                    getResources().getDimensionPixelSize(R.dimen.gridview_words_cell_width),
+                    getResources().getDimensionPixelSize(R.dimen.gridview_words_cell_height));
+            txtView.setTextSize(getResources().getDimensionPixelSize(R.dimen.textsize_reference_topbar));
+            txtView.setLayoutParams(lps);
+            mTopbar.addView(txtView);
+        }
     }
 
     private void navigateToPractice(int index)

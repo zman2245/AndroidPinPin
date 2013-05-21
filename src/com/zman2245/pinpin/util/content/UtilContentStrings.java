@@ -138,5 +138,11 @@ public class UtilContentStrings
         return strings;
     }
 
-
+    /**
+     * Return the content for the reference grid top bar
+     */
+    public static String[] getReferenceTopbarStrings()
+    {
+        return AppPinPin.getStringArray(R.array.reference_topbar);
+    }
 }
