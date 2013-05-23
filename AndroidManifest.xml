@@ -7,6 +7,8 @@
     <!-- Internet needed for ads serving -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-sdk
         android:minSdkVersion="10"
@@ -27,6 +29,13 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        
+        <activity
+            android:name=".PracticeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.CustomTheme.TransparentActivity">
+            
         </activity>
 
         <!-- Full screen ads -->

@@ -28,6 +28,8 @@ public class FragmentTabReference extends PinBaseFragment
     private LinearLayout         mTopbar;
     private AdapterGridReference mAdapter;
 
+    private MenuItem             mMenuItemTone;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -69,11 +71,21 @@ public class FragmentTabReference extends PinBaseFragment
     }
 
     @Override
+    public void onResume()
+    {
+        super.onResume();
+
+        enableHomeAsUp(false);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
     {
         super.onCreateOptionsMenu(menu, inflater);
 
         inflater.inflate(R.menu.menu_reference, menu);
+
+        mMenuItemTone = menu.findItem(R.id.menu_item_tone);
     }
 
     @Override
@@ -110,6 +122,8 @@ public class FragmentTabReference extends PinBaseFragment
         UtilUi.fixGridViewWidth(mGridView, content[0].length, getResources().getDimensionPixelSize(R.dimen.gridview_words_cell_width));
         mGridView.setNumColumns(content[0].length);
         mGridView.setAdapter(mAdapter);
+
+        mMenuItemTone.setIcon(tone.refWhiteIcon);
     }
 
     private void initTopbar()
@@ -124,7 +138,7 @@ public class FragmentTabReference extends PinBaseFragment
             LinearLayout.LayoutParams lps = new LinearLayout.LayoutParams(
                     getResources().getDimensionPixelSize(R.dimen.gridview_words_cell_width),
                     getResources().getDimensionPixelSize(R.dimen.gridview_words_cell_height));
-            txtView.setTextSize(getResources().getDimensionPixelSize(R.dimen.textsize_reference_topbar));
+            txtView.setTextSize(getResources().getDimension(R.dimen.textsize_reference_topbar));
             txtView.setLayoutParams(lps);
             mTopbar.addView(txtView);
         }

@@ -85,6 +85,17 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
     }
 
     @Override
+    public void onResume()
+    {
+        super.onResume();
+
+        if (getChildFragmentManager().findFragmentByTag("quiz_flow") == null)
+            enableHomeAsUp(false);
+        else
+            enableHomeAsUp(true);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
         switch (item.getItemId())

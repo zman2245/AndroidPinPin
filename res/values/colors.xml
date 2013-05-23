@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-    <!-- Default backgrounds -->
+    <!-- Backgrounds -->
     <color name="bg_color_default">#EEEEEE</color>
     <color name="bg_color_inset">#CCCCCC</color>
     <color name="learn_background">#EEEEEE</color>
     <color name="learn_grid_border">#AAAAAA</color>
+    <color name="bg_practice_container">#BB000000</color>
     
     <!-- Win/lose good/bad colors -->
     <color name="win_color">#FF00FF00</color>
@@ -13,8 +14,14 @@
     
     <!-- Orange -->
     <color name="orange_default">#FFF7B168</color>
+    <drawable name="orange_default">#FFF7B168</drawable>
     
     <!-- Learn sidebar -->
     <color name="sidebar_learn_new">#FF555555</color>
     <color name="sidebar_learn_complete">#FF00DD00</color>
+    
+    <!-- Practice buttons -->
+    <drawable name="btn_bg_practice_default">#FF666666</drawable>
+    <drawable name="btn_bg_practice_selected">#FF333333</drawable>
+
 </resources>

@@ -13,20 +13,28 @@ import com.zman2245.pinpin.fragment.event.EventType;
 
 /**
  * Wraps a query for getting in-app purchases made by the user
- * 
+ *
  * @author zfoster
  */
 public class FragmentPurchasedQuery extends PinBaseFragment
 {
     private IInAppBillingService mService;
 
-    public static FragmentPurchasedQuery newInstance(IInAppBillingService service)
+    public static FragmentPurchasedQuery newInstance()
     {
         FragmentPurchasedQuery frag = new FragmentPurchasedQuery();
-
-        frag.mService = service;
-
         return frag;
+    }
+
+    public void setInAppBillingService(IInAppBillingService service)
+    {
+        mService = service;
+    }
+
+    public void getPurchased()
+    {
+        QueryPurchasedInfoAsyncTask task = new QueryPurchasedInfoAsyncTask();
+        task.execute((Object[])null);
     }
 
     @Override
@@ -35,9 +43,6 @@ public class FragmentPurchasedQuery extends PinBaseFragment
         super.onCreate(savedInstanceState);
 
         setRetainInstance(true);
-
-        QueryPurchasedInfoAsyncTask task = new QueryPurchasedInfoAsyncTask();
-        task.execute((Object[])null);
     }
 
     private class QueryPurchasedInfoAsyncTask extends AsyncTask<Object, Object, ArrayList<String>>

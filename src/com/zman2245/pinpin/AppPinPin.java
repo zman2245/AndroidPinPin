@@ -2,6 +2,8 @@ package com.zman2245.pinpin;
 
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import android.app.Application;
 import android.content.res.Resources;
@@ -25,6 +27,7 @@ public class AppPinPin extends Application
     private static AppPinPin sInstance;
     private final AudioResourceMapper mAudioMapper;
     public static HashMap<String, Object> sSoundMap;
+    public static HashMap<String, String> sSoundMapReverse; // maps each sound to a parent, non-toned sound that can then be looked up in sSoundMap
     public static UtilQuizGenerator sQuizGenerator;
 
     public AppPinPin()
@@ -57,6 +60,8 @@ public class AppPinPin extends Application
                 String[] titles = (String[])tmp.get("title");
                 Log.d("TESTING", "title: " + titles);
                 AppPinPin.sSoundMap = soundsMap;
+
+                buildReverseSoundMap();
             }
             catch (Exception e)
             {
@@ -119,5 +124,26 @@ public class AppPinPin extends Application
 
         Log.d("DeviceInfo", "density = " + density + ". dimensions = " + metrics.widthPixels + " x " + metrics.heightPixels);
         Log.d("DeviceInfo", "scale = " + metrics.density);
+    }
+
+    private void buildReverseSoundMap()
+    {
+        sSoundMapReverse = new HashMap<String, String>();
+
+        Iterator<Map.Entry<String, Object>> it = sSoundMap.entrySet().iterator();
+        while (it.hasNext())
+        {
+            Map.Entry<String, Object> pairs = it.next();
+
+            HashMap<String, Object> map = (HashMap<String, Object>)pairs.getValue();
+            String[] titles             = (String[])map.get("title");
+
+            for (String title : titles)
+            {
+                sSoundMapReverse.put(title, pairs.getKey());
+
+                System.out.println("Adding following entry to reverse sound map: " + title + " . " + pairs.getKey());
+            }
+        }
     }
 }

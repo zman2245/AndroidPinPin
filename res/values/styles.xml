@@ -18,6 +18,16 @@
 <!--         <item name="android:windowAnimationStyle">@style/AnimationActivityFade</item> -->
     </style>
     
+    <!-- Transparent Activity theme -->
+    <style name="Theme.CustomTheme.TransparentActivity" parent="Theme.Sherlock">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    
     <!-- Activity open/close animations -->
     <style name="AnimationActivityFade" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@android:anim/fade_in</item>
@@ -83,10 +93,12 @@
     <style name="ButtonPracticeTone" parent="@android:style/Widget.Button">
         <item name="android:layout_height">50dp</item>
         <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/practice_button_bg_selector</item>
     </style>
     
     <style name="ButtonPracticeAudioControl" parent="@android:style/Widget.Button">
         <item name="android:layout_height">100dp</item>
         <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/practice_button_bg_selector</item>
     </style>
 </resources>

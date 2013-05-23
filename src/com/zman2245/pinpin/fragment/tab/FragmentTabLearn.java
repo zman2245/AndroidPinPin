@@ -50,6 +50,17 @@ public class FragmentTabLearn extends PinBaseFragment implements FragmentEventLi
     }
 
     @Override
+    public void onResume()
+    {
+        super.onResume();
+
+        if (getChildFragmentManager().findFragmentByTag("learn_flow") == null)
+            enableHomeAsUp(false);
+        else
+            enableHomeAsUp(true);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
         if (item.getItemId() == android.R.id.home)

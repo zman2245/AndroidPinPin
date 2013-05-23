@@ -29,6 +29,10 @@
 	<!-- Menu -->
 	<string name="menu_upgrade">Upgrade</string>
 	<string name="menu_tone">Tone</string>
+	<string name="menu_tone_first">First</string>
+	<string name="menu_tone_second">Second</string>
+	<string name="menu_tone_third">Third</string>
+	<string name="menu_tone_fourth">Fourth</string>
 	
 	<!-- Learn list sidebars -->
 	<string name="sidebar_learn_new">new</string>

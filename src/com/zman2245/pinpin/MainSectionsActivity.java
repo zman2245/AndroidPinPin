@@ -74,9 +74,8 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
             mService = IInAppBillingService.Stub.asInterface(service);
 
             // purchased query fragment
-            mPurchasedQueryFragment = (FragmentPurchasedQuery)getSupportFragmentManager().findFragmentByTag("purchased");
-            if (mPurchasedQueryFragment == null)
-                getPurchased();
+            mPurchasedQueryFragment.setInAppBillingService(mService);
+            getPurchased();
             // update AppState! TODO
         }
     };
@@ -121,6 +120,16 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         // test ads? TODO: remove before submission
         FlurryAds.setAdListener(this);
         FlurryAds.enableTestAds(true);
+
+        // set up purchased query fragment
+        mPurchasedQueryFragment = (FragmentPurchasedQuery)getSupportFragmentManager().findFragmentByTag("purchased");
+        if (mPurchasedQueryFragment == null)
+        {
+            mPurchasedQueryFragment = FragmentPurchasedQuery.newInstance();
+            FragmentTransaction ft  = getSupportFragmentManager().beginTransaction();
+            ft.add(mPurchasedQueryFragment, "purchased");
+            ft.commit();
+        }
     }
 
     @Override
@@ -248,10 +257,7 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
 
     private void getPurchased()
     {
-        mPurchasedQueryFragment = FragmentPurchasedQuery.newInstance(mService);
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(mPurchasedQueryFragment, "purchased");
-        ft.commit();
+        mPurchasedQueryFragment.getPurchased();
     }
 
     // FlurryAdListener impl

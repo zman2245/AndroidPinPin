@@ -9,19 +9,21 @@ import com.zman2245.pinpin.R;
  */
 public enum Tone
 {
-    FIRST(0, "_1", R.array.reference_first),
-    SECOND(1, "_2", R.array.reference_second),
-    THIRD(2, "_3", R.array.reference_third),
-    FOURTH(3, "_4", R.array.reference_fourth);
+    FIRST(0, "_1", R.array.reference_first, R.drawable.first_tone_white),
+    SECOND(1, "_2", R.array.reference_second, R.drawable.second_tone_white),
+    THIRD(2, "_3", R.array.reference_third, R.drawable.third_tone_white),
+    FOURTH(3, "_4", R.array.reference_fourth, R.drawable.fourth_tone_white);
 
     public int index;
     public String fileExt;
     public int refResId;
+    public int refWhiteIcon;
 
-    private Tone(int index, String ext, int refResId)
+    private Tone(int index, String ext, int refResId, int refWhiteIcon)
     {
-    	this.index   = index;
-    	this.fileExt  = ext;
-        this.refResId = refResId;
+    	this.index         = index;
+    	this.fileExt       = ext;
+        this.refResId      = refResId;
+        this.refWhiteIcon  = refWhiteIcon;
     }
 }

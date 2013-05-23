@@ -1,0 +1,35 @@
+package com.zman2245.pinpin;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.zman2245.pinpin.data.DataItemPractice;
+import com.zman2245.pinpin.fragment.learn.FragmentPractice;
+
+public class PracticeActivity extends SherlockFragmentActivity
+{
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+
+        // the window background/decor view backgrounds are not visible
+        getWindow().setBackgroundDrawable(null);
+        getWindow().getDecorView().setBackgroundDrawable(null);
+
+        setContentView(R.layout.activity_practice);
+
+        Intent intent       = getIntent();
+        DataItemPractice data = new DataItemPractice();
+        data.word = intent.getStringExtra("word");;
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        FragmentPractice frag = FragmentPractice.newInstance(data);
+        ft.add(R.id.container, frag, "frag_practice");
+        ft.commit();
+    }
+}

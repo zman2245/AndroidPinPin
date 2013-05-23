@@ -1,8 +1,10 @@
 package com.zman2245.pinpin.fragment.learn;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +13,10 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.zman2245.pinpin.AppPinPin;
+import com.zman2245.pinpin.PracticeActivity;
 import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.adapter.grid.AdapterGridReference;
 import com.zman2245.pinpin.data.DataItemLearnFlow;
-import com.zman2245.pinpin.util.audio.UtilAudioPlayer;
 import com.zman2245.pinpin.util.content.UtilUi;
 
 /**
@@ -93,9 +95,16 @@ public class FragmentLearnFlowItem extends Fragment
                 {
                     String word = (String)adapter.getItem(position);
 
-                    int resId = AppPinPin.getAudioMapper().getResourceForString(word);
+                    String parentWord = AppPinPin.sSoundMapReverse.get(word);
 
-                    UtilAudioPlayer.playSound(resId);
+                    Log.d("TESTING", "looked up parent: " + parentWord);
+
+                    Intent intent = new Intent(getActivity(), PracticeActivity.class);
+                    intent.putExtra("word", parentWord);
+                    startActivity(intent);
+//                    int resId = AppPinPin.getAudioMapper().getResourceForString(word);
+//
+//                    UtilAudioPlayer.playSound(resId);
                 }
             });
         }
