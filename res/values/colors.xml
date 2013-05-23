@@ -9,8 +9,8 @@
     <color name="bg_practice_container">#BB000000</color>
     
     <!-- Win/lose good/bad colors -->
-    <color name="win_color">#FF00FF00</color>
-    <color name="lose_color">#FFFF0000</color>
+    <color name="win_color">#FF008000</color>
+    <color name="lose_color">#FF800000</color>
     
     <!-- Orange -->
     <color name="orange_default">#FFF7B168</color>
@@ -18,7 +18,7 @@
     
     <!-- Learn sidebar -->
     <color name="sidebar_learn_new">#FF555555</color>
-    <color name="sidebar_learn_complete">#FF00DD00</color>
+    <color name="sidebar_learn_complete">#FF008000</color>
     
     <!-- Practice buttons -->
     <drawable name="btn_bg_practice_default">#FF666666</drawable>

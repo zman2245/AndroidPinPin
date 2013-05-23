@@ -6,14 +6,12 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.zman2245.pinpin.data.DataItemLearnFlow;
 import com.zman2245.pinpin.fragment.learn.FragmentLearnFlowItem;
-import com.zman2245.pinpin.fragment.learn.FragmentLearnFlowStudyInstruction;
-import com.zman2245.pinpin.util.content.UtilPracticeContent;
 
 /**
  * A view pager adapter for the Learn flows
- * 
+ *
  * TODO: add the final "study this section page" ? decorator?
- * 
+ *
  * @author zack
  */
 public class PagerAdapterLearnFlow extends FragmentStatePagerAdapter
@@ -30,8 +28,8 @@ public class PagerAdapterLearnFlow extends FragmentStatePagerAdapter
     @Override
     public Fragment getItem(int index)
     {
-        if (index == mData.length)
-            return FragmentLearnFlowStudyInstruction.newInstance(UtilPracticeContent.getPracticeDataFromLearnData(mData));
+//        if (index == mData.length)
+//            return FragmentLearnFlowStudyInstruction.newInstance(UtilPracticeContent.getPracticeDataFromLearnData(mData));
 
         return FragmentLearnFlowItem.newInstance(mData[index]);
     }
@@ -40,6 +38,9 @@ public class PagerAdapterLearnFlow extends FragmentStatePagerAdapter
     public int getCount()
     {
         // +1 for the study section at the end
-        return mData.length + 1;
+//        return mData.length + 1;
+
+        // taking out the last study page
+        return mData.length;
     }
 }

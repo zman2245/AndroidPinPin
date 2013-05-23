@@ -102,6 +102,8 @@ public class FragmentLearnFlowItem extends Fragment
                     Intent intent = new Intent(getActivity(), PracticeActivity.class);
                     intent.putExtra("word", parentWord);
                     startActivity(intent);
+
+                    getActivity().overridePendingTransition(R.anim.fade_in_default, 0);
 //                    int resId = AppPinPin.getAudioMapper().getResourceForString(word);
 //
 //                    UtilAudioPlayer.playSound(resId);

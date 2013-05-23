@@ -11,6 +11,8 @@ import com.zman2245.pinpin.fragment.learn.FragmentPractice;
 
 public class PracticeActivity extends SherlockFragmentActivity
 {
+    private FragmentPractice mFrag;
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -28,8 +30,14 @@ public class PracticeActivity extends SherlockFragmentActivity
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        FragmentPractice frag = FragmentPractice.newInstance(data);
-        ft.add(R.id.container, frag, "frag_practice");
+        mFrag = FragmentPractice.newInstance(data);
+        ft.add(R.id.container, mFrag, "frag_practice");
         ft.commit();
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        mFrag.animateOut();
     }
 }

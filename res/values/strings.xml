@@ -19,9 +19,12 @@
     <!-- Quiz section -->
     <string name="btn_quiz_question_continue">Continue</string>
     <string name="btn_quiz_question_done">Done</string>
-        <!--  TODO -->
-    <string name="quiz_end_title_win">you won!</string>
-    <string name="quiz_end_subtitle_win">you won!</string>
+    <string name="quiz_end_title_bronze">Not too bad!</string>
+    <string name="quiz_end_subtitle_bronze">You earned a bronze trophy!</string>
+    <string name="quiz_end_title_silver">Well done!</string>
+    <string name="quiz_end_subtitle_silver">You earned a silver trophy!</string>
+    <string name="quiz_end_title_gold">Perfect!</string>
+    <string name="quiz_end_subtitle_gold">You earned a gold trophy!</string>
     <string name="quiz_end_title_lose">Keep practicing!</string>
     <string name="quiz_end_subtitle_lose">Score higher to earn a trophy!</string>
 	<string name="quiz_answer_unknown">\?</string>    

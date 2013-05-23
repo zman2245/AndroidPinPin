@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -55,6 +57,8 @@ public class FragmentPractice extends Fragment implements OnClickListener
     private ImageButton mMicrophone;
     private ImageButton mRecord;
     private ImageButton mPlayback;
+
+    private View mContainer;
 
     /**
      * FragmentPractice construction
@@ -114,6 +118,16 @@ public class FragmentPractice extends Fragment implements OnClickListener
         mFirst.setSelected(true);
 
         playSoundForCurrentWord();
+
+        mContainer = rootView.findViewById(R.id.outer_container);
+        mContainer.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                animateOut();
+            }
+        });
 
         return rootView;
     }
@@ -196,6 +210,31 @@ public class FragmentPractice extends Fragment implements OnClickListener
         default:
             break;
         }
+    }
+
+    // public api
+
+    public void animateOut()
+    {
+        Animation fadeOut = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out_default);
+        fadeOut.setAnimationListener(new Animation.AnimationListener()
+        {
+            @Override
+            public void onAnimationStart(Animation animation)
+            {
+            }
+            @Override
+            public void onAnimationRepeat(Animation animation)
+            {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation)
+            {
+                getActivity().finish();
+            }
+        });
+        mContainer.startAnimation(fadeOut);
     }
 
     // private helpers

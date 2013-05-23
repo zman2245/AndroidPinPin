@@ -73,7 +73,7 @@ public class ProgressFactory
         if (data == null)
             throw new IllegalArgumentException("title (" + title + ") not found in the quiz progrss map");
 
-        if (lastItem > data.last_item_completed)
+        if (lastItem > data.last_item_completed || (lastItem == (totalItems - 1) && score >= data.score))
         {
             Editor editor = mPrefs.edit();
 
@@ -158,11 +158,11 @@ public class ProgressFactory
      */
     public int getTrophyResource(DataItemProgress prog)
     {
-        if (prog.completed && prog.score >= .9) // gold
+        if (prog.completed && prog.score >= 1.0f) // gold
             return R.drawable.trophy_gold;
-        else if (prog.completed && prog.score >= .8) // silver
+        else if (prog.completed && prog.score >= .85f) // silver
             return R.drawable.trophy_silver;
-        else if (prog.completed && prog.score >= .7) // bronze
+        else if (prog.completed && prog.score >= .70f) // bronze
             return R.drawable.trophy_bronze;
         else // not completed or too low of a score, just display placeholder
             return R.drawable.trophy_placeholder;

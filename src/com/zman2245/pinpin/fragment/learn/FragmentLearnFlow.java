@@ -94,7 +94,7 @@ public class FragmentLearnFlow extends PinBaseFragment
             adapter = new PagerAdapterLearnFlow(getChildFragmentManager(), mDatas);
 
         mPager.setAdapter(adapter);
-        pageControl.setPageNumber(mDatas.length + 1);
+        pageControl.setPageNumber(adapter.getCount());
         pageControl.setSelectedPageIndex(0);
 
         mPager.setOnPageChangeListener(new OnPageChangeListener()

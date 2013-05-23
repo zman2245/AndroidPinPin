@@ -34,6 +34,7 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
     private FragmentModelWrapper<ModelQuiz> mFragModel;
     private ModelQuiz                       mModelQuiz;
     private AdapterListQuiz                 mAdapter;
+    private String                          mCurrentQuizId;
 
     // FragmentEventListener impl
 
@@ -174,11 +175,12 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
         }
         else
         {
+            mCurrentQuizId = data.quiz_id;
             frag = FragmentQuizQuestion.newInstance(data);
-
-            // mark the progress
-            Registry.sProgressFactory.markQuizProgress(data.quiz_id, mModelQuiz.getCurrentIndex(), mModelQuiz.getNumQuestions(), mModelQuiz.getScore());
         }
+
+        // mark the progress
+        Registry.sProgressFactory.markQuizProgress(mCurrentQuizId, mModelQuiz.getCurrentIndex(), mModelQuiz.getNumQuestions(), mModelQuiz.getScore());
 
         if (fm.findFragmentByTag("quiz_flow") == null)
         {
