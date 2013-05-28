@@ -32,6 +32,7 @@ import com.flurry.android.FlurryAgent;
 import com.zman2245.pinpin.appstate.InAppPurchasesModel;
 import com.zman2245.pinpin.fragment.FragmentPurchasedQuery;
 import com.zman2245.pinpin.fragment.PinBaseFragment;
+import com.zman2245.pinpin.fragment.dialog.DialogUpgrade;
 import com.zman2245.pinpin.fragment.event.Event;
 import com.zman2245.pinpin.fragment.event.FragmentEventListener;
 import com.zman2245.pinpin.fragment.tab.FragmentTabLearn;
@@ -171,6 +172,8 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         {
         case R.id.menu_item_upgrade:
             // TODO: pass in mService or if mservice still null, give loading indicator or error show an error
+            DialogUpgrade dialog = new DialogUpgrade();
+            dialog.show(getSupportFragmentManager(), "upgrade_dialog");
             return true;
         }
 

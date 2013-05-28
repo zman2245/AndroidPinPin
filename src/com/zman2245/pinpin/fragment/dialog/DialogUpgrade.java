@@ -15,18 +15,23 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.android.vending.billing.IInAppBillingService;
+import com.zman2245.pinpin.R;
+import com.zman2245.pinpin.adapter.list.AdapterListUpgrade;
 import com.zman2245.pinpin.appstate.InAppPurchasesModel;
 
 /**
  * A dialog for upgrade purchases
- * 
+ *
  * @author zfoster
  */
 public class DialogUpgrade extends DialogFragment
 {
     private IInAppBillingService mService;
+
+    private ListView mList;
 
     private final String mNoAdProdId = "";
     private final String mQuizzesProdId = "";
@@ -53,8 +58,15 @@ public class DialogUpgrade extends DialogFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        // TODO
-        return null;
+        View rootView = inflater.inflate(R.layout.dialog_upgrade, container, false);
+
+        mList = (ListView)rootView.findViewById(R.id.list_upgrade);
+
+        AdapterListUpgrade adapter = new AdapterListUpgrade(getActivity(), inflater);
+
+        mList.setAdapter(adapter);
+
+        return rootView;
     }
 
     @Override

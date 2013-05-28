@@ -4,13 +4,10 @@
     android:layout_height="match_parent"
     android:background="@color/bg_color_default" >
 
-    <RelativeLayout
-        android:id="@+id/toolbar"
+    <ListView
+        android:id="@+id/list_upgrade"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:background="@color/orange_default">
-        
-        
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        />
 
 </RelativeLayout>
