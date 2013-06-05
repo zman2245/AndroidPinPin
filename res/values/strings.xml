@@ -6,6 +6,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     
+    <!-- Titles -->
+    <string name="title_upgrade_dialog">Select an Upgrade</string>
+    
     <!-- Content Descriptions for ImageViews and such -->
     <string name="image_desc_trophy">trophy</string>
     <string name="image_condesc_microphone">Microphone</string>
@@ -40,4 +43,13 @@
 	<!-- Learn list sidebars -->
 	<string name="sidebar_learn_new">new</string>
 	<string name="sidebar_learn_completed">complete</string>
+	
+	<!-- in app billing -->
+	<string name="purchased">Purchased</string>
+	
+	<!-- Toasts -->
+	<string name="toast_upgrade_info_failed">There was a problem loading purchased items. Please try again.</string>
+	<string name="toast_upgrade_purchase_failed">There was a problem processing your order. Please try again.</string>
+	<string name="toast_upgrade_purchased_items_failed">There was a problem loading your purchased items. If you have purchased items, please check your internet connection and reload the app.</string>
+	<string name="toast_upgrade_purchase_success">Order processed! Thank you!</string>
 </resources>

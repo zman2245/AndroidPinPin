@@ -2,7 +2,7 @@ package com.zman2245.pinpin.fragment.event;
 
 /**
  * An enumeration of possible fragment events
- * 
+ *
  * @author Zack
  */
 public enum EventType
@@ -16,6 +16,8 @@ public enum EventType
 
     INAPP_PURCHASED("inapp-purchased"),
     INAPP_PURCHASED_FAILED("inapp-purchased-failed"),
+
+    INAPP_INFO("inapp-info"),
 
     MARK_LEARN_PROGRESS("mark-learn-progress"),
     MARK_QUIZ_PROGRESS("mark-quiz-progress");

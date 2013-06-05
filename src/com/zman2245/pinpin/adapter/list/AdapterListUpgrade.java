@@ -20,7 +20,7 @@ public class AdapterListUpgrade extends BaseAdapter
     private final Context        mContext;
     private final LayoutInflater mInflater;
 
-    private final UpgradeData[] mData;
+    private UpgradeData[] mData = new UpgradeData[0];
 
     // Constructor
 
@@ -28,18 +28,13 @@ public class AdapterListUpgrade extends BaseAdapter
     {
         mContext    = context;
         mInflater   = inflater;
+    }
 
-        mData = new UpgradeData[2];
-        mData[0] = new UpgradeData();
-        mData[0].icon = R.drawable.key_orange;
-        mData[0].price = "$0.99";
-        mData[0].title = "Unlock Quizzes";
-        mData[0].subtitle = "Unlock all of the listening quizzes";
-        mData[1] = new UpgradeData();
-        mData[1].icon = R.drawable.key_orange;
-        mData[1].price = "$0.99";
-        mData[1].title = "Remove Ads";
-        mData[1].subtitle = "Remove ads";
+    public void setPurchasedItems(UpgradeData[] data)
+    {
+        mData = data;
+
+        notifyDataSetChanged();
     }
 
     // BaseAdapter hooks
@@ -84,11 +79,17 @@ public class AdapterListUpgrade extends BaseAdapter
         }
 
         holder.mTitle.setText(mData[position].title);
-        holder.mSubtitle.setText(mData[position].subtitle);
+        holder.mSubtitle.setText(mData[position].description);
         holder.mPrice.setText(mData[position].price);
         holder.mIcon.setImageResource(mData[position].icon);
 
         return convertView;
+    }
+
+    @Override
+    public boolean isEnabled(int position)
+    {
+        return (mData[position].icon == R.drawable.key_orange);
     }
 
     // ViewHolder helper class
@@ -102,10 +103,11 @@ public class AdapterListUpgrade extends BaseAdapter
     }
 
     // data class
-    private static class UpgradeData
+    public static class UpgradeData
     {
+        public String productId;
         public String title;
-        public String subtitle;
+        public String description;
         public String price;
         public int icon;
     }

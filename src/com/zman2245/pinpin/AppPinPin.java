@@ -39,6 +39,7 @@ public class AppPinPin extends Application
         sQuizGenerator = new UtilQuizGenerator();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void onCreate()
     {
@@ -46,7 +47,6 @@ public class AppPinPin extends Application
 
         dumpDeviceInfo();
 
-        // TODO: find somewhere to put this
         if (AppPinPin.sSoundMap == null)
         {
             try
@@ -126,6 +126,7 @@ public class AppPinPin extends Application
         Log.d("DeviceInfo", "scale = " + metrics.density);
     }
 
+    @SuppressWarnings("unchecked")
     private void buildReverseSoundMap()
     {
         sSoundMapReverse = new HashMap<String, String>();
@@ -141,8 +142,6 @@ public class AppPinPin extends Application
             for (String title : titles)
             {
                 sSoundMapReverse.put(title, pairs.getKey());
-
-                System.out.println("Adding following entry to reverse sound map: " + title + " . " + pairs.getKey());
             }
         }
     }

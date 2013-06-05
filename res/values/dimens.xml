@@ -27,5 +27,8 @@
     
     <!-- Button sizes -->
     <dimen name="button_height_default">55dp</dimen>
+    
+    <!-- dialog dimensions -->
+    <dimen name="upgrade_dialog_height">250dp</dimen>
 
 </resources>

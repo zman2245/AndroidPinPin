@@ -6,20 +6,28 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.PendingIntent;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
+import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager.LayoutParams;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.vending.billing.IInAppBillingService;
 import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.adapter.list.AdapterListUpgrade;
+import com.zman2245.pinpin.adapter.list.AdapterListUpgrade.UpgradeData;
 import com.zman2245.pinpin.appstate.InAppPurchasesModel;
 
 /**
@@ -29,30 +37,42 @@ import com.zman2245.pinpin.appstate.InAppPurchasesModel;
  */
 public class DialogUpgrade extends DialogFragment
 {
-    private IInAppBillingService mService;
+    private View                    mLoadingView;
+    private ListView                mList;
+    private AdapterListUpgrade      mAdapter;
+    private QuerySkuInfoAsyncTask   mInfoTask;
 
-    private ListView mList;
-
-    private final String mNoAdProdId = "";
-    private final String mQuizzesProdId = "";
-    private String mNoAdPrice = "";
-    private String mQuizzesPrice = "";
-
-    public static DialogUpgrade newInstance(IInAppBillingService service)
+    // For in-app billing
+    private IInAppBillingService    mService;
+    private final ServiceConnection mServiceConn = new ServiceConnection()
     {
-        DialogUpgrade dialog = new DialogUpgrade();
+        @Override
+        public void onServiceDisconnected(ComponentName name)
+        {
+            mService = null;
+        }
 
-        dialog.mService = service;
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service)
+        {
+            mService = IInAppBillingService.Stub.asInterface(service);
 
-        return dialog;
-    }
+            mInfoTask = new QuerySkuInfoAsyncTask();
+            mInfoTask.execute((Object[])null);
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
+        // For in-app billing
+        boolean val = getActivity().getApplicationContext().bindService(new Intent("com.android.vending.billing.InAppBillingService.BIND"), mServiceConn, Context.BIND_AUTO_CREATE);
+
         setRetainInstance(true);
+
+//        setStyle(DialogFragment.STYLE_NO_FRAME, R.style.upgradeStyle);
     }
 
     @Override
@@ -60,13 +80,44 @@ public class DialogUpgrade extends DialogFragment
     {
         View rootView = inflater.inflate(R.layout.dialog_upgrade, container, false);
 
-        mList = (ListView)rootView.findViewById(R.id.list_upgrade);
+        mLoadingView    = rootView.findViewById(R.id.loading);
+        mList           = (ListView)rootView.findViewById(R.id.list_upgrade);
 
-        AdapterListUpgrade adapter = new AdapterListUpgrade(getActivity(), inflater);
+        mLoadingView.setVisibility(View.VISIBLE);
 
-        mList.setAdapter(adapter);
+        mAdapter = new AdapterListUpgrade(getActivity(), inflater);
+
+        mList.setAdapter(mAdapter);
+
+        mList.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View view, int position, long id)
+            {
+                UpgradeData upgradeData = (UpgradeData)mAdapter.getItem(position);
+
+                mLoadingView.setVisibility(View.VISIBLE);
+
+                PurchaseItemAsyncTask purchaseTask = new PurchaseItemAsyncTask();
+
+                if (InAppPurchasesModel.TEST)
+                    purchaseTask.execute(InAppPurchasesModel.PURCHASE_TEST_SUCCESS);
+                else
+                    purchaseTask.execute(upgradeData.productId);
+            }
+        });
+
+        getDialog().setTitle(R.string.title_upgrade_dialog);
 
         return rootView;
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+
+        getDialog().getWindow().setLayout(LayoutParams.MATCH_PARENT, getResources().getDimensionPixelSize(R.dimen.upgrade_dialog_height));
     }
 
     @Override
@@ -85,11 +136,18 @@ public class DialogUpgrade extends DialogFragment
         super.onDestroyView();
     }
 
-    private class QuerySkuInfoAsyncTask extends AsyncTask<Object, Object, Object>
+    /**
+     * Task to get details of in-app items
+     *
+     * @author zfoster
+     */
+    private class QuerySkuInfoAsyncTask extends AsyncTask<Object, Object, UpgradeData[]>
     {
         @Override
-        protected Object doInBackground(Object... params)
+        protected UpgradeData[] doInBackground(Object... params)
         {
+            UpgradeData[] upgradeData = null;
+
             ArrayList<String> skuList = new ArrayList<String>();
             skuList.add(InAppPurchasesModel.PURCHASE_AD_FREE);
             skuList.add(InAppPurchasesModel.PURCHASE_QUIZZES);
@@ -105,19 +163,40 @@ public class DialogUpgrade extends DialogFragment
                 {
                     ArrayList<String> responseList = skuDetails.getStringArrayList("DETAILS_LIST");
 
+                    upgradeData = new UpgradeData[responseList.size()];
+                    int i = 0;
+
                     for (String thisResponse : responseList)
                     {
+                        upgradeData[i] = new UpgradeData();
                         JSONObject object = new JSONObject(thisResponse);
-                        String sku = object.getString("productId");
-                        String price = object.getString("price");
-                        if (sku.equals(InAppPurchasesModel.PURCHASE_AD_FREE))
+
+                        // take off the "(Pin Pin)" from the title
+                        String title = object.getString("title");
+                        if (title.contains("(Pin Pin)"))
+                            title = title.substring(0, title.length() - 10);
+
+                        upgradeData[i].title        = title;
+                        upgradeData[i].productId    = object.getString("productId");
+                        upgradeData[i].price        = object.getString("price");
+                        upgradeData[i].description  = object.getString("description");
+
+                        if ((InAppPurchasesModel.TEST &&
+                              InAppPurchasesModel.mPurchasedStatusMap.get(InAppPurchasesModel.PURCHASE_TEST_SUCCESS) != null &&
+                              InAppPurchasesModel.mPurchasedStatusMap.get(InAppPurchasesModel.PURCHASE_TEST_SUCCESS))
+                              ||
+                                (InAppPurchasesModel.mPurchasedStatusMap.get(upgradeData[i].productId) != null &&
+                                InAppPurchasesModel.mPurchasedStatusMap.get(upgradeData[i].productId)))
                         {
-                            mNoAdPrice = price;
+                            upgradeData[i].icon = R.drawable.unlock;
+                            upgradeData[i].price = getString(R.string.purchased);
                         }
-                        else if (sku.equals(InAppPurchasesModel.PURCHASE_QUIZZES))
+                        else
                         {
-                            mQuizzesPrice = price;
+                            upgradeData[i].icon = R.drawable.key_orange;
                         }
+
+                        i++;
                     }
                 }
             }
@@ -130,50 +209,33 @@ public class DialogUpgrade extends DialogFragment
                 e.printStackTrace();
             }
 
-            return null;
+            return upgradeData;
         }
 
         @Override
-        protected void onPostExecute(Object result)
+        protected void onPostExecute(UpgradeData[] upgradeData)
         {
-            // TODO
+            mLoadingView.setVisibility(View.GONE);
+
+            if (upgradeData == null || upgradeData.length <= 0)
+            {
+                Toast.makeText(getActivity(), getString(R.string.toast_upgrade_info_failed), Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            mAdapter.setPurchasedItems(upgradeData);
         }
     }
 
-    private class QueryPurchasedInfoAsyncTask extends AsyncTask<Object, Object, Object>
+    /**
+     * Task to purchase an item
+     *
+     * @author zfoster
+     */
+    private class PurchaseItemAsyncTask extends AsyncTask<String, Object, Boolean>
     {
         @Override
-        protected Object doInBackground(Object... params)
-        {
-            try
-            {
-                Bundle ownedItems = mService.getPurchases(3, getActivity().getPackageName(), "inapp", null);
-
-                int response = ownedItems.getInt("RESPONSE_CODE");
-                if (response == 0)
-                {
-                    ArrayList<String> ownedSkus = ownedItems.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
-                }
-            }
-            catch (RemoteException e)
-            {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Object result)
-        {
-            // TODO
-        }
-    }
-
-    private class PurchaseItemAsyncTask extends AsyncTask<String, Object, Object>
-    {
-        @Override
-        protected Object doInBackground(String... params)
+        protected Boolean doInBackground(String... params)
         {
             String prodId = params[0];
 
@@ -181,11 +243,18 @@ public class DialogUpgrade extends DialogFragment
             {
                 Bundle buyIntentBundle = mService.getBuyIntent(3, getActivity().getPackageName(), prodId, "inapp", "");
 
-                PendingIntent pendingIntent = buyIntentBundle.getParcelable("BUY_INTENT");
+                int responseCode = buyIntentBundle.getInt("RESPONSE_CODE");
 
-                getActivity().startIntentSenderForResult(pendingIntent.getIntentSender(),
-                        InAppPurchasesModel.PURCHASE_ACTIVITY_REQUEST_CODE, new Intent(), Integer.valueOf(0), Integer.valueOf(0),
-                        Integer.valueOf(0));
+                if (responseCode == 0)
+                {
+                    PendingIntent pendingIntent = buyIntentBundle.getParcelable("BUY_INTENT");
+
+                    getActivity().startIntentSenderForResult(pendingIntent.getIntentSender(),
+                            InAppPurchasesModel.PURCHASE_ACTIVITY_REQUEST_CODE, new Intent(), Integer.valueOf(0), Integer.valueOf(0),
+                            Integer.valueOf(0));
+
+                    return true;
+                }
             }
             catch (RemoteException e)
             {
@@ -196,16 +265,18 @@ public class DialogUpgrade extends DialogFragment
                 e.printStackTrace();
             }
 
-            // is this right? let the activity handle from here on
-            dismiss();
-
-            return null;
+            return false;
         }
 
         @Override
-        protected void onPostExecute(Object result)
+        protected void onPostExecute(Boolean result)
         {
-            // TODO
+            mLoadingView.setVisibility(View.GONE);
+
+            if (result)
+                dismiss();
+            else
+                Toast.makeText(getActivity(), getString(R.string.toast_upgrade_purchase_failed), Toast.LENGTH_LONG).show();
         }
     }
 }

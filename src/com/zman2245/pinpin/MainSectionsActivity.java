@@ -11,11 +11,14 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -49,12 +52,18 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
 {
     public static String INAPP_LOG_TAG = "InApp";
 
+    // store the active tab here
+    public static String ACTIVE_TAB = "activeTab";
+
     // ad container
     private FrameLayout mAdContainer;
 
-    // store the active tab here
-    public static String ACTIVE_TAB = "activeTab";
-    FragmentPurchasedQuery mPurchasedQueryFragment;
+    private MenuItem mUpgradeMenuItem;
+
+    private FragmentPurchasedQuery mPurchasedQueryFragment;
+
+    // may need to wait
+    private final boolean mUpgradeClicked = false;
 
     // For in-app billing
     private IInAppBillingService mService;
@@ -77,7 +86,19 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
             // purchased query fragment
             mPurchasedQueryFragment.setInAppBillingService(mService);
             getPurchased();
-            // update AppState! TODO
+
+            if (InAppPurchasesModel.TEST)
+            {
+                String purchaseToken = "inapp:"+getPackageName()+":android.test.purchased";
+                try
+                {
+                    int response = mService.consumePurchase(3, getPackageName(),purchaseToken);
+                }
+                catch (RemoteException e)
+                {
+                    e.printStackTrace();
+                }
+            }
         }
     };
 
@@ -93,15 +114,15 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        Tab tab1 = actionBar.newTab().setText(R.string.menu_global_nav_quiz)
-                .setTabListener(new TabListener<FragmentTabQuiz>(this, "maintab-quiz", FragmentTabQuiz.class));
-
-        actionBar.addTab(tab1, true);
-
         Tab tab2 = actionBar.newTab().setText(R.string.menu_global_nav_learn)
                 .setTabListener(new TabListener<FragmentTabLearn>(this, "maintab-learn", FragmentTabLearn.class));
 
         actionBar.addTab(tab2);
+
+        Tab tab1 = actionBar.newTab().setText(R.string.menu_global_nav_quiz)
+                .setTabListener(new TabListener<FragmentTabQuiz>(this, "maintab-quiz", FragmentTabQuiz.class));
+
+        actionBar.addTab(tab1, true);
 
         Tab tab3 = actionBar.newTab().setText(R.string.menu_global_nav_reference)
                 .setTabListener(new TabListener<FragmentTabReference>(this, "maintab-reference", FragmentTabReference.class));
@@ -111,9 +132,11 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         // check if there is a saved state to select active tab
         if (savedInstanceState != null)
             getSupportActionBar().setSelectedNavigationItem(savedInstanceState.getInt(ACTIVE_TAB));
+        else
+            getSupportActionBar().setSelectedNavigationItem(0);
 
         // For in-app billing
-        bindService(new Intent("com.android.vending.billing.InAppBillingService.BIND"), mServiceConn, Context.BIND_AUTO_CREATE);
+        boolean val = getApplicationContext().bindService(new Intent("com.android.vending.billing.InAppBillingService.BIND"), mServiceConn, Context.BIND_AUTO_CREATE);
 
         // set action bar color to orange
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.orange_default));
@@ -171,7 +194,6 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         switch (item.getItemId())
         {
         case R.id.menu_item_upgrade:
-            // TODO: pass in mService or if mservice still null, give loading indicator or error show an error
             DialogUpgrade dialog = new DialogUpgrade();
             dialog.show(getSupportFragmentManager(), "upgrade_dialog");
             return true;
@@ -184,11 +206,11 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
     public void onDestroy()
     {
         super.onDestroy();
-
-        if (mServiceConn != null)
-        {
-            unbindService(mServiceConn);
-        }
+//
+//        if (mServiceConn != null && mService != null)
+//        {
+//            unbindService(mServiceConn);
+//        }
     }
 
     @Override
@@ -196,9 +218,9 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
     {
         if (requestCode == InAppPurchasesModel.PURCHASE_ACTIVITY_REQUEST_CODE)
         {
-            int responseCode = data.getIntExtra("RESPONSE_CODE", 0);
-            String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
-            String dataSignature = data.getStringExtra("INAPP_DATA_SIGNATURE");
+            int responseCode        = data.getIntExtra("RESPONSE_CODE", 0);
+            String purchaseData     = data.getStringExtra("INAPP_PURCHASE_DATA");
+            String dataSignature    = data.getStringExtra("INAPP_DATA_SIGNATURE");
 
             if (resultCode == RESULT_OK)
             {
@@ -206,13 +228,20 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
                 {
                     JSONObject jo = new JSONObject(purchaseData);
                     String sku = jo.getString("productId");
-                    Log.d("TESTING", "You have bought the " + sku + ". Excellent choice, adventurer!");
+                    InAppPurchasesModel.mPurchasedStatusMap.put(sku, true);
+
+                    processPurchasedItems();
                 }
                 catch (JSONException e)
                 {
-                    Log.d("TESTING", "Failed to parse purchase data.");
                     e.printStackTrace();
                 }
+
+                Toast.makeText(this, getString(R.string.toast_upgrade_purchase_success), Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                Toast.makeText(this, getString(R.string.toast_upgrade_purchase_failed), Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -226,6 +255,9 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
 
         // For ad serving. TODO: if upgraded, hide the ads banner
         FlurryAds.fetchAd(this, "PinPinMainBottom", mAdContainer, FlurryAdSize.BANNER_BOTTOM);
+
+        if (InAppPurchasesModel.mPurchasedStatusMap.size() == 0)
+            getPurchased();
     }
 
     @Override
@@ -237,8 +269,34 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         FlurryAgent.onEndSession(this);
     }
 
+    // private helpers
+
+    private void processPurchasedItems()
+    {
+        if (InAppPurchasesModel.mPurchasedStatusMap.get(InAppPurchasesModel.PURCHASE_AD_FREE) != null &&
+                InAppPurchasesModel.mPurchasedStatusMap.get(InAppPurchasesModel.PURCHASE_AD_FREE))
+        {
+            FlurryAds.removeAd(this, "PinPinMainBottom", mAdContainer);
+            mAdContainer.setVisibility(View.GONE);
+        }
+
+        if (InAppPurchasesModel.mPurchasedStatusMap.get(InAppPurchasesModel.PURCHASE_QUIZZES) != null &&
+                InAppPurchasesModel.mPurchasedStatusMap.get(InAppPurchasesModel.PURCHASE_QUIZZES))
+        {
+
+        }
+
+        if (InAppPurchasesModel.mPurchasedStatusMap.get(InAppPurchasesModel.PURCHASE_TEST_SUCCESS) != null &&
+                InAppPurchasesModel.mPurchasedStatusMap.get(InAppPurchasesModel.PURCHASE_TEST_SUCCESS))
+        {
+            FlurryAds.removeAd(this, "PinPinMainBottom", mAdContainer);
+            mAdContainer.setVisibility(View.GONE);
+        }
+    }
+
     // FragmentEventListener impl
 
+    @SuppressWarnings("unchecked")
     @Override
     public void handleEvent(Event event)
     {
@@ -246,10 +304,29 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         {
         case INAPP_PURCHASED:
             ArrayList<String> purchasedProdIds = (ArrayList<String>)event.data.get("purchased");
+            Log.d("TESTING", "Purchased prod ids: " + purchasedProdIds);
+
+            if (purchasedProdIds.contains(InAppPurchasesModel.PURCHASE_AD_FREE))
+                InAppPurchasesModel.mPurchasedStatusMap.put(InAppPurchasesModel.PURCHASE_AD_FREE, true);
+            else
+                InAppPurchasesModel.mPurchasedStatusMap.put(InAppPurchasesModel.PURCHASE_AD_FREE, false);
+
+            if (purchasedProdIds.contains(InAppPurchasesModel.PURCHASE_QUIZZES))
+                InAppPurchasesModel.mPurchasedStatusMap.put(InAppPurchasesModel.PURCHASE_QUIZZES, true);
+            else
+                InAppPurchasesModel.mPurchasedStatusMap.put(InAppPurchasesModel.PURCHASE_QUIZZES, false);
+
+            if (purchasedProdIds.contains(InAppPurchasesModel.PURCHASE_TEST_SUCCESS))
+                InAppPurchasesModel.mPurchasedStatusMap.put(InAppPurchasesModel.PURCHASE_TEST_SUCCESS, true);
+            else
+                InAppPurchasesModel.mPurchasedStatusMap.put(InAppPurchasesModel.PURCHASE_TEST_SUCCESS, false);
+
+            processPurchasedItems();
+
             break;
 
         case INAPP_PURCHASED_FAILED:
-            // TODO:
+            Toast.makeText(this, getString(R.string.toast_upgrade_purchased_items_failed), Toast.LENGTH_LONG).show();
             break;
 
         default:
