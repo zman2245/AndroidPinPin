@@ -30,7 +30,7 @@ import com.zman2245.pinpin.view.listitem.ViewQuizChoice;
 
 /**
  * A fragment for a single quiz question
- * 
+ *
  * @author zack
  */
 public class FragmentQuizQuestion extends Fragment implements OnItemClickListener
@@ -45,10 +45,11 @@ public class FragmentQuizQuestion extends Fragment implements OnItemClickListene
     private DataItemQuiz        mData;
     private ModelQuizQuestion   mModel;
     private int                 mNumSubQuestions;
+    private boolean[]           mCorrectStatuses;
 
     /**
      * FragmentQuizItem construction
-     * 
+     *
      * @param data
      *            The data this fragment will present
      * @return A new instance of FragmentLearnFlowItem
@@ -72,6 +73,12 @@ public class FragmentQuizQuestion extends Fragment implements OnItemClickListene
         mData = (DataItemQuiz) getArguments().get(KEY_DATA);
         mModel = new ModelQuizQuestion(mData);
         mNumSubQuestions = mData.answers.length;
+
+        mCorrectStatuses = new boolean[mData.answers.length];
+        for (int i = 0; i < mData.answers.length; i++)
+        {
+            mCorrectStatuses[i] = false;
+        }
     }
 
     @Override
@@ -142,12 +149,16 @@ public class FragmentQuizQuestion extends Fragment implements OnItemClickListene
         int subQuestion = getSubQuestionNum(position);
 
         boolean isCorrect = mModel.answer(word, subQuestion);
+        mCorrectStatuses[subQuestion] = isCorrect;
+
         if (isCorrect)
         {
             mAnswerText.setText(mModel.getAnswerText());
             choiceView.setCorrect();
             mAdapter.setColumnEnabled(subQuestion, false);
-            showContinueButton();
+
+            if (allCorrect())
+                showContinueButton();
         }
         else
         {
@@ -156,6 +167,17 @@ public class FragmentQuizQuestion extends Fragment implements OnItemClickListene
     }
 
     // private helpers
+
+    private boolean allCorrect()
+    {
+        for (int i = 0; i < mCorrectStatuses.length; i++)
+        {
+            if (!mCorrectStatuses[i])
+                return false;
+        }
+
+        return true;
+    }
 
     private int getSubQuestionNum(int position)
     {
@@ -185,7 +207,7 @@ public class FragmentQuizQuestion extends Fragment implements OnItemClickListene
     /**
      * Send an event to this fragment's parent (could be a parent fragment or an
      * activity)
-     * 
+     *
      * @param event
      *            The event to send
      */
