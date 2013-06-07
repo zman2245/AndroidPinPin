@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,16 +96,11 @@ public class FragmentLearnFlowItem extends Fragment
 
                     String parentWord = AppPinPin.sSoundMapReverse.get(word);
 
-                    Log.d("TESTING", "looked up parent: " + parentWord);
-
                     Intent intent = new Intent(getActivity(), PracticeActivity.class);
                     intent.putExtra("word", parentWord);
                     startActivity(intent);
 
                     getActivity().overridePendingTransition(R.anim.fade_in_default, 0);
-//                    int resId = AppPinPin.getAudioMapper().getResourceForString(word);
-//
-//                    UtilAudioPlayer.playSound(resId);
                 }
             });
         }

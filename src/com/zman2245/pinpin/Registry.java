@@ -10,6 +10,8 @@ import com.zman2245.pinpin.appstate.ProgressFactory;
  */
 public class Registry
 {
+    public static AppPinPin sApp;
+
     public static ProgressFactory sProgressFactory;
 
     public static InAppPurchasesModel mInAppPurchasesModel;

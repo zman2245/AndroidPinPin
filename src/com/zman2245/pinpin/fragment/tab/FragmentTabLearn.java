@@ -19,6 +19,7 @@ import com.zman2245.pinpin.fragment.PinBaseFragment;
 import com.zman2245.pinpin.fragment.event.Event;
 import com.zman2245.pinpin.fragment.event.FragmentEventListener;
 import com.zman2245.pinpin.fragment.learn.FragmentLearnFlow;
+import com.zman2245.pinpin.log.EventLog;
 import com.zman2245.pinpin.util.content.UtilContentStrings;
 
 public class FragmentTabLearn extends PinBaseFragment implements FragmentEventListener
@@ -113,6 +114,9 @@ public class FragmentTabLearn extends PinBaseFragment implements FragmentEventLi
         ft.commit();
 
         enableHomeAsUp(true);
+
+        if (index == 0)
+            EventLog.trackEvent(R.string.flurry_event_section_intro);
     }
 
     private void endLearn()

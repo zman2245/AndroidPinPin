@@ -9,6 +9,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.util.Log;
 
 import com.flurry.android.FlurryAgent;
+import com.zman2245.pinpin.Registry;
 
 /**
  * Contains static methods to track events
@@ -51,9 +52,6 @@ public class EventLog
      */
     public static void setUserName(String name)
     {
-       // CsLog.log(LOG_TAG, "Setting username to " + name);
-
-       // FlurryAgent.setUserId(name);
     }
 
     /**
@@ -80,6 +78,24 @@ public class EventLog
      */
     public static void trackEvent(final String eventName)
     {
+        EventWorkerWrapper wrapper = new EventWorkerWrapper();
+        wrapper.type = EventLogType.EventLogTypeEvent;
+        wrapper.eventName = eventName;
+
+        sDispatchQueue.offer(wrapper);
+    }
+
+    /**
+     * Track an event
+     *
+     * Just tracks an event by a simple event name
+     *
+     * @param eventName
+     */
+    public static void trackEvent(int stringResId)
+    {
+        String eventName = Registry.sApp.getString(stringResId);
+
         EventWorkerWrapper wrapper = new EventWorkerWrapper();
         wrapper.type = EventLogType.EventLogTypeEvent;
         wrapper.eventName = eventName;

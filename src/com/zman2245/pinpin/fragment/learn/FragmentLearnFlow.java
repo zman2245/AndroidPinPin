@@ -16,6 +16,7 @@ import com.zman2245.pinpin.data.DataItemLearnFlow;
 import com.zman2245.pinpin.fragment.PinBaseFragment;
 import com.zman2245.pinpin.fragment.event.Event;
 import com.zman2245.pinpin.fragment.event.EventType;
+import com.zman2245.pinpin.log.EventLog;
 import com.zman2245.pinpin.view.pagecontrol.PageControl;
 
 /**
@@ -105,6 +106,9 @@ public class FragmentLearnFlow extends PinBaseFragment
                 pageControl.setSelectedPageIndex(index);
 
                 Registry.sProgressFactory.markLearnProgress(mId, index, mDatas.length);
+
+                if ((index >= (mDatas.length - 1)))
+                    EventLog.trackEvent(R.string.flurry_event_section_complete);
             }
 
             @Override

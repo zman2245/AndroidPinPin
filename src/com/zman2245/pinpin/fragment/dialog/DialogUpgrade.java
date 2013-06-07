@@ -29,6 +29,7 @@ import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.adapter.list.AdapterListUpgrade;
 import com.zman2245.pinpin.adapter.list.AdapterListUpgrade.UpgradeData;
 import com.zman2245.pinpin.appstate.InAppPurchasesModel;
+import com.zman2245.pinpin.log.EventLog;
 
 /**
  * A dialog for upgrade purchases
@@ -71,8 +72,6 @@ public class DialogUpgrade extends DialogFragment
         boolean val = getActivity().getApplicationContext().bindService(new Intent("com.android.vending.billing.InAppBillingService.BIND"), mServiceConn, Context.BIND_AUTO_CREATE);
 
         setRetainInstance(true);
-
-//        setStyle(DialogFragment.STYLE_NO_FRAME, R.style.upgradeStyle);
     }
 
     @Override
@@ -94,6 +93,8 @@ public class DialogUpgrade extends DialogFragment
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long id)
             {
+                EventLog.trackEvent(R.string.flurry_event_store_purchase_start);
+
                 UpgradeData upgradeData = (UpgradeData)mAdapter.getItem(position);
 
                 mLoadingView.setVisibility(View.VISIBLE);
@@ -108,6 +109,8 @@ public class DialogUpgrade extends DialogFragment
         });
 
         getDialog().setTitle(R.string.title_upgrade_dialog);
+
+        EventLog.trackEvent(R.string.flurry_event_store);
 
         return rootView;
     }
@@ -255,6 +258,10 @@ public class DialogUpgrade extends DialogFragment
 
                     return true;
                 }
+                else
+                {
+                    EventLog.trackEvent(R.string.flurry_event_store_purchase_fail);
+                }
             }
             catch (RemoteException e)
             {
@@ -274,9 +281,14 @@ public class DialogUpgrade extends DialogFragment
             mLoadingView.setVisibility(View.GONE);
 
             if (result)
+            {
                 dismiss();
+            }
             else
+            {
+                EventLog.trackEvent(R.string.flurry_event_store_purchase_fail);
                 Toast.makeText(getActivity(), getString(R.string.toast_upgrade_purchase_failed), Toast.LENGTH_LONG).show();
+            }
         }
     }
 }

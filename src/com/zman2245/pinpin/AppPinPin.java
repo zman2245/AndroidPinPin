@@ -12,6 +12,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.zman2245.pinpin.appstate.ProgressFactory;
+import com.zman2245.pinpin.log.EventLog;
 import com.zman2245.pinpin.util.audio.AudioResourceMapper;
 import com.zman2245.pinpin.util.audio.AudioResourceMapperImpl;
 import com.zman2245.pinpin.util.content.UtilQuizGenerator;
@@ -35,6 +36,7 @@ public class AppPinPin extends Application
         super();
 
         sInstance = this;
+        Registry.sApp = this;
         mAudioMapper = new AudioResourceMapperImpl();
         sQuizGenerator = new UtilQuizGenerator();
     }
@@ -55,10 +57,8 @@ public class AppPinPin extends Application
                 XmlParserSounds parser = new XmlParserSounds();
                 long ts = System.currentTimeMillis();
                 HashMap<String, Object> soundsMap = parser.parse(is);
-                Log.d("TESTING", "to parse the xml took this many milliseconds: " + (System.currentTimeMillis() - ts));
                 HashMap<String, Object> tmp = (HashMap<String, Object>)soundsMap.get("an");
                 String[] titles = (String[])tmp.get("title");
-                Log.d("TESTING", "title: " + titles);
                 AppPinPin.sSoundMap = soundsMap;
 
                 buildReverseSoundMap();
@@ -68,6 +68,8 @@ public class AppPinPin extends Application
                 e.printStackTrace();
             }
         }
+
+        EventLog.init(this);
     }
 
     public static AppPinPin getInstance()

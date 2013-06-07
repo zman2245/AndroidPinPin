@@ -1,6 +1,5 @@
 package com.zman2245.pinpin.fragment.learn;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -9,7 +8,6 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,6 +20,7 @@ import android.widget.TextView;
 import com.zman2245.pinpin.AppPinPin;
 import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.data.DataItemPractice;
+import com.zman2245.pinpin.log.EventLog;
 import com.zman2245.pinpin.util.audio.UtilAudioPlayer;
 
 /**
@@ -83,6 +82,7 @@ public class FragmentPractice extends Fragment implements OnClickListener
         super.onCreate(savedInstanceState);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -156,6 +156,7 @@ public class FragmentPractice extends Fragment implements OnClickListener
         switch (v.getId())
         {
         case R.id.btn_tone_first:
+            EventLog.trackEvent(R.string.flurry_event_sound_practice_tone);
             mCurrentWord = mTones[0];
             mTitle.setText(mTones[0]);
             playSoundForCurrentWord();
@@ -164,6 +165,7 @@ public class FragmentPractice extends Fragment implements OnClickListener
             break;
 
         case R.id.btn_tone_second:
+            EventLog.trackEvent(R.string.flurry_event_sound_practice_tone);
             mCurrentWord = mTones[1];
             mTitle.setText(mTones[1]);
             playSoundForCurrentWord();
@@ -172,6 +174,7 @@ public class FragmentPractice extends Fragment implements OnClickListener
             break;
 
         case R.id.btn_tone_third:
+            EventLog.trackEvent(R.string.flurry_event_sound_practice_tone);
             mCurrentWord = mTones[2];
             mTitle.setText(mTones[2]);
             playSoundForCurrentWord();
@@ -180,6 +183,7 @@ public class FragmentPractice extends Fragment implements OnClickListener
             break;
 
         case R.id.btn_tone_fourth:
+            EventLog.trackEvent(R.string.flurry_event_sound_practice_tone);
             mCurrentWord = mTones[3];
             mTitle.setText(mTones[3]);
             playSoundForCurrentWord();
@@ -189,22 +193,35 @@ public class FragmentPractice extends Fragment implements OnClickListener
 
         case R.id.btn_microphone:
             playSoundForCurrentWord();
+            EventLog.trackEvent(R.string.flurry_event_sound_practice_listen);
             break;
 
         case R.id.btn_record:
             if (mRecorder == null)
+            {
+                EventLog.trackEvent(R.string.flurry_event_sound_practice_record);
                 startRecording();
+            }
             else
+            {
                 stopRecording();
+            }
             break;
 
         case R.id.btn_play:
             if (mPlayer != null && mPlayer.isPlaying())
+            {
                 mPlayer.pause();
+            }
             else if (mPlayer != null)
+            {
                 mPlayer.start();
+            }
             else
+            {
+                EventLog.trackEvent(R.string.flurry_event_sound_practice_playback);
                 startPlaying();
+            }
             break;
 
         default:
@@ -241,10 +258,9 @@ public class FragmentPractice extends Fragment implements OnClickListener
 
     private void startRecording()
     {
-        File file = new File(mFileName);
-//        boolean deleted = file.delete();
-//        Log.d("TESTING", "deleted file: " + deleted);
-        Log.d("TESTING", "filename for recording: " + mFileName);
+        if (mPlayer != null)
+            mPlayer.release();
+
         mPlayer = null; // reset player
         mPlayback.setEnabled(false);
         mRecord.setImageResource(R.drawable.recorder_orange);
@@ -311,12 +327,6 @@ public class FragmentPractice extends Fragment implements OnClickListener
         {
             e.printStackTrace();
         }
-    }
-
-    private void stopPlaying()
-    {
-        mPlayer.release();
-        mPlayer = null;
     }
 
     private void playSoundForCurrentWord()

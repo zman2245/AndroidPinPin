@@ -9,7 +9,7 @@ import java.util.HashMap;
  */
 public class InAppPurchasesModel
 {
-    public static boolean TEST = true;
+    public static boolean TEST = false;
 
     // magic test productIds
     public static String PURCHASE_TEST_SUCCESS          = "android.test.purchased";

@@ -42,6 +42,7 @@ import com.zman2245.pinpin.fragment.tab.FragmentTabLearn;
 import com.zman2245.pinpin.fragment.tab.FragmentTabQuiz;
 import com.zman2245.pinpin.fragment.tab.FragmentTabReference;
 import com.zman2245.pinpin.fragment.tab.TabListener;
+import com.zman2245.pinpin.log.EventLog;
 
 /**
  * "Top-level" sections including Learn, Quiz, and Reference Fragments
@@ -115,17 +116,17 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         Tab tab2 = actionBar.newTab().setText(R.string.menu_global_nav_learn)
-                .setTabListener(new TabListener<FragmentTabLearn>(this, "maintab-learn", FragmentTabLearn.class));
+                .setTabListener(new TabListener<FragmentTabLearn>(this, "maintab-learn", FragmentTabLearn.class, R.string.flurry_event_mode_learn));
 
         actionBar.addTab(tab2);
 
         Tab tab1 = actionBar.newTab().setText(R.string.menu_global_nav_quiz)
-                .setTabListener(new TabListener<FragmentTabQuiz>(this, "maintab-quiz", FragmentTabQuiz.class));
+                .setTabListener(new TabListener<FragmentTabQuiz>(this, "maintab-quiz", FragmentTabQuiz.class, R.string.flurry_event_mode_quiz));
 
         actionBar.addTab(tab1, true);
 
         Tab tab3 = actionBar.newTab().setText(R.string.menu_global_nav_reference)
-                .setTabListener(new TabListener<FragmentTabReference>(this, "maintab-reference", FragmentTabReference.class));
+                .setTabListener(new TabListener<FragmentTabReference>(this, "maintab-reference", FragmentTabReference.class, R.string.flurry_event_mode_reference));
 
         actionBar.addTab(tab3);
 
@@ -194,6 +195,7 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         switch (item.getItemId())
         {
         case R.id.menu_item_upgrade:
+            EventLog.trackEvent(R.string.flurry_event_mode_store);
             DialogUpgrade dialog = new DialogUpgrade();
             dialog.show(getSupportFragmentManager(), "upgrade_dialog");
             return true;
@@ -231,6 +233,8 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
                     InAppPurchasesModel.mPurchasedStatusMap.put(sku, true);
 
                     processPurchasedItems();
+
+                    EventLog.trackEvent(R.string.flurry_event_store_purchase_complete);
                 }
                 catch (JSONException e)
                 {
@@ -241,6 +245,7 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
             }
             else
             {
+                EventLog.trackEvent(R.string.flurry_event_store_purchase_fail);
                 Toast.makeText(this, getString(R.string.toast_upgrade_purchase_failed), Toast.LENGTH_LONG).show();
             }
         }
@@ -304,7 +309,6 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         {
         case INAPP_PURCHASED:
             ArrayList<String> purchasedProdIds = (ArrayList<String>)event.data.get("purchased");
-            Log.d("TESTING", "Purchased prod ids: " + purchasedProdIds);
 
             if (purchasedProdIds.contains(InAppPurchasesModel.PURCHASE_AD_FREE))
                 InAppPurchasesModel.mPurchasedStatusMap.put(InAppPurchasesModel.PURCHASE_AD_FREE, true);

@@ -1,5 +1,6 @@
 package com.zman2245.pinpin.fragment.tab;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -14,9 +15,11 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.zman2245.pinpin.AppPinPin;
+import com.zman2245.pinpin.PracticeActivity;
 import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.adapter.grid.AdapterGridReference;
 import com.zman2245.pinpin.fragment.PinBaseFragment;
+import com.zman2245.pinpin.log.EventLog;
 import com.zman2245.pinpin.util.audio.Tone;
 import com.zman2245.pinpin.util.audio.UtilAudioPlayer;
 import com.zman2245.pinpin.util.content.UtilContentStrings;
@@ -47,6 +50,8 @@ public class FragmentTabReference extends PinBaseFragment
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
+                EventLog.trackEvent(R.string.flurry_event_reference_chart_listen);
+
                 String word = (String) mAdapter.getItem(position);
 
                 int resId = AppPinPin.getAudioMapper().getResourceForString(word);
@@ -59,6 +64,8 @@ public class FragmentTabReference extends PinBaseFragment
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
             {
+                EventLog.trackEvent(R.string.flurry_event_reference_chart_practice);
+
                 navigateToPractice(position);
 
                 return true;
@@ -116,6 +123,8 @@ public class FragmentTabReference extends PinBaseFragment
 
     private void setContentTone(Tone tone)
     {
+        EventLog.trackEvent(R.string.flurry_event_reference_tone);
+
         String[][] content  = UtilContentStrings.getReferenceStrings(tone);
         mAdapter            = new AdapterGridReference(content, getLayoutInflater(null));
 
@@ -146,16 +155,14 @@ public class FragmentTabReference extends PinBaseFragment
 
     private void navigateToPractice(int index)
     {
-        // TBD
-        // DataItemLearnFlow[] datas =
-        // UtilContentStrings.getLearnSectionData(index);
-        //
-        // FragmentLearnFlow frag = FragmentLearnFlow.newInstance(datas);
-        // FragmentManager fm = getSupportFragmentManager();
-        // FragmentTransaction ft = fm.beginTransaction();
-        //
-        // ft.add(R.id.container, frag, "learn_flow");
-        // ft.addToBackStack("learn_flow");
-        // ft.commit();
+        String word = (String)mAdapter.getItem(index);
+
+        String parentWord = AppPinPin.sSoundMapReverse.get(word);
+
+        Intent intent = new Intent(getActivity(), PracticeActivity.class);
+        intent.putExtra("word", parentWord);
+        startActivity(intent);
+
+        getActivity().overridePendingTransition(R.anim.fade_in_default, 0);
     }
 }

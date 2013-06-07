@@ -26,6 +26,7 @@ import com.zman2245.pinpin.fragment.event.FragmentEventListener;
 import com.zman2245.pinpin.fragment.modelwrapper.FragmentModelWrapper;
 import com.zman2245.pinpin.fragment.quiz.FragmentQuizEnd;
 import com.zman2245.pinpin.fragment.quiz.FragmentQuizQuestion;
+import com.zman2245.pinpin.log.EventLog;
 import com.zman2245.pinpin.model.ModelQuiz;
 import com.zman2245.pinpin.model.ModelQuizQuestion;
 
@@ -148,6 +149,8 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
      */
     private void navigateToQuizSection(int index)
     {
+        EventLog.trackEvent(R.string.flurry_event_quiz_start);
+
         DataItemQuiz[] datas = AppPinPin.sQuizGenerator.getQuizQuestions(index);
         mModelQuiz = new ModelQuiz(datas);
         mFragModel.setModel(mModelQuiz);
@@ -171,10 +174,13 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
         if (data == null)
         {
             // End of quiz
+            EventLog.trackEvent(R.string.flurry_event_quiz_result);
             frag = FragmentQuizEnd.newInstance(mModelQuiz.getQuizEndData());
         }
         else
         {
+            // Next question
+            EventLog.trackEvent(R.string.flurry_event_quiz_question);
             mCurrentQuizId = data.quiz_id;
             frag = FragmentQuizQuestion.newInstance(data);
         }

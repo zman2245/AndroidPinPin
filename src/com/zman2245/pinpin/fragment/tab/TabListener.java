@@ -7,6 +7,7 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.zman2245.pinpin.R;
+import com.zman2245.pinpin.log.EventLog;
 
 public class TabListener<T extends Fragment> implements ActionBar.TabListener
 {
@@ -14,12 +15,14 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener
     private final SherlockFragmentActivity  mActivity;
     private final String                    mTag;
     private final Class<T>                  mClass;
+    private final int                       mFlurryEventResId;
 
-    public TabListener(SherlockFragmentActivity activity, String tag, Class<T> clz)
+    public TabListener(SherlockFragmentActivity activity, String tag, Class<T> clz, int flurryEventResId)
     {
-        mActivity   = activity;
-        mTag        = tag;
-        mClass      = clz;
+        mActivity           = activity;
+        mTag                = tag;
+        mClass              = clz;
+        mFlurryEventResId   = flurryEventResId;
 
         mFragment = mActivity.getSupportFragmentManager().findFragmentByTag(mTag);
     }
@@ -27,6 +30,8 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener
     @Override
     public void onTabSelected(Tab tab, FragmentTransaction ft)
     {
+        EventLog.trackEvent(mFlurryEventResId);
+
         // Check if the fragment is already initialized
         if (mFragment == null)
         {

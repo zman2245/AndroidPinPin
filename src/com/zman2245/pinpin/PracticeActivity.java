@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.zman2245.pinpin.data.DataItemPractice;
 import com.zman2245.pinpin.fragment.learn.FragmentPractice;
+import com.zman2245.pinpin.log.EventLog;
 
 public class PracticeActivity extends SherlockFragmentActivity
 {
@@ -33,6 +34,8 @@ public class PracticeActivity extends SherlockFragmentActivity
         mFrag = FragmentPractice.newInstance(data);
         ft.add(R.id.container, mFrag, "frag_practice");
         ft.commit();
+
+        EventLog.trackEvent(R.string.flurry_event_sound_practice);
     }
 
     @Override

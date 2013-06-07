@@ -1,7 +1,6 @@
 package com.zman2245.pinpin.util.content;
 
 import android.content.res.TypedArray;
-import android.util.Log;
 
 import com.zman2245.pinpin.AppPinPin;
 import com.zman2245.pinpin.R;
@@ -79,8 +78,6 @@ public class UtilContentStrings
 
         if (sectionButtons != null)
             sectionButtons.recycle();
-
-        Log.d("TESTING", "get content time taken: " + (System.currentTimeMillis() - ts));
 
         return datas;
     }
