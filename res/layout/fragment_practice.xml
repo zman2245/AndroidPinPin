@@ -87,7 +87,8 @@
             <ImageButton
                 android:id="@+id/btn_play"
                 style="@style/ButtonPracticeAudioControl"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:src="@drawable/play" />
         </LinearLayout>
 
     </RelativeLayout>

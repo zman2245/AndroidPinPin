@@ -141,10 +141,11 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
 
         // set action bar color to orange
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.orange_default));
+        getSupportActionBar().setIcon(R.drawable.icon_white);
 
         // test ads? TODO: remove before submission
         FlurryAds.setAdListener(this);
-        FlurryAds.enableTestAds(true);
+//        FlurryAds.enableTestAds(true);
 
         // set up purchased query fragment
         mPurchasedQueryFragment = (FragmentPurchasedQuery)getSupportFragmentManager().findFragmentByTag("purchased");

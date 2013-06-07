@@ -108,8 +108,6 @@
  		<item>@array/quiz1_question2</item>
 		<item>@array/quiz1_question3</item>
 		<item>@array/quiz1_question4</item>
-		
-		<!--
 		<item>@array/quiz1_question5</item>
 		<item>@array/quiz1_question6</item>
 		<item>@array/quiz1_question7</item>
@@ -121,7 +119,6 @@
 		<item>@array/quiz1_question13</item>
 		<item>@array/quiz1_question14</item>
 		<item>@array/quiz1_question15</item>
-		-->
     </array>
     
     

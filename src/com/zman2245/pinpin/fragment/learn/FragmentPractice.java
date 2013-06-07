@@ -129,6 +129,8 @@ public class FragmentPractice extends Fragment implements OnClickListener
             }
         });
 
+        mPlayback.setEnabled(false);
+
         return rootView;
     }
 
@@ -197,6 +199,7 @@ public class FragmentPractice extends Fragment implements OnClickListener
             break;
 
         case R.id.btn_record:
+            mPlayback.setEnabled(true);
             if (mRecorder == null)
             {
                 EventLog.trackEvent(R.string.flurry_event_sound_practice_record);
@@ -211,15 +214,18 @@ public class FragmentPractice extends Fragment implements OnClickListener
         case R.id.btn_play:
             if (mPlayer != null && mPlayer.isPlaying())
             {
+                mPlayback.setImageResource(R.drawable.play);
                 mPlayer.pause();
             }
             else if (mPlayer != null)
             {
+                mPlayback.setImageResource(R.drawable.pause);
                 mPlayer.start();
             }
             else
             {
                 EventLog.trackEvent(R.string.flurry_event_sound_practice_playback);
+                mPlayback.setImageResource(R.drawable.pause);
                 startPlaying();
             }
             break;
@@ -316,7 +322,7 @@ public class FragmentPractice extends Fragment implements OnClickListener
                 @Override
                 public void onCompletion(MediaPlayer mp)
                 {
-                    // TODO: might use this to set play/pause icon on button
+                    mPlayback.setImageResource(R.drawable.play);
                 }
             });
 
