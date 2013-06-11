@@ -10,7 +10,7 @@ package com.zman2245.pinpin.data;
 public class DataItemProgress
 {
     public boolean completed    = false;
-    public int     last_item_completed = 0;
+    public int     last_item_completed = -1;
     public int     total_items = 0;
 
     // used by quiz only right now

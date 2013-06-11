@@ -16,6 +16,7 @@ public enum EventType
 
     INAPP_PURCHASED("inapp-purchased"),
     INAPP_PURCHASED_FAILED("inapp-purchased-failed"),
+    INAPP_SHOW_STORE("inapp-show-store"),
 
     INAPP_INFO("inapp-info"),
 

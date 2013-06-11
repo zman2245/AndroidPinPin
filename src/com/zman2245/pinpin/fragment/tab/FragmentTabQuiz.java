@@ -7,10 +7,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.actionbarsherlock.view.MenuItem;
@@ -18,10 +20,12 @@ import com.zman2245.pinpin.AppPinPin;
 import com.zman2245.pinpin.R;
 import com.zman2245.pinpin.Registry;
 import com.zman2245.pinpin.adapter.list.AdapterListQuiz;
+import com.zman2245.pinpin.appstate.InAppPurchasesModel;
 import com.zman2245.pinpin.data.DataItemQuiz;
 import com.zman2245.pinpin.fragment.PinBaseFragment;
 import com.zman2245.pinpin.fragment.event.Event;
 import com.zman2245.pinpin.fragment.event.EventData;
+import com.zman2245.pinpin.fragment.event.EventType;
 import com.zman2245.pinpin.fragment.event.FragmentEventListener;
 import com.zman2245.pinpin.fragment.modelwrapper.FragmentModelWrapper;
 import com.zman2245.pinpin.fragment.quiz.FragmentQuizEnd;
@@ -36,6 +40,9 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
     private ModelQuiz                       mModelQuiz;
     private AdapterListQuiz                 mAdapter;
     private String                          mCurrentQuizId;
+
+    private ListView mListView;
+    private View mQuizCover;
 
     // FragmentEventListener impl
 
@@ -56,6 +63,7 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
             break;
 
         default:
+            super.handleEvent(event);
         }
     }
 
@@ -66,18 +74,51 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
     {
         View rootView = inflater.inflate(R.layout.fragment_main_quiz, container, false);
 
+        mQuizCover = rootView.findViewById(R.id.quiz_cover);
+        mQuizCover.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                return true;
+            }
+        });
+
         setHasOptionsMenu(true);
 
-        ListView listView = (ListView) rootView.findViewById(R.id.list);
+        mListView = (ListView) rootView.findViewById(R.id.list);
         mAdapter = new AdapterListQuiz(getActivity(), inflater);
 
-        listView.setAdapter(mAdapter);
-        listView.setOnItemClickListener(new OnItemClickListener()
+        mListView.setAdapter(mAdapter);
+        mListView.setOnItemClickListener(new OnItemClickListener()
         {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 navigateToQuizSection(position);
+            }
+        });
+
+        // disable scrolling
+        mListView.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                    return true; // Indicates that this has been handled by you and will not be forwarded further.
+                }
+                return false;
+            }
+        });
+
+        Button upgradeBtn = (Button)rootView.findViewById(R.id.btn_upgrade);
+        upgradeBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                handleEvent(new Event(EventType.INAPP_SHOW_STORE));
             }
         });
 
@@ -95,6 +136,20 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
             enableHomeAsUp(false);
         else
             enableHomeAsUp(true);
+
+        if (InAppPurchasesModel.mPurchasedStatusMap.get(InAppPurchasesModel.PURCHASE_QUIZZES) != null &&
+                InAppPurchasesModel.mPurchasedStatusMap.get(InAppPurchasesModel.PURCHASE_QUIZZES))
+        {
+            mQuizCover.setVisibility(View.GONE);
+            mListView.setOnTouchListener(null);
+        }
+
+        if (InAppPurchasesModel.mPurchasedStatusMap.get(InAppPurchasesModel.PURCHASE_TEST_SUCCESS) != null &&
+                InAppPurchasesModel.mPurchasedStatusMap.get(InAppPurchasesModel.PURCHASE_TEST_SUCCESS))
+        {
+            mQuizCover.setVisibility(View.GONE);
+            mListView.setOnTouchListener(null);
+        }
     }
 
     @Override
@@ -138,7 +193,13 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
         else
         {
             mModelQuiz = mFragModel.getModel();
-            // TODO: do we need to restore ui state?
+        }
+
+        // TODO: do a better job of restoring state
+        if (mModelQuiz == null)
+        {
+            // hack, just cancel the quiz
+            cancelQuiz();
         }
     }
 

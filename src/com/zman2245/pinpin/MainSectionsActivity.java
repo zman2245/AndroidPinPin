@@ -143,7 +143,6 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.orange_default));
         getSupportActionBar().setIcon(R.drawable.icon_white);
 
-        // test ads? TODO: remove before submission
         FlurryAds.setAdListener(this);
 //        FlurryAds.enableTestAds(true);
 
@@ -170,7 +169,23 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
     public void onBackPressed()
     {
         FragmentManager fm = getSupportFragmentManager();
-        Fragment frag = fm.findFragmentByTag("maintab");
+        Fragment frag = fm.findFragmentByTag("maintab-learn");
+
+        if (frag != null && frag instanceof PinBaseFragment)
+        {
+            if (((PinBaseFragment) frag).onBackPressed())
+                return;
+        }
+
+        frag = fm.findFragmentByTag("maintab-reference");
+
+        if (frag != null && frag instanceof PinBaseFragment)
+        {
+            if (((PinBaseFragment) frag).onBackPressed())
+                return;
+        }
+
+        frag = fm.findFragmentByTag("maintab-quiz");
 
         if (frag != null && frag instanceof PinBaseFragment)
         {
@@ -196,9 +211,7 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
         switch (item.getItemId())
         {
         case R.id.menu_item_upgrade:
-            EventLog.trackEvent(R.string.flurry_event_mode_store);
-            DialogUpgrade dialog = new DialogUpgrade();
-            dialog.show(getSupportFragmentManager(), "upgrade_dialog");
+            showStore();
             return true;
         }
 
@@ -277,6 +290,13 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
 
     // private helpers
 
+    private void showStore()
+    {
+        EventLog.trackEvent(R.string.flurry_event_mode_store);
+        DialogUpgrade dialog = new DialogUpgrade();
+        dialog.show(getSupportFragmentManager(), "upgrade_dialog");
+    }
+
     private void processPurchasedItems()
     {
         if (InAppPurchasesModel.mPurchasedStatusMap.get(InAppPurchasesModel.PURCHASE_AD_FREE) != null &&
@@ -332,6 +352,10 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
 
         case INAPP_PURCHASED_FAILED:
             Toast.makeText(this, getString(R.string.toast_upgrade_purchased_items_failed), Toast.LENGTH_LONG).show();
+            break;
+
+        case INAPP_SHOW_STORE:
+            showStore();
             break;
 
         default:

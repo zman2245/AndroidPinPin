@@ -46,6 +46,7 @@
 	
 	<!-- in app billing -->
 	<string name="purchased">Purchased</string>
+	<string name="quiz_upgrade_button">Get More Quizzes</string>
 	
 	<!-- Toasts -->
 	<string name="toast_upgrade_info_failed">There was a problem loading purchased items. Please try again.</string>

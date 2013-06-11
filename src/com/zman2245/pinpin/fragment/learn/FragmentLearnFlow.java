@@ -97,6 +97,7 @@ public class FragmentLearnFlow extends PinBaseFragment
         mPager.setAdapter(adapter);
         pageControl.setPageNumber(adapter.getCount());
         pageControl.setSelectedPageIndex(0);
+        Registry.sProgressFactory.markLearnProgress(mId, 0, mDatas.length);
 
         mPager.setOnPageChangeListener(new OnPageChangeListener()
         {
