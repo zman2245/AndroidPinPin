@@ -31,10 +31,10 @@ public class FragmentPurchasedQuery extends PinBaseFragment
         mService = service;
     }
 
-    public void getPurchased()
+    public void getPurchased(String packageName)
     {
         QueryPurchasedInfoAsyncTask task = new QueryPurchasedInfoAsyncTask();
-        task.execute((Object[])null);
+        task.execute(packageName);
     }
 
     @Override
@@ -52,7 +52,10 @@ public class FragmentPurchasedQuery extends PinBaseFragment
         {
             try
             {
-                Bundle ownedItems = mService.getPurchases(3, getActivity().getPackageName(), "inapp", null);
+                if (mService == null)
+                    return null;
+
+                Bundle ownedItems = mService.getPurchases(3, (String)params[0], "inapp", null);
 
                 int response = ownedItems.getInt("RESPONSE_CODE");
                 if (response == 0)
@@ -74,7 +77,8 @@ public class FragmentPurchasedQuery extends PinBaseFragment
         {
             if (result == null)
             {
-                handleEvent(new Event(EventType.INAPP_PURCHASED_FAILED));
+                if (mService != null)
+                    handleEvent(new Event(EventType.INAPP_PURCHASED_FAILED));
             }
             else
             {

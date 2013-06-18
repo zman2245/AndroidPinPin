@@ -84,6 +84,9 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
 
             mService = IInAppBillingService.Stub.asInterface(service);
 
+            if (mService == null)
+                throw new NullPointerException("service connected but service is null wtf");
+
             // purchased query fragment
             mPurchasedQueryFragment.setInAppBillingService(mService);
             getPurchased();
@@ -366,7 +369,7 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
 
     private void getPurchased()
     {
-        mPurchasedQueryFragment.getPurchased();
+        mPurchasedQueryFragment.getPurchased(getPackageName());
     }
 
     // FlurryAdListener impl

@@ -8,6 +8,7 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -108,6 +109,8 @@ public class FragmentPractice extends Fragment implements OnClickListener
 
         mPlayback.setEnabled(false);
 
+        fixCorruption();
+
         DataItemPractice data = (DataItemPractice)getArguments().getSerializable(KEY_DATA);
         mParentWord = data.word;
         HashMap<String, Object> map = (HashMap<String, Object>)AppPinPin.sSoundMap.get(mParentWord);
@@ -132,6 +135,20 @@ public class FragmentPractice extends Fragment implements OnClickListener
         mPlayback.setEnabled(false);
 
         return rootView;
+    }
+
+    // TODO: should find real bug and take this out
+    @SuppressWarnings("unchecked")
+    private void fixCorruption()
+    {
+        // uber hack, sometimes the sound map gets corrupted :( I don't know why yet
+        HashMap<String, Object> map = (HashMap<String, Object>)AppPinPin.sSoundMap.get("fang");
+        mTones = (String[])map.get("title");
+        if (!mTones[0].equals("fāng") || !mTones[1].equals("fáng") || !mTones[2].equals("fǎng") || !mTones[3].equals("fàng"))
+        {
+            Log.d("DEBUG", "rebuilding sound map");
+            AppPinPin.rebuildSoundMap();
+        }
     }
 
     @Override

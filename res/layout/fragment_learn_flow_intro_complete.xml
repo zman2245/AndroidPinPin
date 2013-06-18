@@ -23,15 +23,4 @@
         android:textSize="@dimen/textsize_learn_body"
         android:text="@string/learn_intro_complete_body"/>
 
-    <Button
-        android:id="@+id/btn_study"
-        android:layout_height="@dimen/button_height_default"
-        android:layout_width="match_parent"
-        android:layout_below="@id/body"
-        android:drawableLeft="@drawable/check_gray"
-        android:textStyle="bold"
-        android:textSize="@dimen/textsize_learn_button"
-        android:text="@string/learn_intro_complete_button"
-        />
-
 </RelativeLayout>

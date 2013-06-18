@@ -57,8 +57,6 @@ public class AppPinPin extends Application
                 XmlParserSounds parser = new XmlParserSounds();
                 long ts = System.currentTimeMillis();
                 HashMap<String, Object> soundsMap = parser.parse(is);
-                HashMap<String, Object> tmp = (HashMap<String, Object>)soundsMap.get("an");
-                String[] titles = (String[])tmp.get("title");
                 AppPinPin.sSoundMap = soundsMap;
 
                 buildReverseSoundMap();
@@ -70,6 +68,24 @@ public class AppPinPin extends Application
         }
 
         EventLog.init(this);
+    }
+
+    // for testing only
+    public static void rebuildSoundMap()
+    {
+        try
+        {
+            InputStream is = AppPinPin.sInstance.getAssets().open("sounds.xml");
+            XmlParserSounds parser = new XmlParserSounds();
+            long ts = System.currentTimeMillis();
+            HashMap<String, Object> soundsMap = parser.parse(is);
+            AppPinPin.sSoundMap = soundsMap;
+            Log.d("DEBUG", "rebuilding time took in milliseconds: " + (System.currentTimeMillis() - ts));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public static AppPinPin getInstance()
