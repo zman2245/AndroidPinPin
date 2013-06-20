@@ -2,6 +2,7 @@ package com.zman2245.pinpin.fragment.tab;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,8 @@ public class FragmentTabReference extends PinBaseFragment
 
     private MenuItem             mMenuItemTone;
 
+    private Tone mCurrentTone;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -43,7 +46,10 @@ public class FragmentTabReference extends PinBaseFragment
         mTopbar   = (LinearLayout) rootView.findViewById(R.id.topbar);
         mGridView = (GridView) rootView.findViewById(R.id.grid);
 
-        setContentTone(Tone.FIRST);
+        Tone tone = mCurrentTone == null ? Tone.FIRST : mCurrentTone;
+        if (savedInstanceState != null && savedInstanceState.containsKey("tone"))
+            tone = (Tone)savedInstanceState.getSerializable("tone");
+        setContentTone(tone);
 
         mGridView.setOnItemClickListener(new GridView.OnItemClickListener()
         {
@@ -78,6 +84,14 @@ public class FragmentTabReference extends PinBaseFragment
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState)
+    {
+        super.onSaveInstanceState(outState);
+
+        outState.putSerializable("tone", mCurrentTone);
+    }
+
+    @Override
     public void onResume()
     {
         super.onResume();
@@ -93,6 +107,9 @@ public class FragmentTabReference extends PinBaseFragment
         inflater.inflate(R.menu.menu_reference, menu);
 
         mMenuItemTone = menu.findItem(R.id.menu_item_tone);
+
+        if (mCurrentTone != null)
+            mMenuItemTone.setIcon(mCurrentTone.refWhiteIcon);
     }
 
     @Override
@@ -125,6 +142,8 @@ public class FragmentTabReference extends PinBaseFragment
     {
         EventLog.trackEvent(R.string.flurry_event_reference_tone);
 
+        mCurrentTone = tone;
+
         String[][] content  = UtilContentStrings.getReferenceStrings(tone);
         mAdapter            = new AdapterGridReference(content, getLayoutInflater(null));
 
@@ -132,7 +151,11 @@ public class FragmentTabReference extends PinBaseFragment
         mGridView.setNumColumns(content[0].length);
         mGridView.setAdapter(mAdapter);
 
-        mMenuItemTone.setIcon(tone.refWhiteIcon);
+        // for devices that have a hard menu button, the menu is only created
+        // once the menu button is pressed, so the menu item for the tone could
+        // be null
+        if (mMenuItemTone != null)
+            mMenuItemTone.setIcon(tone.refWhiteIcon);
     }
 
     private void initTopbar()
@@ -147,7 +170,8 @@ public class FragmentTabReference extends PinBaseFragment
             LinearLayout.LayoutParams lps = new LinearLayout.LayoutParams(
                     getResources().getDimensionPixelSize(R.dimen.gridview_words_cell_width),
                     getResources().getDimensionPixelSize(R.dimen.gridview_words_cell_height));
-            txtView.setTextSize(getResources().getDimension(R.dimen.textsize_reference_topbar));
+//            txtView.setTextSize(getResources().getDimension(R.dimen.textsize_reference_topbar));
+            txtView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             txtView.setLayoutParams(lps);
             mTopbar.addView(txtView);
         }

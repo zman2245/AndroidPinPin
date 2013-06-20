@@ -23,7 +23,7 @@
     <dimen name="textsize_quiz_choice">22sp</dimen>
     <dimen name="textsize_quiz_answer">34sp</dimen>
     <dimen name="textsize_practice_word">35sp</dimen>
-    <dimen name="textsize_reference_topbar">8sp</dimen>
+    <dimen name="textsize_reference_topbar">12sp</dimen>
     
     <!-- Button sizes -->
     <dimen name="button_height_default">55dp</dimen>
