@@ -17,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zman2245.pinpin.AppPinPin;
 import com.zman2245.pinpin.R;
@@ -309,13 +310,13 @@ public class FragmentPractice extends Fragment implements OnClickListener
         try
         {
             mRecorder.prepare();
+            mRecorder.start();
         }
         catch (IOException e)
         {
             e.printStackTrace();
+            Toast.makeText(getActivity(), getString(R.string.toast_practice_file_not_found), Toast.LENGTH_LONG).show();
         }
-
-        mRecorder.start();
     }
 
     private void stopRecording()

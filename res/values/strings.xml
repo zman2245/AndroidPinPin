@@ -53,4 +53,5 @@
 	<string name="toast_upgrade_purchase_failed">There was a problem processing your order. Please try again.</string>
 	<string name="toast_upgrade_purchased_items_failed">There was a problem loading your purchased items. If you have purchased items, please check your internet connection and reload the app.</string>
 	<string name="toast_upgrade_purchase_success">Order processed! Thank you!</string>
+	<string name="toast_practice_file_not_found">PinPin was unable to record. Please make sure your device is not mounted as USB storage and there is storage room on the device.</string>
 </resources>
