@@ -51,20 +51,7 @@ public class AppPinPin extends Application
 
         if (AppPinPin.sSoundMap == null)
         {
-            try
-            {
-                InputStream is = getAssets().open("sounds.xml");
-                XmlParserSounds parser = new XmlParserSounds();
-                long ts = System.currentTimeMillis();
-                HashMap<String, Object> soundsMap = parser.parse(is);
-                AppPinPin.sSoundMap = soundsMap;
-
-                buildReverseSoundMap();
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+            rebuildSoundMap();
         }
 
         EventLog.init(this);
@@ -80,6 +67,44 @@ public class AppPinPin extends Application
             long ts = System.currentTimeMillis();
             HashMap<String, Object> soundsMap = parser.parse(is);
             AppPinPin.sSoundMap = soundsMap;
+
+            // manually put in umlauts
+            // TODO: there are some issues in putting these characters in the sounds.xml and parsing
+            // maybe something to do with the format of the sounds.xml file itself?
+            HashMap<String, Object> innerMap = new HashMap<String, Object>();
+            String[] titles = new String[4];
+            titles[0] = "nǖ";
+            titles[1] = "nǘ";
+            titles[2] = "nǚ";
+            titles[3] = "nǜ";
+            innerMap.put("title", titles);
+            soundsMap.put("n&#252;", innerMap);
+            innerMap = new HashMap<String, Object>();
+            titles = new String[4];
+            titles[0] = "nǖe";
+            titles[1] = "nǘe";
+            titles[2] = "nǚe";
+            titles[3] = "nǜe";
+            innerMap.put("title", titles);
+            soundsMap.put("n&#252;e", innerMap);
+            innerMap = new HashMap<String, Object>();
+            titles = new String[4];
+            titles[0] = "lǖ";
+            titles[1] = "lǘ";
+            titles[2] = "lǚ";
+            titles[3] = "lǜ";
+            innerMap.put("title", titles);
+            soundsMap.put("l&#252;", innerMap);
+            innerMap = new HashMap<String, Object>();
+            titles = new String[4];
+            titles[0] = "lǖe";
+            titles[1] = "lǘe";
+            titles[2] = "lǚe";
+            titles[3] = "lǜe";
+            innerMap.put("title", titles);
+            soundsMap.put("l&#252;e", innerMap);
+
+            buildReverseSoundMap();
             Log.d("DEBUG", "rebuilding time took in milliseconds: " + (System.currentTimeMillis() - ts));
         }
         catch (Exception e)
@@ -145,7 +170,7 @@ public class AppPinPin extends Application
     }
 
     @SuppressWarnings("unchecked")
-    private void buildReverseSoundMap()
+    private static void buildReverseSoundMap()
     {
         sSoundMapReverse = new HashMap<String, String>();
 
