@@ -27,6 +27,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.android.vending.billing.IInAppBillingService;
+import com.crittercism.app.Crittercism;
 import com.flurry.android.FlurryAdListener;
 import com.flurry.android.FlurryAdSize;
 import com.flurry.android.FlurryAdType;
@@ -110,6 +111,8 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        Crittercism.init(getApplicationContext(), "51e755c3558d6a2d65000004");
 
         setContentView(R.layout.activity_main_sections);
 
