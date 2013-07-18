@@ -161,7 +161,7 @@
         <item>@array/learn_getting_started_btns_page2_row4</item>
     </array>
     <array name="learn_getting_started_btns">
-        <item></item>
+        <item>@array/learn_getting_started_btns_page1</item>
         <item>@array/learn_getting_started_btns_page2</item>
     </array>
 
