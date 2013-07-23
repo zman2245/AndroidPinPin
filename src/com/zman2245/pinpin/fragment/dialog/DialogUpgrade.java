@@ -159,6 +159,9 @@ public class DialogUpgrade extends DialogFragment
 
             try
             {
+                if (mService == null || getActivity() == null)
+                    return upgradeData;
+
                 Bundle skuDetails = mService.getSkuDetails(3, getActivity().getPackageName(), "inapp", querySkus);
 
                 int response = skuDetails.getInt("RESPONSE_CODE");

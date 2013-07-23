@@ -126,7 +126,7 @@ public class FragmentTabLearn extends PinBaseFragment implements FragmentEventLi
 
         FragmentTransaction ft = fm.beginTransaction();
         ft.remove(frag);
-        ft.commit();
+        ft.commitAllowingStateLoss();
 
         enableHomeAsUp(false);
 
