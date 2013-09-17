@@ -84,7 +84,7 @@ public class FragmentLearnFlow extends PinBaseFragment
         mPager = (ViewPager) rootView.findViewById(R.id.pager);
         final PageControl pageControl = (PageControl) rootView.findViewById(R.id.page_control);
 
-        mDatas = (DataItemLearnFlow[]) getArguments().getSerializable(KEY_DATAS);
+        mDatas = getData(getArguments().getSerializable(KEY_DATAS));
         mId = mDatas[0].section_id;
 
         // the intro flow has a much different format, so it is separated
@@ -119,5 +119,24 @@ public class FragmentLearnFlow extends PinBaseFragment
         });
 
         return rootView;
+    }
+
+    /**
+     * Can't reliably cast an array of serialized objects to the array type
+     *
+     * @param obj
+     * @return
+     */
+    private DataItemLearnFlow[] getData(Object obj)
+    {
+        Object[] objects = (Object[])obj;
+        DataItemLearnFlow[] datas = new DataItemLearnFlow[objects.length];
+
+        for (int i = 0; i < datas.length; i++)
+        {
+            datas[i] = (DataItemLearnFlow)objects[i];
+        }
+
+        return datas;
     }
 }
