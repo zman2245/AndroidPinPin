@@ -288,7 +288,7 @@ public class FragmentTabQuiz extends PinBaseFragment implements FragmentEventLis
             ft.replace(R.id.container, frag, "quiz_flow");
         }
 
-        ft.commit();
+        ft.commitAllowingStateLoss();
     }
 
     // TODO: save state? Right now "cancel" and "end" are the same, but should
