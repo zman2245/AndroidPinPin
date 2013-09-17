@@ -221,6 +221,9 @@ public class DialogUpgrade extends DialogFragment
         @Override
         protected void onPostExecute(UpgradeData[] upgradeData)
         {
+            if (!isAdded())
+                return;
+
             mLoadingView.setVisibility(View.GONE);
 
             if (upgradeData == null || upgradeData.length <= 0)
