@@ -6,8 +6,6 @@
     android:gravity="center_vertical"
     tools:context=".MainSectionsActivity" >
 
-    <!-- TODO: the side bar of vertically-oriented text -->
-
     <ImageView
         android:id="@+id/icon"
         android:layout_width="wrap_content"
@@ -23,8 +21,10 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/icon"
         android:layout_marginLeft="10dp"
-        android:textSize="16sp"
-        android:text="Unlock Quizzes" />
+        android:layout_marginRight="60dp"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/subtitle"
@@ -34,8 +34,7 @@
         android:layout_toRightOf="@id/icon"
         android:layout_marginLeft="10dp"
         android:layout_below="@id/title"
-        android:textSize="11sp"
-        android:text="Unlocks all of the listening quizzes" />
+        android:textSize="11sp" />
 
     <TextView
         android:id="@+id/price"
