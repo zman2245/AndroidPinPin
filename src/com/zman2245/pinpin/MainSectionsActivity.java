@@ -33,6 +33,7 @@ import com.flurry.android.FlurryAdSize;
 import com.flurry.android.FlurryAdType;
 import com.flurry.android.FlurryAds;
 import com.flurry.android.FlurryAgent;
+import com.sbstrm.appirater.Appirater;
 import com.zman2245.pinpin.appstate.InAppPurchasesModel;
 import com.zman2245.pinpin.fragment.FragmentPurchasedQuery;
 import com.zman2245.pinpin.fragment.PinBaseFragment;
@@ -275,6 +276,8 @@ public class MainSectionsActivity extends SherlockFragmentActivity implements Fr
     public void onStart()
     {
         super.onStart();
+
+        Appirater.appLaunched(this);
 
         FlurryAgent.onStartSession(this, getString(R.string.flurry_api_key));
 
